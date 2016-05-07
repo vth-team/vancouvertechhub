@@ -1,0 +1,16 @@
+<%= simple_form_for @organization do |f| %>
+  <%= f.input :name, input_html: {class: "abc"}, label_html: {class: "hey"} %>
+  <%= f.input :address %>
+  <%= f.input :overview %>
+  <%= f.input :employee_count %>
+  <%= f.input :tech_team_size %>
+  <%= f.input :website %>
+  <%= f.input :twitter %>
+  <%#= f.input :manager %>
+  <% if current_user.admin == true %>
+    <%= f.input :published, as: :boolean, checked_value: true, unchecked_value: false %>
+  <% end %>
+  <%#= f.association :technologies, input_html: {class: "chosen-select"} %>
+  <%#= f.input :image %>
+  <%= f.submit class: "btn btn-primary" %>
+<% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160507151918) do
+ActiveRecord::Schema.define(version: 20160507220554) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,22 @@ ActiveRecord::Schema.define(version: 20160507151918) do
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
+  create_table "organizations", force: :cascade do |t|
+    t.string   "name"
+    t.string   "address"
+    t.text     "overview"
+    t.integer  "employee_count"
+    t.integer  "tech_team_size"
+    t.string   "website"
+    t.string   "twitter"
+    t.boolean  "published",      default: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "user_id"
+  end
+
+  add_index "organizations", ["user_id"], name: "index_organizations_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -45,6 +61,11 @@ ActiveRecord::Schema.define(version: 20160507151918) do
     t.datetime "password_reset_requested_at"
     t.datetime "created_at",                                        null: false
     t.datetime "updated_at",                                        null: false
+    t.integer  "organization_id"
   end
 
+  add_index "users", ["organization_id"], name: "index_users_on_organization_id", using: :btree
+
+  add_foreign_key "organizations", "users"
+  add_foreign_key "users", "organizations"
 end

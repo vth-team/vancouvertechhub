@@ -16,9 +16,11 @@ Rails.application.routes.draw do
     delete :destroy, on: :collection
   end
 
+  resources :organizations
+
   get "/about" => "home#about"
 
-  root "home#index", as: :root
+  root "organizations#index", as: :root
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

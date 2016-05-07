@@ -45,3 +45,5 @@ u9 = User.create(first_name: 'Lucas', last_name: 'Cheung',
 u10 = User.create(first_name: 'Lucas2', last_name: 'Cheung',
               email: 'lucas202297632@hotmail.com', password: 'Community',
               password_confirmation: 'Community', activated: true)
+
+o1 = Organization.create(name: 'Hootsuite', address: '5 E 8th Ave, Vancouver, BC V5T 1R6, Canada', overview: 'Hootsuite is a social media management system for brand management created by Ryan Holmes in 2008. The system’s user interface takes the form of a dashboard, and supports social network integrations for Twitter, Facebook, LinkedIn, Google+, Foursquare, MySpace, WordPress, TrendSpottr and Mixi.', employee_count: 600, tech_team_size: 600, website: 'https://hootsuite.com', twitter: 'hootsuite', published: false)
