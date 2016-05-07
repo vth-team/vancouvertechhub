@@ -1,16 +1,26 @@
 <h1><%= @organization.name %></h1>
-<p><%= @organization.address %></p>
+<p>Address: <%= @organization.address %></p>
 
-<h3><%= @organization.overview %></h3>
-<p><%= @organization.employee_count %></p>
-<p><%= @organization.tech_team_size %></p>
-<p><%= @organization.website %></p>
+<h3>Overview: <%= @organization.overview %></h3>
+<p>Team size: <%= @organization.employee_count %></p>
+<p>Tech team size: <%= @organization.tech_team_size %></p>
+<p>Website: <%= @organization.website %></p>
 <!-- <p>Tags: <%#= @organization.tags.map(&:name).join(", ") %></p> -->
-<p><%= @organization.twitter %></p>
+<p>Twitter: <%= @organization.twitter %></p>
 
 <%# if @organization.image.present? %>
   <%#= image_tag @organization.image.url %>
 <%# end %>
-<p><%= @organization.manager %></p>
+<p><%#= @organization.manager %></p>
+<% if can? :manage, @organization %>
+<% if @organization.published %>
+  <p>Published</p>
+<% end %>
+<% end %>
 
-<p><%= @organization.published %></p>
+<% if can? :update, @organization %>
+  <%= link_to "Edit", edit_organization_path(@organization) %>
+<% end %>
+
+<a class="twitter-timeline" href="https://twitter.com/<%= @organization.twitter %>" data-widget-id="729049490544427008" data-screen-name="<%= @organization.twitter %>">Tweets by @<%= @organization.twitter %></a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
