@@ -32,6 +32,15 @@ ActiveRecord::Schema.define(version: 20160507220554) do
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
+  create_table "events", force: :cascade do |t|
+    t.string   "meetup_title"
+    t.string   "meetup_url"
+    t.string   "location"
+    t.integer  "time"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "organizations", force: :cascade do |t|
     t.string   "name"
     t.string   "address"
