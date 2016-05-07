@@ -1,5 +1,6 @@
 class Organization < ActiveRecord::Base
-  # belongs_to user - todo
+  belongs_to :user
+  
   validates :name, presence: true, uniqueness: true
   validates :address, presence: true
   validates :overview, presence: true
@@ -7,5 +8,7 @@ class Organization < ActiveRecord::Base
   validates :tech_team_size, presence: true, numericality: {greater_than_or_equal_to: 1}
   validates :twitter, uniqueness: true
   validates :published, presence: true
+
+
 
 end

@@ -1,0 +1,16 @@
+<h1><%= @organization.name %></h1>
+<p><%= @organization.address %></p>
+
+<h3><%= @organization.overview %></h3>
+<p><%= @organization.employee_count %></p>
+<p><%= @organization.tech_team_size %></p>
+<p><%= @organization.website %></p>
+<!-- <p>Tags: <%#= @organization.tags.map(&:name).join(", ") %></p> -->
+<p><%= @organization.twitter %></p>
+
+<%# if @organization.image.present? %>
+  <%#= image_tag @organization.image.url %>
+<%# end %>
+<p><%= @organization.manager %></p>
+
+<p><%= @organization.published %></p>
