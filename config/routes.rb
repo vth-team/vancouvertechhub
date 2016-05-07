@@ -1,5 +1,21 @@
 Rails.application.routes.draw do
 
+  match "/delayed_job" => DelayedJobWeb, :anchor => false, via: [:get, :post]
+
+  resources :users, only: [:new, :create, :edit, :update, :destroy]
+
+  # scope module: 'users': will generate the path without /users, but with
+  # the child controllers in the users folder
+  scope module: 'users' do
+    resources :password_resets, only: [:new, :create, :edit, :update]
+    resources :password_changes, only: [:edit, :update]
+    resources :account_verifications, only: [:new, :create, :edit]
+  end
+
+  resources :sessions, only: [:new, :create] do
+    delete :destroy, on: :collection
+  end
+
   get "/about" => "home#about"
 
   root "home#index", as: :root
