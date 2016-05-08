@@ -10,6 +10,7 @@
     markers = handler.addMarkers(<%= raw organizations_json(@organizations).to_json %>);
     handler.bounds.extendWith(markers);
     handler.fitMapToBounds();
+    //handler.getMap().setZoom(17);
   });
 </script>
 
