@@ -1,7 +1,7 @@
 class AdminController < ApplicationController
 
   def organizations
-    @organizations = Organization.all
+    @organizations = Organization.all.order("name")
   end
 
   def events
@@ -14,7 +14,7 @@ class AdminController < ApplicationController
   end
 
   def technologies
-    @technologies = Technology.all
+    @technologies = Technology.order("name").all
     @technology = Technology.new
   end
 
