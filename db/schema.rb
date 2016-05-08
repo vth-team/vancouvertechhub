@@ -11,10 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< 4677c6294470cc93e69f78944f0a7d3508088fb2
 ActiveRecord::Schema.define(version: 20160508022012) do
+=======
+ActiveRecord::Schema.define(version: 20160508021920) do
+>>>>>>> Add claim requests model and controller
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "claim_requests", force: :cascade do |t|
+    t.boolean  "status"
+    t.integer  "user_id"
+    t.integer  "organization_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "claim_requests", ["organization_id"], name: "index_claim_requests_on_organization_id", using: :btree
+  add_index "claim_requests", ["user_id"], name: "index_claim_requests_on_user_id", using: :btree
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -93,6 +108,8 @@ ActiveRecord::Schema.define(version: 20160508022012) do
 
   add_index "users", ["organization_id"], name: "index_users_on_organization_id", using: :btree
 
+  add_foreign_key "claim_requests", "organizations"
+  add_foreign_key "claim_requests", "users"
   add_foreign_key "organization_technologies", "organizations"
   add_foreign_key "organization_technologies", "technologies"
   add_foreign_key "organizations", "users"
