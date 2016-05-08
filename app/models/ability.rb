@@ -12,6 +12,11 @@ class Ability
        # making sure user is persisted in the database
        org.user == user && user.persisted?
      end
+
+     can :cru, ClaimRequest do |claim|
+       # making sure user is persisted in the database
+       claim.user == user && user.persisted?
+     end
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)

@@ -2,6 +2,7 @@ class OrganizationsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   before_action :find_organization, only: [:show, :edit, :update, :destroy]
+
   before_action :authorize_organization, only: [:edit, :update, :destroy]
   skip_before_action :authorize_organization
 
@@ -10,6 +11,7 @@ class OrganizationsController < ApplicationController
   end
 
   def show
+    @claimed = @organization.claim_requests.find_by_status(true)
       respond_to do |format|
         format.html { render } # render organizations/show.html.erb
         format.json { render json: @organization.to_json }
@@ -19,10 +21,11 @@ class OrganizationsController < ApplicationController
 
   def index
     @organizations = Organization.all
-    respond_to do |format|
-      format.html { render }
-      format.json { render json: @organizations.select(:id, :name, :view_count) }
-    end
+
+    # respond_to do |format|
+      # format.html { render }
+      # format.json { render json: @organizations }
+    # end
   end
 
   def edit
@@ -60,7 +63,9 @@ class OrganizationsController < ApplicationController
     end
   end
 
+
 private
+
 
   def find_organization
     @organization = Organization.find params[:id]

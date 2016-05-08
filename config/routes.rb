@@ -16,9 +16,8 @@ Rails.application.routes.draw do
     delete :destroy, on: :collection
   end
 
-  resources :organizations
-  resources :claim_requests, only: [:create] do
-    patch "update_status" => "claim_requests#update_status"
+  resources :organizations do
+    resources :claim_requests
   end
 
 

@@ -34,14 +34,24 @@
 <%# end %>
 <!-- <p><%#= @organization.manager %></p> -->
 <% if can? :manage, @organization %>
-<% if @organization.published %>
-  <p>Published</p>
-<% end %>
+  <% if @organization.published %>
+    <p>Published</p>
+  <% end %>
 <% end %>
 
-<% if can? :update, @organization %>
+
+<% if can? :cru, @organization %>
   <%= link_to "Edit", edit_organization_path(@organization), class: "btn btn-primary" %>
 <% end %>
+
+<% if user_signed_in? %>
+  <% if !(@claimed && @claimed.status == true)  %>
+    <% if @organization.user == nil %>
+      <%= link_to "Claim this business", new_organization_claim_request_path(@organization), class: "btn btn-primary"%>
+    <% end %>
+  <% end %>
+<% end %>
+
 <div class="container-fluid" id="twitter-feed">
   <a class="twitter-timeline" href="https://twitter.com/<%= @organization.twitter %>" data-widget-id="729049490544427008" data-screen-name="<%= @organization.twitter %>">Tweets by @<%= @organization.twitter %></a>
   <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
