@@ -63,6 +63,11 @@ gem 'simple_form'
 gem 'friendly_id'
 gem 'carrierwave'
 gem 'mini_magick'
+
+gem 'geocoder'
+gem 'underscore-rails'
+gem 'gmaps4rails'
+
 group :development, :test do
   gem 'pry'
   gem 'pry-byebug'
