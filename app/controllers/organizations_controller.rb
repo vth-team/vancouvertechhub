@@ -12,6 +12,7 @@ class OrganizationsController < ApplicationController
 
   def show
     @claimed = @organization.claim_requests.find_by_status(true)
+    hosting_event
       respond_to do |format|
         format.html { render } # render organizations/show.html.erb
         format.json { render json: @organization.to_json }
@@ -77,6 +78,12 @@ private
 
   def authorize_organization
     redirect_to root_path unless can? :cru, @organization
+  end
+
+  def hosting_event
+    events = Event.all
+    org_add = @organization.address.split(",")[0]
+    @find = events.where("location ILIKE ?", "%#{org_add}%")
   end
 
 end

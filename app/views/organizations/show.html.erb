@@ -63,3 +63,14 @@
 <script type-"text/javascript">
   <%= render "load_news.js" %>
 </script>
+
+<% @find.each do |list| %>
+<p>
+  <div class="event-name">
+    <%= list.meetup_title%>
+  </div>
+  <div class="event-date">
+    <%= list.start_time %>
+  </div>
+</p>
+<%end%>
