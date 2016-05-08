@@ -26,8 +26,8 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
           <ul class="nav navbar-nav">
 
-            <li class="active"><%= link_to "Directory", root_path, class: "directory" %></li>
-            <li><a href="javascript:void(0)"> Events </a></li>
+            <li><%= link_to "Directory", root_path, class: "directory" %></li>
+            <li><a href="/events"> Events </a></li>
 
             <!-- <li><%#= link_to "Events", events_path, class: "directory" %></li> -->
 
@@ -54,7 +54,7 @@
     </div>
 
     <div class="bottomMenu navbar-fixed-bottom navbar-inverse">
-      <div class="navbar-left footer-text">
+      <div class="navbar-left footer">
         <ul class="nav navbar-nav">
           <!-- <li><a href="#"></a></li> -->
           <% if user_signed_in? %>
@@ -88,13 +88,13 @@
           <li><%= link_to "About", about_path	 %></li>
         </ul>
       </div>
-      <div class="navbar-center footer-text">
-          Built and maintained by students from <a href="http://codecore.ca">CodeCore</a>
-      </div>
       <div class="navbar-right footer-icons">
         <i class="fa fa-twitter" aria-hidden="true"></i>
         <i class="fa fa-facebook-official" aria-hidden="true"></i>
         <i class="fa fa-google-plus" aria-hidden="true"></i>
+      </div>
+      <div class="navbar-right footer-text">
+          Built and maintained by students from <a href="http://codecore.ca">CodeCore</a>
       </div>
     </div>
 
