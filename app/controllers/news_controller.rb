@@ -3,6 +3,19 @@ require 'net/http'
 
 class NewsController < ApplicationController
 
+  def search_news
+    @organization = params[:organization]
+    accountKey = ENV["bing_key"]
+    @bing_news = Bing.new(accountKey, 5, 'News')
+    # or optionally specify an offset for your search, to start retrieving results from the starting point provided
+    @bing_news_search_results = @bing_news.search(@organization, 0)
+    @bing_news_total = @bing_news_search_results[0][:NewsTotal]
+    @bing_news_results = @bing_news_search_results[0][:News]
+    
+    respond_to do |format|
+      format.json { render json: @bing_news_results }
+    end
+  end
 
   def index
 

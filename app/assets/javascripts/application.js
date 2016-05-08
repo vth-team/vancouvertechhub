@@ -24,7 +24,7 @@
 // AppKey is from Bing Market Place account
 // var AppKey = ""
 // var encodedAppKey = Base64.encode(':' + AppKey);
-//
+// //
 // $.ajax({
 //   //url: "https://api.datamarket.azure.com/Bing/Search/v1/Web?Query='sushi'&$format=JSON",
 //   url: "https://api.datamarket.azure.com/Bing/Search/v1/News?Query='Vancouver Tech'&$format=JSON",
@@ -38,4 +38,9 @@
 //   success: function(data){
 //     console.log(data)
 //   }
+// });
+
+// $(document).ready(function(){
+//
+//
 // });

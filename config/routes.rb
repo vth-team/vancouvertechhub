@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 
 
   resources :news, only: [:index]
+  get "/news/search_news" => "news#search_news"
 
   get "/about" => "home#about"
 

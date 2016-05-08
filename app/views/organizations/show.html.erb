@@ -2,13 +2,13 @@
 <p>Address: <%= @organization.address %></p>
 
 <div>
-  <div id="map" style='height: 400px;'></div>
+  <div id="map" style='height: 300px; width: 400px'></div>
 </div>
 
 <script type="text/javascript">
   handler = Gmaps.build('Google');
 
-  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+  handler.buildMap({ provider: { scrollwheel: false, zoomControl: false }, internal: {id: 'map'}}, function(){
     markers = handler.addMarkers([
       {
         "lat": <%= @organization.latitude %>,
@@ -56,3 +56,10 @@
   <a class="twitter-timeline" href="https://twitter.com/<%= @organization.twitter %>" data-widget-id="729049490544427008" data-screen-name="<%= @organization.twitter %>">Tweets by @<%= @organization.twitter %></a>
   <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 </div>
+
+<h2>Powered by Bing News</h2>
+<div id="bing_organization_news">
+</div>
+<script type-"text/javascript">
+  <%= render "load_news.js" %>
+</script>
