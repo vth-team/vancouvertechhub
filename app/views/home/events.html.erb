@@ -1,0 +1,7 @@
+<h1>upcoming Events</h1>
+
+<% @event.each do |list|%>
+<div class="event-name"><%= link_to list.meetup_title,list.meetup_url %></div>
+<div class="eventdate">On <%= list.time%></div>
+<hr>
+<%end%>
