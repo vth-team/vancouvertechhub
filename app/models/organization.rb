@@ -13,6 +13,9 @@ class Organization < ActiveRecord::Base
   # # validates :twitter, uniqueness: true
   validates_inclusion_of :published, :in => [true, false]
 
+  geocoded_by :address
+  after_validation :geocode
+
   def user_full_name
     user ? user.full_name : ""
   end

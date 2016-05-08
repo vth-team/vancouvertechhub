@@ -1,6 +1,27 @@
 <h1><%= @organization.name %></h1>
 <p>Address: <%= @organization.address %></p>
 
+<div>
+  <div id="map" style='height: 400px;'></div>
+</div>
+
+<script type="text/javascript">
+  handler = Gmaps.build('Google');
+
+  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+    markers = handler.addMarkers([
+      {
+        "lat": <%= @organization.latitude %>,
+        "lng": <%= @organization.longitude %>,
+        "infowindow": "<%= @organization.name %>"
+      }
+    ]);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+    handler.getMap().setZoom(17);
+  });
+</script>
+
 <h3>Overview: <%= @organization.overview %></h3>
 <p>Team size: <%= @organization.employee_count %></p>
 <p>Tech team size: <%= @organization.tech_team_size %></p>

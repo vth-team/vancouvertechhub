@@ -1,5 +1,18 @@
 <h1>Organization list</h1>
 
+<div>
+  <div id="map" style='height: 400px;'></div>
+</div>
+
+<script type="text/javascript">
+  handler = Gmaps.build('Google');
+  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+    markers = handler.addMarkers(<%= raw organizations_json(@organizations).to_json %>);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+  });
+</script>
+
 <% @organizations.each do |o| %>
 <div>
   <%= link_to o.name, organization_path(o) %>

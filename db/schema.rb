@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< e1b28611e9ccb09a0225b982dfc5ffa54e687a9a
 ActiveRecord::Schema.define(version: 20160507233528) do
+=======
+ActiveRecord::Schema.define(version: 20160507231654) do
+>>>>>>> Integrate geocoder and gmaps4rails, display map on organization index and show
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +67,8 @@ ActiveRecord::Schema.define(version: 20160507233528) do
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
     t.integer  "user_id"
+    t.float    "longitude"
+    t.float    "latitude"
   end
 
   add_index "organizations", ["user_id"], name: "index_organizations_on_user_id", using: :btree
