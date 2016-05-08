@@ -1,0 +1,14 @@
+
+<div class="container-fluid">
+  <h1>Hello, <%= @user.first_name%></h1>
+
+  <p>You are about to request to claim the company, "<%= @organization.name%>"</p>
+  <div class="col-lg-3">
+    <%= button_to "Yes, Submit Request", organization_claim_requests_path(@organization), method: :post, class: "btn btn-default"%>
+  </div>
+  <div class="col-lg-3">
+    <%= link_to "No, take me back", :back, class: "btn btn-default"%>
+  </div>
+
+
+</div>

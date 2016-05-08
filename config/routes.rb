@@ -16,9 +16,13 @@ Rails.application.routes.draw do
     delete :destroy, on: :collection
   end
 
-  resources :organizations
+  resources :organizations do
+    resources :claim_requests
+  end
+
 
   get "/about" => "home#about"
+
 
   root "organizations#index", as: :root
 

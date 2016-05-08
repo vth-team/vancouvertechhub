@@ -1,0 +1,2 @@
+module ClaimRequestsHelper
+end

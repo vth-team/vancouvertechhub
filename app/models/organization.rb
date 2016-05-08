@@ -1,5 +1,6 @@
 class Organization < ActiveRecord::Base
   belongs_to :user
+  has_many :claim_requests
 
   validates :name, presence: true
   validates :address, presence: true
@@ -22,5 +23,6 @@ class Organization < ActiveRecord::Base
 
   private
 
+  
 
 end
