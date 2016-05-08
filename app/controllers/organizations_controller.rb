@@ -30,16 +30,17 @@ class OrganizationsController < ApplicationController
   end
 
   def edit
+    @organization = Organization.find params[:id]
   end
 
   def update
-      # @organization.slug = nil
-      if @organization.update organization_params
+    # @organization.slug = nil
+    if @organization.update organization_params
 
-        redirect_to organization_path(@organization), notice: "organization updated!"
-      else
-        render :edit
-      end
+      redirect_to organization_path(@organization), notice: "Organization Updated!"
+    else
+      render :edit
+    end
   end
 
   def destroy

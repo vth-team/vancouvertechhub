@@ -1,0 +1,25 @@
+<h1>Technologies</h1>
+
+<p>
+<%= simple_form_for @technology do |f| %>
+<%= f.input :name %>
+<%= f.submit "Add", class: "btn btn-primary" %>
+<% end %>
+</p>
+
+<div class="container-fluid">
+  <table>
+    <tr>
+      <th>Technology</th>
+      <th>Action</th>
+    </tr>
+    <% @technologies.each do |t| %>
+    <tr>
+      <td><%= t.name %></td>
+      <td><%= link_to "Remove", admin_technologies_path,
+      data: {confirm: "Are you sure?"},
+      method: :delete%></td>
+    <tr/>
+    <% end %>
+  </table>
+</div>
