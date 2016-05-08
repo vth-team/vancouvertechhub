@@ -1,0 +1,24 @@
+<h1>Upcoming Events</h1>
+
+<%= month_calendar events: @events do |date, events| %>
+  <%= date %>
+
+  <% events.each do |event| %>
+    <div class="event-cal">
+      <%= link_to event.meetup_title,event.meetup_url %>
+    </div>
+  <% end %>
+<% end %>
+<%= form_tag class:"form-inline"%>
+<%= text_field_tag 'search',nil, class:"col-md-3 form-control"%>
+<%= button_tag 'Search',class:"search btn btn-primary" %>
+
+<% @events.each do |list|%>
+  <div class="event">
+    <div class="event-name"><%= link_to list.meetup_title,list.meetup_url %></div>
+    <div class="event-date">On <%= list.start_time%></div>
+    <hr>
+  </div>
+<%end%>
+
+<%= render "/events/events"%>

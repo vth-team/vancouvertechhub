@@ -1,0 +1,24 @@
+<script>
+console.log("hihihi")
+$(document).ready(function(){
+ search();
+ $("td.day").addClass("col-lg-1 col-md-1 col-sm-1 col-xs-1")
+ // if ($("td.day ul")){$("")}
+ $("td.day .event-cal").parent().addClass("active")
+})
+
+var search = function(){
+  $(".search").on("click", function(event){
+    event.preventDefault()
+    var word = $('input:text').val().toLowerCase();
+    $('.event').fadeOut();
+      $(".event").each(function(){
+        var fil = $(this).find("a").text().toLowerCase();
+        if(fil.search(word)>-1){
+          $(this).fadeIn()
+      }
+    })
+  })
+}
+
+</script>
