@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   end
 
 
+  resources :news, only: [:index]
+
   get "/about" => "home#about"
 
 

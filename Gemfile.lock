@@ -128,6 +128,12 @@ GEM
     jquery-ui-rails (5.0.5)
       railties (>= 3.2.16)
     json (1.8.3)
+    kaminari (0.16.3)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
+    kaminari-bootstrap (3.0.1)
+      kaminari (>= 0.13.0)
+      rails
     launchy (2.4.3)
       addressable (~> 2.3)
     letter_opener (1.4.1)
@@ -234,6 +240,7 @@ GEM
       rdoc (~> 4.0)
     simple_calendar (2.1.1)
       rails (>= 3.0)
+    searchbing (0.2.6)
     simple_form (3.2.1)
       actionpack (> 4, < 5.1)
       activemodel (> 4, < 5.1)
@@ -296,6 +303,8 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   jquery-ui-rails
+  kaminari
+  kaminari-bootstrap
   letter_opener
   meetup_client!
   mini_magick
@@ -311,7 +320,11 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+<<<<<<< 4677c6294470cc93e69f78944f0a7d3508088fb2
   simple_calendar (~> 2.0)
+=======
+  searchbing
+>>>>>>> Integrate Bing news search, display all Vancouver Tech news in newss#index
   simple_form
   spring
   turbolinks

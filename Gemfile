@@ -69,6 +69,9 @@ gem 'mini_magick'
 gem 'geocoder'
 gem 'underscore-rails'
 gem 'gmaps4rails'
+gem 'searchbing'
+gem 'kaminari'
+gem 'kaminari-bootstrap'
 
 group :development, :test do
   gem 'pry'
