@@ -1,6 +1,5 @@
 require 'net/http'
 # require 'base64' # need this if you don't use searchbing gem
-require 'bing_news'
 
 class NewsController < ApplicationController
 
