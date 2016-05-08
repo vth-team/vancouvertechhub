@@ -5,7 +5,7 @@
 <p>Team size: <%= @organization.employee_count %></p>
 <p>Tech team size: <%= @organization.tech_team_size %></p>
 <p>Website: <%= @organization.website %></p>
-<!-- <p>Tags: <%#= @organization.tags.map(&:name).join(", ") %></p> -->
+<p>Tags: <%= @organization.technologies.map(&:name).join(", ") %></p>
 <p>Twitter: <%= @organization.twitter %></p>
 
 <%# if @organization.image.present? %>
