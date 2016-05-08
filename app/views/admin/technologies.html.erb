@@ -8,18 +8,22 @@
 </p>
 
 <div class="container-fluid">
-  <table>
+  <table class="table table-striped">
+    <thead>
     <tr>
       <th>Technology</th>
       <th>Action</th>
     </tr>
+    </thead>
+    <tbody>
     <% @technologies.each do |t| %>
     <tr>
       <td><%= t.name %></td>
       <td><%= link_to "Remove", admin_technologies_path,
       data: {confirm: "Are you sure?"},
       method: :delete%></td>
+      <% end %>
     <tr/>
-    <% end %>
+    </tbody>
   </table>
 </div>

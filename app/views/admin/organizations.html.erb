@@ -1,9 +1,7 @@
 <h1>Organizations</h1>
-<button type="button" style="float:right;">
-  <%= link_to "Add", new_organization_path%>
-</button>
 
-<table>
+<div class="container-fluid">
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Organization</th>
@@ -32,3 +30,5 @@
     </tr>
   </tbody>
 </table>
+<%= link_to "Add", new_organization_path, class: "btn btn-primary" %>
+</div>
