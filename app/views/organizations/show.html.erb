@@ -32,7 +32,7 @@
 <%# if @organization.image.present? %>
   <%#= image_tag @organization.image.url %>
 <%# end %>
-<p><%#= @organization.manager %></p>
+<!-- <p><%#= @organization.manager %></p> -->
 <% if can? :manage, @organization %>
 <% if @organization.published %>
   <p>Published</p>
@@ -40,8 +40,9 @@
 <% end %>
 
 <% if can? :update, @organization %>
-  <%= link_to "Edit", edit_organization_path(@organization) %>
+  <%= link_to "Edit", edit_organization_path(@organization), class: "btn btn-primary" %>
 <% end %>
-
-<a class="twitter-timeline" href="https://twitter.com/<%= @organization.twitter %>" data-widget-id="729049490544427008" data-screen-name="<%= @organization.twitter %>">Tweets by @<%= @organization.twitter %></a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<div class="container-fluid" id="twitter-feed">
+  <a class="twitter-timeline" href="https://twitter.com/<%= @organization.twitter %>" data-widget-id="729049490544427008" data-screen-name="<%= @organization.twitter %>">Tweets by @<%= @organization.twitter %></a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</div>

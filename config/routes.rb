@@ -17,8 +17,13 @@ Rails.application.routes.draw do
   end
 
   resources :organizations
+  resources :claim_requests, only: [:create] do
+    patch "update_status" => "claim_requests#update_status"
+  end
+
 
   get "/about" => "home#about"
+
 
   root "organizations#index", as: :root
 

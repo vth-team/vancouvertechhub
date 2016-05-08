@@ -1,6 +1,6 @@
 class Organization < ActiveRecord::Base
   belongs_to :user
-
+  belongs_to :claim_request
   validates :name, presence: true
   validates :address, presence: true
   validates :overview, presence: true
