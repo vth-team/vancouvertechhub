@@ -11,11 +11,11 @@ var search = function(){
   $(".search").on("click", function(event){
     event.preventDefault()
     var word = $('input:text').val().toLowerCase();
-    $('.event').fadeOut();
+    $('.event').hide();
       $(".event").each(function(){
         var fil = $(this).find("a").text().toLowerCase();
         if(fil.search(word)>-1){
-          $(this).fadeIn()
+          $(this).show()
       }
     })
   })

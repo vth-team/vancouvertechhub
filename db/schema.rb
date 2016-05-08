@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< 4677c6294470cc93e69f78944f0a7d3508088fb2
 ActiveRecord::Schema.define(version: 20160508022012) do
-=======
-ActiveRecord::Schema.define(version: 20160508021920) do
->>>>>>> Add claim requests model and controller
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
