@@ -32,9 +32,25 @@
 <p>Twitter: <%= @organization.twitter %></p>
 
 
+<!-- Company "Avatar" -->
 <% if @organization.image.present? %>
-  <%= image_tag @organization.image.url(:small) %>
+  <%= image_tag @organization.image.url(:large) %>
 <% end %>
+
+  <!-- Company Images -->
+<% if @organization.image2.present? %>
+    <%= image_tag @organization.image2.url(:small) %>
+<% end %>
+
+<% if @organization.image3.present? %>
+    <%= image_tag @organization.image3.url(:small) %>
+  <% end %>
+
+<% if @organization.image4.present? %>
+  <%= image_tag @organization.image4.url(:small) %>
+<% end %>
+
+
 
 <p><%#= @organization.manager %></p>
 

@@ -17,7 +17,13 @@ class Organization < ActiveRecord::Base
   geocoded_by :address
   after_validation :geocode
 
+  # Company Avatar
   mount_uploader :image, ImageUploader
+  # Company Pictures
+  mount_uploader :image2, ImageUploader
+  mount_uploader :image3, ImageUploader
+  mount_uploader :image4, ImageUploader
+
 
 
   def user_full_name
@@ -26,6 +32,6 @@ class Organization < ActiveRecord::Base
 
   private
 
-  
+
 
 end
