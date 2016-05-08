@@ -5,6 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+# Technology.destroy_all
+# User.destroy_all
+# Organization.destroy_all
 
 u1 = User.create(first_name: 'Frank', last_name: 'Liu',
               email: 'frankliu81@gmail.com', password: 'bu',
@@ -47,3 +50,29 @@ u10 = User.create(first_name: 'Lucas2', last_name: 'Cheung',
               password_confirmation: 'Community', activated: true)
 
 o1 = Organization.create(name: 'Hootsuite', address: '5 E 8th Ave, Vancouver, BC V5T 1R6, Canada', overview: 'Hootsuite is a social media management system for brand management created by Ryan Holmes in 2008. The system’s user interface takes the form of a dashboard, and supports social network integrations for Twitter, Facebook, LinkedIn, Google+, Foursquare, MySpace, WordPress, TrendSpottr and Mixi.', employee_count: 600, tech_team_size: 600, website: 'https://hootsuite.com', twitter: 'hootsuite', published: false)
+
+
+Technology.create(name: "C")
+Technology.create(name: "Cplusplus")
+Technology.create(name: "CSS")
+Technology.create(name: "Clojure")
+Technology.create(name: "Debug")
+Technology.create(name: "Delphi")
+Technology.create(name: "Diff")
+Technology.create(name: "ERB")
+Technology.create(name: "Groovy")
+Technology.create(name: "HAML")
+Technology.create(name: "HTML")
+Technology.create(name: "JSON")
+Technology.create(name: "Java")
+Technology.create(name: "JavaScript")
+Technology.create(name: "Markdown")
+Technology.create(name: "PHP")
+Technology.create(name: "Python")
+Technology.create(name: "Raydebug")
+Technology.create(name: "Ruby")
+Technology.create(name: "SQL")
+Technology.create(name: "Scanner")
+Technology.create(name: "Text")
+Technology.create(name: "XML")
+Technology.create(name: "YAML")

@@ -41,6 +41,16 @@ ActiveRecord::Schema.define(version: 20160507233528) do
     t.datetime "updated_at",   null: false
   end
 
+  create_table "organization_technologies", force: :cascade do |t|
+    t.integer  "technology_id"
+    t.integer  "organization_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "organization_technologies", ["organization_id"], name: "index_organization_technologies_on_organization_id", using: :btree
+  add_index "organization_technologies", ["technology_id"], name: "index_organization_technologies_on_technology_id", using: :btree
+
   create_table "organizations", force: :cascade do |t|
     t.string   "name"
     t.string   "address"
@@ -56,6 +66,12 @@ ActiveRecord::Schema.define(version: 20160507233528) do
   end
 
   add_index "organizations", ["user_id"], name: "index_organizations_on_user_id", using: :btree
+
+  create_table "technologies", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
@@ -75,6 +91,8 @@ ActiveRecord::Schema.define(version: 20160507233528) do
 
   add_index "users", ["organization_id"], name: "index_users_on_organization_id", using: :btree
 
+  add_foreign_key "organization_technologies", "organizations"
+  add_foreign_key "organization_technologies", "technologies"
   add_foreign_key "organizations", "users"
   add_foreign_key "users", "organizations"
 end

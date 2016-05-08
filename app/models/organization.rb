@@ -6,6 +6,10 @@ class Organization < ActiveRecord::Base
   validates :overview, presence: true
   validates :employee_count, presence: true, numericality: {greater_than_or_equal_to: 1}
   validates :tech_team_size, presence: true, numericality: {greater_than_or_equal_to: 1}
+
+  has_many :organization_technologies, dependent: :destroy
+  has_many :technologies, through: :organization_technologies
+
   # # validates :twitter, uniqueness: true
   validates_inclusion_of :published, :in => [true, false]
 

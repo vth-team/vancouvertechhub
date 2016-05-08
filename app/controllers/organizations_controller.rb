@@ -15,33 +15,33 @@ class OrganizationsController < ApplicationController
         format.json { render json: @organization.to_json }
         format.xml  { render xml: @organization.to_xml }
       end
-    end
+  end
 
-    def index
-      @organizations = Organization.all
-      respond_to do |format|
-        format.html { render }
-        format.json { render json: @organizations.select(:id, :name, :view_count) }
+  def index
+    @organizations = Organization.all
+    respond_to do |format|
+      format.html { render }
+      format.json { render json: @organizations.select(:id, :name, :view_count) }
+    end
+  end
+
+  def edit
+  end
+
+  def update
+      # @organization.slug = nil
+      if @organization.update organization_params
+
+        redirect_to organization_path(@organization), notice: "organization updated!"
+      else
+        render :edit
       end
-    end
+  end
 
-    def edit
-    end
-
-    def update
-        # @organization.slug = nil
-        if @organization.update organization_params
-
-          redirect_to organization_path(@organization), notice: "organization updated!"
-        else
-          render :edit
-        end
-      end
-
-    def destroy
-      @organization.destroy
-      redirect_to organizations_path, notice: "organization: #{@organization.name} deleted!"
-    end
+  def destroy
+    @organization.destroy
+    redirect_to organizations_path, notice: "organization: #{@organization.name} deleted!"
+  end
 
 
   def create
@@ -67,7 +67,7 @@ private
   end
 
   def organization_params
-    params.require(:organization).permit(:name, :address, :overview, :employee_count, :tech_team_size, :website, :twitter, :published, :user_id)
+    params.require(:organization).permit([:name, :address, :overview, :employee_count, :tech_team_size, :website, :twitter, :published, :user_id, {technology_ids: []}])
   end
 
   def authorize_organization
