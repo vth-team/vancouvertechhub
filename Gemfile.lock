@@ -320,11 +320,8 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
-<<<<<<< 4677c6294470cc93e69f78944f0a7d3508088fb2
   simple_calendar (~> 2.0)
-=======
   searchbing
->>>>>>> Integrate Bing news search, display all Vancouver Tech news in newss#index
   simple_form
   spring
   turbolinks
