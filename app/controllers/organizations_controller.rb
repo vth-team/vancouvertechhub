@@ -73,7 +73,7 @@ private
   end
 
   def organization_params
-    params.require(:organization).permit([:name, :address, :overview, :employee_count, :tech_team_size, :website, :twitter, :published, :user_id, {technology_ids: []}])
+    params.require(:organization).permit([:name, :address, :overview, :employee_count, :tech_team_size, :website, :twitter, :published, :image, :user_id, {technology_ids: []}])
   end
 
   def authorize_organization

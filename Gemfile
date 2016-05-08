@@ -63,7 +63,7 @@ gem 'chosen-rails'
 gem 'rails_12factor', group: :production
 gem 'simple_form'
 gem 'friendly_id'
-gem 'carrierwave'
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'mini_magick'
 
 gem 'geocoder'

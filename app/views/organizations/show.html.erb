@@ -31,10 +31,13 @@
 <p>Tags: <%= @organization.technologies.map(&:name).join(", ") %></p>
 <p>Twitter: <%= @organization.twitter %></p>
 
-<%# if @organization.image.present? %>
-  <%#= image_tag @organization.image.url %>
-<%# end %>
-<!-- <p><%#= @organization.manager %></p> -->
+
+<% if @organization.image.present? %>
+  <%= image_tag @organization.image.url(:small) %>
+<% end %>
+
+<p><%#= @organization.manager %></p>
+
 <% if can? :manage, @organization %>
   <% if @organization.published %>
     <p>Published</p>

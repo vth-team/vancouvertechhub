@@ -17,9 +17,9 @@
 <% @organizations.each do |o| %>
 <div>
   <%= link_to o.name, organization_path(o) %>
-  <%# if o.image.present? %>
-    <%#= image_tag o.image.url(:thumb) %>
-  <%# end %>
+  <% if o.image.present? %>
+    <%= image_tag o.image.url(:thumb) %>
+  <% end %>
   <hr>
 </div>
 

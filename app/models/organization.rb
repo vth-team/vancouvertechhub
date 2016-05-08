@@ -17,6 +17,9 @@ class Organization < ActiveRecord::Base
   geocoded_by :address
   after_validation :geocode
 
+  mount_uploader :image, ImageUploader
+
+
   def user_full_name
     user ? user.full_name : ""
   end
