@@ -6,11 +6,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+ClaimRequest.destroy_all
 User.destroy_all
 Organization.destroy_all
 Technology.destroy_all
 NewsFilter.destroy_all
-ClaimRequest.destroy_all
 
 
 
