@@ -1,9 +1,11 @@
-<h1><%= @organization.name %></h1>
-<p>Address: <%= @organization.address %></p>
-
-<div>
-  <div id="map" style='height: 300px; width: 400px'></div>
+<div class="company-name col-lg-9 col-md-9 col-sm-9 col-xs-9">
+  <h1><%= @organization.name %></h1>
+  <p><%= @organization.address %></p>
+  <p><%= @organization.overview %></p>
 </div>
+
+<div id="map" class="single-map"></div>
+<%= render "org_info"%>
 
 <script type="text/javascript">
   handler = Gmaps.build('Google');
@@ -21,15 +23,7 @@
     handler.getMap().setZoom(17);
   });
 </script>
-<table>
 
-</table>
-<h3>Overview: <%= @organization.overview %></h3>
-<p>Team size: <%= @organization.employee_count %></p>
-<p>Tech team size: <%= @organization.tech_team_size %></p>
-<p>Website: <%= link_to @organization.website, @organization.website%></p>
-<p>Tags: <%= @organization.technologies.map(&:name).join(", ") %></p>
-<p>Twitter: <%= @organization.twitter %></p>
 
 
 <!-- Company "Avatar" -->
@@ -72,26 +66,31 @@
     <% end %>
   <% end %>
 <% end %>
-
-<div class="container-fluid" id="twitter-feed">
+<hr>
+<div class="container-fluid col-lg-6 col-md-6 col-sm-6 col-xs-12" id="twitter-feed">
   <a class="twitter-timeline" href="https://twitter.com/<%= @organization.twitter %>" data-widget-id="729049490544427008" data-screen-name="<%= @organization.twitter %>">Tweets by @<%= @organization.twitter %></a>
   <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 </div>
 
-<h2>Powered by Bing News</h2>
-<div id="bing_organization_news">
-</div>
-<script type="text/javascript">
+<div class="right-container col-lg-6 col-md-6 col-sm-6 col-xs-12">
+  <h2>Powered by Bing News</h2>
+  <div>
+    <ul id="bing_organization_news"></ul>
+  </div>
+  <script type="text/javascript">
   <%= render "load_news.js" %>
-</script>
-
-<% @find.each do |list| %>
-<p>
-  <div class="event-name">
-    <%= list.meetup_title%>
+  </script>
+  <div >
+    <h2>Upcoming Events</h2>
+    <% @find.each do |list| %>
+    <p>
+      <div class="event-name">
+        <%= link_to list.meetup_title, list.meetup_url %>
+      </div>
+      <div class="event-date">
+        <%= list.start_time %>
+      </div>
+    </p>
+    <%end%>
   </div>
-  <div class="event-date">
-    <%= list.start_time %>
-  </div>
-</p>
-<%end%>
+</div>

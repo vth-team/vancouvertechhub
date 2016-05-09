@@ -8,8 +8,8 @@ $.ajax({
   {
 
       for (var i=0; i<news.length; i++) {
-        htmlString = htmlString + "<a href=' " + news[i].Url + " '>" +  news[i].Title + "</a>";
-        htmlString = htmlString + "<br>";
+        htmlString = htmlString + "<li><a href=' " + news[i].Url + " '>" +  news[i].Title + "</a></li>";
+        htmlString = htmlString //+ "<br>";
       }
 
       $("#bing_organization_news").html(htmlString);
