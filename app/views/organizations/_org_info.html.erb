@@ -20,5 +20,12 @@
       <td>Twitter:</td>
       <td><%= link_to @organization.twitter,"https://twitter.com/#{@organization.twitter}" %></td>
     </tr>
+    <tr>
+      <td>Manager:</td>
+      <td>
+        <% if @organization.user %>
+        <%= @organization.user.first_name %></td>
+        <% end %>
+    </tr>
   </tbody>
 </table>

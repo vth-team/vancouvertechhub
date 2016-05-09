@@ -6,9 +6,9 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+Organization.destroy_all
 ClaimRequest.destroy_all
 User.destroy_all
-Organization.destroy_all
 Technology.destroy_all
 NewsFilter.destroy_all
 
@@ -76,6 +76,7 @@ Technology.create(name: "PHP")
 Technology.create(name: "Python")
 Technology.create(name: "Raydebug")
 Technology.create(name: "Ruby")
+Technology.create(name: "Rails")
 Technology.create(name: "SQL")
 Technology.create(name: "Scanner")
 Technology.create(name: "Text")
@@ -158,3 +159,24 @@ sleep(0.2);
 
 ClaimRequest.create(user_id: User.first.id, organization_id: Organization.first.id)
 ClaimRequest.create(user_id: User.last.id, organization_id: Organization.last.id)
+
+# Find Technologies by name
+javascript = Technology.find_by_name("JavaScript")
+html = Technology.find_by_name("HTML")
+ruby = Technology.find_by_name("Ruby")
+java = Technology.find_by_name("Java")
+clojure = Technology.find_by_name("Clojure")
+rails = Technology.find_by_name("Rails")
+
+
+# Associate CodeCore Technologies:
+codecore = Organization.find_by_name("CodeCore")
+codecore.technologies = [javascript, html, ruby]
+
+# Associate CodeCore Technologies:
+clio = Organization.find_by_name("Clio")
+clio.technologies = [javascript, html, ruby, rails]
+
+# Associate Hootsuite Technologies:
+hootsuite = Organization.find_by_name("Hootsuite")
+hootsuite.technologies = [javascript, html, ruby, java, clojure]
