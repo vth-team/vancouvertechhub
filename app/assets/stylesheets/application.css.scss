@@ -89,6 +89,7 @@ body {
 }
 .navbar {
   height: 60px;
+  background-color: #0E426C;
 }
 
 .footer-text {
@@ -111,7 +112,7 @@ body {
   border-top: 1px solid #000;
   //  padding-top: 15px;
   padding-left:30px;
-
+  background-color: #0E426C;
   //  background-color: black;
   z-index: 99;
 }
@@ -135,5 +136,5 @@ li .directory{
   font-size: 2em;
 }
 .li-nav:hover {
-  background-color: #383838;
+  background-color: #546F8B;
 }

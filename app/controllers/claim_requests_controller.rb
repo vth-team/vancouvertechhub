@@ -17,7 +17,7 @@ class ClaimRequestsController < ApplicationController
 
   def create
     @claim = ClaimRequest.new
-    # byebug
+
     @claim.user = current_user
     @claim.organization = @organization
     if @claim.save
@@ -37,7 +37,7 @@ class ClaimRequestsController < ApplicationController
     if @claims.update claims_params
       @claims.user.save
       @claims.organization.save
-      byebug
+  
     redirect_to admin_users_path
   else
     flash[:notice] = "No"
