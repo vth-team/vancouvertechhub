@@ -13,6 +13,10 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
+  def admin?
+    admin
+  end
+
   def generate_password_reset_data
     generate_password_reset_token
     # when you don't do self, it will just define a local variable instead

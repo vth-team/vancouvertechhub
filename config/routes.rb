@@ -24,12 +24,29 @@ Rails.application.routes.draw do
   resources :news, only: [:index]
   get "/news/search_news" => "news#search_news"
 
-  get "/about" => "home#about"
+  resources :technologies
 
 
   root "organizations#index", as: :root
 
   resources :events
+
+  get "/about"                => "home#about"
+
+  get "/admin/organizations"  => "admin#organizations",
+                              as: :admin_organizations
+
+  get "/admin/events"         => "admin#events",
+                              as: :admin_events
+
+  get "/admin/news"           => "admin#news",
+                              as: :admin_news
+
+  get "/admin/users"          => "admin#users",
+                              as: :admin_users
+
+  get "/admin/technologies"   => "admin#technologies",
+                              as: :admin_technologies
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
