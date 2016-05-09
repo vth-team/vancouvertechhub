@@ -32,6 +32,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem "meetup_client", github: 'yeeie201/meetup_client'
+
+gem "simple_calendar", "~> 2.0"
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -59,8 +63,17 @@ gem 'chosen-rails'
 gem 'rails_12factor', group: :production
 gem 'simple_form'
 gem 'friendly_id'
-gem 'carrierwave'
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'mini_magick'
+
+
+gem 'geocoder'
+gem 'underscore-rails'
+gem 'gmaps4rails'
+gem 'searchbing'
+gem 'kaminari'
+gem 'kaminari-bootstrap'
+
 group :development, :test do
   gem 'pry'
   gem 'pry-byebug'

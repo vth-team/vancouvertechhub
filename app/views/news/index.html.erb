@@ -1,0 +1,17 @@
+
+<p> <em>Powered by Bing News</em> </p>
+<p> News on:&nbsp;
+<%= NewsFilter.all.map { |nf| nf.search_term}.join ', ' %>
+</p>
+
+<%# binding.pry %>
+<%= paginate(@bing_news_paginate) %>
+<%#= @bing_news_paginate.count %>
+<%# @bing_news_paginate.each do |news| %>
+<% @bing_news_paginate.each do |news| %>
+  <p> <%= link_to news[:Title], news[:Url] %> </p>
+<% end %>
+
+<%= paginate(@bing_news_paginate) %>
+
+<%#= @bing_results %>

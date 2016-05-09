@@ -1,0 +1,96 @@
+<div class="company-name col-lg-9 col-md-9 col-sm-9 col-xs-9">
+  <h1><%= @organization.name %></h1>
+  <p><%= @organization.address %></p>
+  <p><%= @organization.overview %></p>
+</div>
+
+<div id="map" class="single-map"></div>
+<%= render "org_info"%>
+
+<script type="text/javascript">
+  handler = Gmaps.build('Google');
+
+  handler.buildMap({ provider: { scrollwheel: false, zoomControl: false }, internal: {id: 'map'}}, function(){
+    markers = handler.addMarkers([
+      {
+        "lat": <%= @organization.latitude %>,
+        "lng": <%= @organization.longitude %>,
+        "infowindow": "<%= @organization.name %>"
+      }
+    ]);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+    handler.getMap().setZoom(17);
+  });
+</script>
+
+
+
+<!-- Company "Avatar" -->
+<% if @organization.image.present? %>
+  <%= image_tag @organization.image.url(:large) %>
+<% end %>
+
+  <!-- Company Images -->
+<% if @organization.image2.present? %>
+    <%= image_tag @organization.image2.url(:small) %>
+<% end %>
+
+<% if @organization.image3.present? %>
+    <%= image_tag @organization.image3.url(:small) %>
+  <% end %>
+
+<% if @organization.image4.present? %>
+  <%= image_tag @organization.image4.url(:small) %>
+<% end %>
+
+
+
+<p><%#= @organization.manager %></p>
+
+<% if can? :manage, @organization %>
+  <% if @organization.published %>
+    <p>Published</p>
+  <% end %>
+<% end %>
+
+
+<% if can? :cru, @organization %>
+  <%= link_to "Edit", edit_organization_path(@organization), class: "btn btn-primary" %>
+<% end %>
+
+<% if user_signed_in? %>
+  <% if !(@claimed && @claimed.status == true)  %>
+    <% if @organization.user == nil %>
+      <%= link_to "Claim this business", new_organization_claim_request_path(@organization), class: "btn btn-primary"%>
+    <% end %>
+  <% end %>
+<% end %>
+<hr>
+<div class="container-fluid col-lg-6 col-md-6 col-sm-6 col-xs-12" id="twitter-feed">
+  <a class="twitter-timeline" href="https://twitter.com/<%= @organization.twitter %>" data-widget-id="729049490544427008" data-screen-name="<%= @organization.twitter %>">Tweets by @<%= @organization.twitter %></a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</div>
+
+<div class="right-container col-lg-6 col-md-6 col-sm-6 col-xs-12">
+  <h2>Powered by Bing News</h2>
+  <div>
+    <ul id="bing_organization_news"></ul>
+  </div>
+  <script type="text/javascript">
+  <%= render "load_news.js" %>
+  </script>
+  <div >
+    <h2>Upcoming Events</h2>
+    <% @find.each do |list| %>
+    <p>
+      <div class="event-name">
+        <%= link_to list.meetup_title, list.meetup_url %>
+      </div>
+      <div class="event-date">
+        <%= list.start_time %>
+      </div>
+    </p>
+    <%end%>
+  </div>
+</div>

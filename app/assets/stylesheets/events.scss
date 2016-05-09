@@ -1,0 +1,10 @@
+// Place all the styles related to the events controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.simple-calendar{
+  table tbody tr{height:50px;font-size:10px}
+  .day:hover {background-color: lightgrey;}
+  .day.active{background-color: #FFCC99;}
+  .event-cal{margin:0 0 10px 0}
+}

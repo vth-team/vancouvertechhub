@@ -1,0 +1,92 @@
+/*
+* This is a manifest file that'll be compiled into application.css, which will include all the files
+* listed below.
+*
+* Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+* or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+*
+* You're free to add application-wide styles to this file and they'll appear at the bottom of the
+* compiled file so the styles you add here take precedence over styles defined in any styles
+* defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+* file per style scope.
+*
+*= require bootstrap_and_overrides
+*= require chosen
+*= require_tree .
+*= require_self
+*/
+
+//@import "bootstrap-sprockets";
+//@import "bootstrap";
+
+// Font Awesome
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+
+// Bootstrap body padding for fixed navbar
+body {
+  padding-top: 80px;
+  padding-bottom: 50px;
+}
+#logo img {
+  width: 100px;
+  margin-top: -27px;
+  // height: 30px;
+}
+.org-container {
+  height: 200px;
+
+}
+#org-logo {
+  width: 60px;
+  height: 60px;
+}
+
+.navbar {
+  height: 60px;
+}
+
+.footer-text {
+  color:white;
+  margin: 10px 0 0 0;
+}
+
+.footer-icons {
+  font-size: 2.1em;
+  color: blue;
+  margin: 0 35px;
+}
+
+.bottomMenu {
+  //  display: none;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  border-top: 1px solid #000;
+  //  padding-top: 15px;
+  padding-left:30px;
+
+  //  background-color: black;
+  z-index: 99;
+}
+
+.navbar-nav > li > a{
+  padding-top: 19px;
+}
+
+.navbar-left.footer .navbar-nav > li > a{
+  padding-top:10px
+}
+
+#admin-table {
+  border: 4px solid darkgrey;
+  // border-radius: 25px;
+}
+li .directory{
+  
+  margin-left: 70px;
+  margin-right: 70px;
+  font-size: 2em;
+}
