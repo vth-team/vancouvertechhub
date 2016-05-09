@@ -21,7 +21,10 @@ class OrganizationsController < ApplicationController
   end
 
   def index
-    @organizations = Organization.all
+    # @organizations = Organization.all  # original
+    # @organizations = Organization.paginate(:page => params[:page], :per_page => 3)
+     @organizations = Organization.page(params[:page]).per(18)
+
     # respond_to do |format|
       # format.html { render }
       # format.json { render json: @organizations }
@@ -84,7 +87,7 @@ private
   end
 
   def organization_params
-    params.require(:organization).permit([:name, :address, :overview, :employee_count, :tech_team_size, :website, :twitter, :published, :image, :image2, :image3, :image4, :user_id, {technology_ids: []}])
+    params.require(:organization).permit([:name, :address, :overview, :employee_count, :tech_team_size, :website, :twitter, :logo, :published, :image, :image2, :image3, :image4, :user_id, {technology_ids: []} ])
   end
 
   def authorize_organization

@@ -26,14 +26,23 @@
 
 // Bootstrap body padding for fixed navbar
 body {
-  padding-top: 80px;
-  padding-bottom: 100px;
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 #logo img {
   width: 100px;
   margin-top: -27px;
   // height: 30px;
 }
+#org-container {
+  height: 200px;
+  
+}
+#org-logo {
+  width: 60px;
+  height: 60px;
+}
+
 .navbar {
   height: 60px;
 }

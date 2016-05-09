@@ -66,6 +66,7 @@ gem 'friendly_id'
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'mini_magick'
 
+
 gem 'geocoder'
 gem 'underscore-rails'
 gem 'gmaps4rails'
