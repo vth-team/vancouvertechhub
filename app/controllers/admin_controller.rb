@@ -5,6 +5,8 @@ class AdminController < ApplicationController
   end
 
   def events
+    @events = Event.order("start_time").all
+    @event  = Event.new
   end
 
   def news_filters
@@ -13,11 +15,17 @@ class AdminController < ApplicationController
   end
 
   def users
+    @claims = ClaimRequest.all
+    @users = User.all
+    @user  = User.new
   end
 
   def technologies
     @technologies = Technology.order("name").all
-    @technology = Technology.new
+    @technology   = Technology.new
   end
 
+  def claims
+    @claims = ClaimRequest.all
+  end
 end

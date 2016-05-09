@@ -1,1 +1,31 @@
 <h1>Events</h1>
+
+<div class="container-fluid">
+<p>
+  <%= simple_form_for @event do |f| %>
+  <%= f.input :meetup_title, label: "Event Title:" %>
+  <%= f.submit "Add", class: "btn btn-primary" %>
+  <% end %>
+</p>
+</div>
+<div class="container-fluid">
+  <h5>List of meetup.com meet ups to be checked daily</h5>
+  <table class="table table-striped" id="admin-table">
+    <thead>
+    <tr>
+      <th>Meetup Event</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @events.each do |e| %>
+    <tr>
+      <td><%= e.meetup_title%> - <%= e.start_time %></td>
+      <td><%= link_to "Remove", event_path(e),
+      data: {confirm: "Are you sure?"},
+      method: :delete%></td>
+    </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

@@ -44,6 +44,8 @@ Rails.application.routes.draw do
   get "/admin/users"          => "admin#users",
                               as: :admin_users
 
+  post "/admin/users"         => "admin#users"
+
   get "/admin/technologies"   => "admin#technologies",
                               as: :admin_technologies
   get "/admin/news_filters"   => "admin#news_filters",
