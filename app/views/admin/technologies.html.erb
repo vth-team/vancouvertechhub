@@ -3,14 +3,14 @@
 <div class="container-fluid">
 <p>
 <%= simple_form_for @technology do |f| %>
-<%= f.input :name %>
+<%= f.input :name, label: "Technology Name:" %>
 <%= f.submit "Add", class: "btn btn-primary" %>
 <% end %>
 </p>
 </div>
-
 <div class="container-fluid">
-  <table class="table table-striped">
+  <h5>List of technologies to be used with organizations</h5>
+  <table class="table table-striped" id="admin-table">
     <thead>
     <tr>
       <th>Technology</th>
@@ -24,8 +24,8 @@
       <td><%= link_to "Remove", technology_path(t),
       data: {confirm: "Are you sure?"},
       method: :delete%></td>
+    </tr>
     <% end %>
-    <tr/>
     </tbody>
   </table>
 </div>

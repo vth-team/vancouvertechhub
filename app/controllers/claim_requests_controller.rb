@@ -29,6 +29,22 @@ class ClaimRequestsController < ApplicationController
 
   end
 
+  def update
+    claims_params = params.permit([:status])
+    @claims = ClaimRequest.find params[:id]
+    @claims.user.organization = @claims.organization
+    @claims.organization.user = @claims.user
+    if @claims.update claims_params
+      @claims.user.save
+      @claims.organization.save
+      byebug
+    redirect_to admin_users_path
+  else
+    flash[:notice] = "No"
+    render admin_users_path
+  end
+  end
+
   def update_status
 
   end
