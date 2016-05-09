@@ -47,6 +47,11 @@ body {
     margin-left: 30px !important;
     margin-right: 30px !important;
   }
+  #logo img {
+    width: 100px;
+    margin-top: -76px !important;
+    // height: 30px;
+  }
 }
 
 #logo img {
@@ -137,4 +142,8 @@ li .directory{
 }
 .li-nav:hover {
   background-color: #546F8B;
+}
+
+ul.nav.navbar-nav{
+    background: #0E426C;
 }
