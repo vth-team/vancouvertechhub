@@ -11,6 +11,9 @@
     <%= f.input :published, as: :boolean, checked_value: true, unchecked_value: false %>
   <% end %>
   <%= f.association :technologies, input_html: {class: "chosen-select"} %>
-  <%#= f.input :image %>
+  <%= f.file_field :image %>
+  <%= f.file_field :image2 %>
+  <%= f.file_field :image3 %>
+  <%= f.file_field :image4 %>
   <%= f.submit class: "btn btn-primary" %>
 <% end %>
