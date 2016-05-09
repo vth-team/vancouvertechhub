@@ -46,10 +46,11 @@ $(document).ready(function(){
   $("#organization-search").on("keyup", function(){
     dataIdArray = [];
     var word = $("#organization-search").val().toLowerCase();
-    $(".organization").hide();
-    $(".organization").each(function (){
+    $(".org-container").hide();
+    $(".org-container").each(function (){
       // find the link
-      var filter = $(this).find("a").text().toLowerCase();
+      var filter = $(this).find(".link-to-org").text().toLowerCase();
+
       // -1 is no match
       if(filter.search(word) > -1) {
         $(this).show();
@@ -72,7 +73,7 @@ $(document).ready(function(){
 
       },
       error: function() {
-        alert("Problem posting dataIdArray. Please retry.");
+        console.log("Problem posting dataIdArray. Please retry.");
       }
     });
 

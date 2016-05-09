@@ -9,6 +9,13 @@
 User.destroy_all
 Organization.destroy_all
 Technology.destroy_all
+NewsFilter.destroy_all
+ClaimRequest.destroy_all
+
+
+
+NewsFilter.create(search_term: 'Vancouver Tech')
+NewsFilter.create(search_term: 'Elon Musk')
 
 u1 = User.create(first_name: 'Frank', last_name: 'Liu',
               email: 'frankliu81@gmail.com', password: 'bu',
@@ -147,3 +154,7 @@ o21 = Organization.create(name: 'Human API', address: '1402 - 409 Granville Stre
 
 We provide a single, secure connection to data from medical records, wearable sensors, testing services, and wellness devices and apps. Using our end-user authentication process, individuals can securely share their health data with any application or system, regardless of how that data was recorded, processed or stored."', employee_count: 20, tech_team_size: 20, website: 'https://www.humanapi.co/',logo: 'https://pbs.twimg.com/profile_images/378800000816901251/0dab64e7bd2cc59049520d7ca4649462_400x400.png', twitter: 'human_api', published: false)
 sleep(0.2);
+
+
+ClaimRequest.create(user_id: User.first.id, organization_id: Organization.first.id)
+ClaimRequest.create(user_id: User.last.id, organization_id: Organization.last.id)
