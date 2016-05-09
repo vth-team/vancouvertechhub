@@ -16,10 +16,11 @@ Rails.application.routes.draw do
     delete :destroy, on: :collection
   end
 
+  post "/organizations/filter" => "organizations#filter"
+
   resources :organizations do
     resources :claim_requests
   end
-
 
   resources :news, only: [:index]
   get "/news/search_news" => "news#search_news"

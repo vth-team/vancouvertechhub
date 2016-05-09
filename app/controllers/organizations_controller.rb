@@ -1,5 +1,5 @@
 class OrganizationsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :filter]
 
   before_action :find_organization, only: [:show, :edit, :update, :destroy]
 
@@ -22,7 +22,6 @@ class OrganizationsController < ApplicationController
 
   def index
     @organizations = Organization.all
-
     # respond_to do |format|
       # format.html { render }
       # format.json { render json: @organizations }
@@ -31,6 +30,17 @@ class OrganizationsController < ApplicationController
 
   def edit
     @organization = Organization.find params[:id]
+  end
+
+  def filter
+    #puts ">>>>>>>>>>>>>>>>>>>>"
+    #puts params[:data_value]
+    organization_ids = params[:data_value]
+    @organizations = Organization.where("id in (?)", organization_ids)
+    #binding.pry
+    respond_to do |format|
+      format.js { render :filter_success }
+    end
   end
 
   def update

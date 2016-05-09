@@ -1,0 +1,9 @@
+handler = Gmaps.build('Google');
+handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+  markers = handler.addMarkers(<%= raw organizations_json(@organizations).to_json %>);
+  handler.bounds.extendWith(markers);
+  handler.fitMapToBounds();
+  <% if @organizations.count == 1  %>
+    handler.getMap().setZoom(17);
+  <% end %>
+});
