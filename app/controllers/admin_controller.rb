@@ -7,7 +7,9 @@ class AdminController < ApplicationController
   def events
   end
 
-  def news
+  def news_filters
+    @news_filters = NewsFilter.order("search_term").all
+    @news_filter = NewsFilter.new
   end
 
   def users

@@ -16,14 +16,15 @@ Rails.application.routes.draw do
     delete :destroy, on: :collection
   end
 
-  post "/organizations/filter" => "organizations#filter"
-
   resources :organizations do
     resources :claim_requests
   end
+  # ajax action for organization filter on directory page
+  post "/organizations/filter" => "organizations#filter"
 
   resources :news, only: [:index]
   get "/news/search_news" => "news#search_news"
+  resources :news_filters, only: [:create, :destroy]
 
   resources :technologies
 
@@ -40,14 +41,14 @@ Rails.application.routes.draw do
   get "/admin/events"         => "admin#events",
                               as: :admin_events
 
-  get "/admin/news"           => "admin#news",
-                              as: :admin_news
-
   get "/admin/users"          => "admin#users",
                               as: :admin_users
 
   get "/admin/technologies"   => "admin#technologies",
                               as: :admin_technologies
+  get "/admin/news_filters"   => "admin#news_filters",
+                              as: :admin_news_filters
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
