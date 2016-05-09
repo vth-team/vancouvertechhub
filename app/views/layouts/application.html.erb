@@ -48,13 +48,13 @@
             </button>
             <!-- <a class="navbar-brand" href="#">Brand</a> -->
           </div>
-          <a href="/" class="navbar-brand" id="logo"> <%= image_tag("logo_white.png")%></a>
+          <a href="<%= root_path%>" class="navbar-brand" id="logo"> <%= image_tag("logo_white.png")%></a>
 
 
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
             <ul class="nav navbar-nav">
             <li><%= link_to "Directory", root_path, class: "directory" %></li>
-            <li><a href="/events"> Events </a></li>
+            <li><%= link_to "Events", events_path, class: "directory" %></li>
             <li><%= link_to "News", news_index_path, class: "directory" %></li>
             </ul>
           </div>
