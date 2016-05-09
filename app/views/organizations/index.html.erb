@@ -14,21 +14,16 @@
   });
 </script>
 
-<div>
-  <%= link_to o.name, organization_path(o) %>
-  <% if o.image.present? %>
-    <%= image_tag o.image.url(:thumb) %>
-  <% end %>
-  <hr>
-  <input id="organization-search" type="text" class="form-control" placeholder="Search" name="search">
-</div>
+<hr>
+<input id="organization-search" type="text" class="form-control" placeholder="Search" name="search">
+<hr>
 
 <% @organizations.each do |o| %>
   <div data-id="<%=o.id%>" class="organization">
     <%= link_to o.name, organization_path(o) %>
-    <%# if o.image.present? %>
-      <%#= image_tag o.image.url(:thumb) %>
-    <%# end %>
+    <% if o.image.present? %>
+      <%= image_tag o.image.url(:thumb) %>
+    <% end %>
     <hr>
   </div>
 <% end %>
