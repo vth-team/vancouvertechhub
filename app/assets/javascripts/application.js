@@ -40,7 +40,43 @@
 //   }
 // });
 
-// $(document).ready(function(){
-//
-//
-// });
+var baseUrl = "http://localhost:3000";
+var dataIdArray;
+$(document).ready(function(){
+  $("#organization-search").on("keyup", function(){
+    dataIdArray = [];
+    var word = $("#organization-search").val().toLowerCase();
+    $(".organization").hide();
+    $(".organization").each(function (){
+      // find the link
+      var filter = $(this).find("a").text().toLowerCase();
+      // -1 is no match
+      if(filter.search(word) > -1) {
+        $(this).show();
+        dataIdArray.push($(this).attr("data-id"))
+      }
+    });
+
+
+    //console.log(dataIdArray);
+
+    $.ajax({
+      method: "POST",
+      url: baseUrl + "/organizations/filter",
+      //data: dataIdArray,
+      //data: { data_value: "string" },
+      data: { data_value: dataIdArray },
+      success: function(data)
+      {
+        console.log("dataIdArray posted")
+
+      },
+      error: function() {
+        alert("Problem posting dataIdArray. Please retry.");
+      }
+    });
+
+
+
+  });
+});
