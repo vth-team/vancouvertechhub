@@ -7,6 +7,7 @@ class Ability
      can :manage, :all if user.admin?
 
      alias_action :create, :read, :edit, :udpate, :to => :cru
+     alias_action :create, :read, :edit, :udpate, :destroy, :to => :crud
 
      can :cru, Organization do |org|
        # making sure user is persisted in the database
@@ -16,6 +17,10 @@ class Ability
      can :cru, ClaimRequest do |claim|
        # making sure user is persisted in the database
        claim.user == user && user.persisted?
+     end
+
+     can :crud, NewsFilter do |filter|
+        user.admin?
      end
     # Define abilities for the passed in user here. For example:
     #

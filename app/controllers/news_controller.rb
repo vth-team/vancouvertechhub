@@ -11,7 +11,7 @@ class NewsController < ApplicationController
     @bing_news_search_results = @bing_news.search(@organization, 0)
     @bing_news_total = @bing_news_search_results[0][:NewsTotal]
     @bing_news_results = @bing_news_search_results[0][:News]
-    
+
     respond_to do |format|
       format.json { render json: @bing_news_results }
     end
@@ -21,10 +21,15 @@ class NewsController < ApplicationController
 
     accountKey = ENV["bing_key"]
     @bing_news = Bing.new(accountKey, 100, 'News')
+    @bing_news_results = []
     # or optionally specify an offset for your search, to start retrieving results from the starting point provided
-    @bing_news_search_results = @bing_news.search("vancouver tech", 0)
-    @bing_news_total = @bing_news_search_results[0][:NewsTotal]
-    @bing_news_results = @bing_news_search_results[0][:News]
+
+    NewsFilter.all.each do |nf|
+      @bing_news_search_results = @bing_news.search(nf.search_term, 0)
+      @bing_news_total = @bing_news_search_results[0][:NewsTotal]
+      @bing_news_results.concat(@bing_news_search_results[0][:News])
+    end
+
     @bing_news_paginate = Kaminari.paginate_array(@bing_news_results).page(params[:page]).per(10)
 
 
