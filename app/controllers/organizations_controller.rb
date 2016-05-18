@@ -2,15 +2,16 @@ class OrganizationsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show, :filter]
 
   before_action :find_organization, only: [:show, :edit, :update, :destroy]
-  
-  # before_action :authorize_organization, only: [:edit, :update, :destroy]
-  # skip_before_action :authorize_organization
-
 
   ORGANIZATIONS_PER_PAGE = 18
 
   def new
+    if current_user.organization_id != nil
+      redirect_to organization_path(current_user.organization_id), alert: "You can only have one organization."
+    end
+
     @organization = Organization.new
+
   end
 
   def show
@@ -33,6 +34,9 @@ class OrganizationsController < ApplicationController
 
   def edit
     @organization = Organization.find params[:id]
+    if current_user.organization_id != @organization.id
+      redirect_to organization_path(current_user.organization_id), alert: "You cannot edit other people's organizations."
+    end
   end
 
   def filter
@@ -64,11 +68,11 @@ class OrganizationsController < ApplicationController
     puts "#{current_user}"
     @organization.user  = current_user
     if @organization.save
-      flash[:notice] = "organization created!"
+      flash[:notice] = "Organization created!"
 
       redirect_to organization_path(@organization)
     else
-      flash[:alert] = "organization didn't save!"
+      flash[:alert] = "Organization didn't save!"
 
       render :new
     end
