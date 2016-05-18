@@ -1,5 +1,5 @@
 class Organization < ActiveRecord::Base
-  belongs_to :user
+  has_one :user, dependent: :nullify
   has_many :claim_requests
 
   validates :name, presence: true
