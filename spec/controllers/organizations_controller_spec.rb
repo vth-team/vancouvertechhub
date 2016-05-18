@@ -10,7 +10,7 @@ RSpec.describe OrganizationsController, type: :controller do
      FactoryGirl.attributes_for(:organization).merge({published: true})
    end
 
-   describe "#show" do
+	 describe "#show" do
      describe "as anon user" do
        it "doesn't display unpublished organizations" do
          org = Organization.new(unpublished_attributes)
@@ -31,7 +31,27 @@ RSpec.describe OrganizationsController, type: :controller do
          expect(assigns(:organization)).to eq(org)
        end
      end
-   end
+		 describe "as an admin" do
+		 	it "display unpublished organizations" do
+				org = Organization.new(unpublished_attributes)
+				org.save
+				user = User.new(FactoryGirl.attributes_for(:user).merge({admin: true}))
+				user.save
+				session[:user_id] = user.id
+				get :show, id: org.id
+				expect(assigns(:organization)).to eq(org)
+			end
+			it "display published organizations" do
+				org = Organization.new(published_attributes)
+				org.save
+				user = User.new(FactoryGirl.attributes_for(:user).merge({admin: true}))
+				user.save
+				session[:user_id] = user.id
+				get :show, id: org.id
+				expect(assigns(:organization)).to eq(org)
+		 	end
+		 end
+	 end
 
   describe "#index" do
     describe "as anon user" do
@@ -49,5 +69,25 @@ RSpec.describe OrganizationsController, type: :controller do
        expect(assigns(:organizations)).to include(org)
       end
     end
+		describe "as an admin" do
+			it "does display unpublished organizations on index" do
+				org = Organization.new(unpublished_attributes)
+        org.save
+				user = User.new(FactoryGirl.attributes_for(:user).merge({admin: true}))
+				user.save
+				session[:user_id] = user.id
+        get :index
+        expect(assigns(:organizations)).to include(org)
+			end
+			it "does display published organizations on index" do
+				org = Organization.new(published_attributes)
+        org.save
+				user = User.new(FactoryGirl.attributes_for(:user).merge({admin: true}))
+				user.save
+				session[:user_id] = user.id
+        get :index
+        expect(assigns(:organizations)).to include(org)
+			end
+		end
   end
 end

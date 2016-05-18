@@ -25,7 +25,7 @@ class OrganizationsController < ApplicationController
     # @organizations = Organization.all  # original
     # @organizations = Organization.paginate(:page => params[:page], :per_page => 3)
 		# TODO: Strech: make unpublished organizations display greyed out
-		 if current_user && current_user.admin?
+		if current_user && current_user.admin?
  			@organizations = Organization.page(params[:page]).per(18)
  		else
      	@organizations = Organization.published.page(params[:page]).per(18)
