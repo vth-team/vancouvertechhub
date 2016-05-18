@@ -10,35 +10,30 @@
   <script src="https://cdn.rawgit.com/googlemaps/v3-utility-library/master/infobox/src/infobox_packed.js"></script>
 </head>
 <body>
-    <% if current_user && current_user.admin? %>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <!-- <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
+          <a href="organizations#index" class="navbar-brand navbar-collapse" id="logo"> <%= image_tag("logo_white.png")%></a>
           <div class="navbar-header">
-            <a href="organizations#index" class="navbar-brand navbar-collapse" id="logo"> <%= image_tag("logo_white.png")%></a>
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
               <span class="sr-only">Toggle navigation</span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-
           </div>
-
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
             <ul class="nav navbar-nav">
-              <li><%= link_to "Admin Panel: ", admin_organizations_path%> </li>
               <li><%= link_to "Organizations", admin_organizations_path %></li>
               <li><%= link_to "Events", admin_events_path %></li>
               <li><%= link_to "News", admin_news_filters_path %></li>
-              <li><%= link_to "Users", admin_users_path %></li>
-              <li><%= link_to "Technologies", admin_technologies_path %></li>
             </ul>
           </div>
         </div>
-      </nav>
-    <% else %>
+      </nav> -->
+    <%# else %>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
+          <a href="<%= root_path%>" class="navbar-brand" id="logo"> <%= image_tag("logo_white.png")%></a>
           <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
               <span class="sr-only">Toggle navigation</span>
@@ -46,21 +41,31 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <!-- <a class="navbar-brand" href="#">Brand</a> -->
           </div>
-          <a href="<%= root_path%>" class="navbar-brand" id="logo"> <%= image_tag("logo_white.png")%></a>
-
-
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
             <ul class="nav navbar-nav">
             <li class="li-nav"><%= link_to "Directory", root_path, class: "directory" %></li>
             <li class="li-nav"><%= link_to "Events", events_path, class: "directory" %></li>
             <li class="li-nav"><%= link_to "News", news_index_path, class: "directory" %></li>
+            <% if current_user && current_user.admin? %>
+            <li class="dropdown">
+              <a class="dropdown-toggle directory" data-toggle="dropdown" role="button" aria-expaned="false" href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Admin Panel</a>
+              <ul class="dropdown-menu text-center">
+                <li class="li-nav"><%= link_to "Organizations ", admin_organizations_path%> </li>
+                <li class="li-nav"><%= link_to "Users", admin_users_path%></li>
+                <li class="li-nav "><%= link_to "Technologies", admin_technologies_path%></li>
+                <li class="user-profile"><%= link_to "Edit Profile", edit_user_path(current_user) %></li>
+                <li class="user-profile"><%= link_to "Edit Password", edit_password_change_path(current_user) %></li>
+                <li class="divider"></li>
+                <li class="user-profile"><%= link_to "Log out", sessions_path, method: :delete %></li>
+              </ul>
+            </li>
+            <%end%>
             </ul>
           </div>
         </div>
       </nav>
-    <% end %>
+    <%# end %>
     <% if flash[:notice] %>
       <div class="alert alert-success">
         <%= flash[:notice] %>
@@ -76,41 +81,33 @@
     </div>
 
     <div class="bottomMenu navbar-fixed-bottom navbar-inverse">
-      <div class="navbar-left footer">
+      <div class="navbar-left footer pull-left text-center">
         <ul class="nav navbar-nav">
-          <!-- <li><a href="#"></a></li> -->
           <% if user_signed_in? %>
-            <li id="user-dropdown-menu" class="dropdown">
+            <!-- <li id="user-dropdown-menu" class="dropup">
               <a id="user-dropdown-button" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= "Hello #{current_user.first_name}" %><span class="caret"></span></a>
-              <ul id="user-dropdown-items" class="dropdown-menu bottom-up" role="menu">
-                <!-- <li><a href="#">Action</a></li> -->
+              <ul id="user-dropdown-items" class="dropdown-menu" role="menu">
                 <li><%= link_to "Edit Profile", edit_user_path(current_user) %></li>
                 <li><%= link_to "Edit Password", edit_password_change_path(current_user) %></li>
-                <!-- <li class="divider"></li> -->
-                <!-- <li><a href="#">Separated link</a></li> -->
                 <li class="divider"></li>
-                <!-- <li><a href="#">One more separated link</a></li> -->
                 <li><%= link_to "Log out", sessions_path, method: :delete %></li>
               </ul>
-            </li>
+            </li> -->
           <% else %>
-            <!-- <li><a href="#">Sign In</a></li> -->
             <li><%= link_to "Sign In", new_session_path %></li>
             <li> <%= link_to "Sign Up", new_user_path, id: "btn-sign-up" %></li>
           <% end %>
-        </ul>
-        <ul class="nav navbar-nav">
           <li><%= link_to "About", about_path	 %></li>
           <li><%= link_to "Create Organization", new_organization_path %></li>
         </ul>
       </div>
       <div class="navbar-right footer-icons">
-        <i class="fa fa-twitter" aria-hidden="true"></i>
-        <i class="fa fa-facebook-official" aria-hidden="true"></i>
-        <i class="fa fa-google-plus" aria-hidden="true"></i>
+        <a href="https://twitter.com/CodeCoreYVR" alt="Twitter" target="_blank" ><i class="fa fa-twitter" aria-hidden="true"></i></a>
+        <a href="https://www.facebook.com/CodeCoreBootcamp" alt="Facebook" target="_blank"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
+        <a href="https://plus.google.com/+CodecoreCaBootcamp/about" alt="Google+" target="_blank"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
       </div>
       <div class="navbar-right footer-text">
-          Built and maintained by students from <a href="http://codecore.ca">CodeCore</a>
+          Built and maintained by students from <a href="http://codecore.ca" alt="Codecore" target="_blank">CodeCore</a>
       </div>
     </div>
 

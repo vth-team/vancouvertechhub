@@ -4,7 +4,7 @@
 
   <% events.each do |event| %>
     <div class="event-cal">
-      <%= link_to event.meetup_title, event.meetup_url %>
+      <%= link_to event.meetup_title, event.meetup_url, html:{ target="_blank"} %>
     </div>
   <% end %>
 <% end %>
