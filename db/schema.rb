@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160518000602) do
+ActiveRecord::Schema.define(version: 20160518184854) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,9 +58,12 @@ ActiveRecord::Schema.define(version: 20160518000602) do
     t.text     "snippet"
     t.string   "link"
     t.string   "thumbnail"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.datetime "published_on"
   end
+
+  add_index "news_articles", ["published_on"], name: "index_news_articles_on_published_on", using: :btree
 
   create_table "news_filters", force: :cascade do |t|
     t.string   "search_term"

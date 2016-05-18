@@ -4,7 +4,7 @@
 class NewsController < ApplicationController
 
   def index
-    @articles = NewsArticle.all
+    @articles = NewsArticle.where("created_at > ?", DateTime.now - 1.month).order("published_on DESC")
   end
 
   def string_search_terms
