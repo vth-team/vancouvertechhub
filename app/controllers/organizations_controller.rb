@@ -6,10 +6,9 @@ class OrganizationsController < ApplicationController
   ORGANIZATIONS_PER_PAGE = 18
 
   def new
-    if current_user.organization_id != nil
+    if current_user.organization.present?
       redirect_to organization_path(current_user.organization_id), alert: "You can only have one organization."
     end
-
     @organization = Organization.new
 
   end
@@ -49,7 +48,6 @@ class OrganizationsController < ApplicationController
 
   def update
     if @organization.update organization_params
-
       redirect_to organization_path(@organization), notice: "Organization Updated!"
     else
       render :edit
@@ -63,9 +61,10 @@ class OrganizationsController < ApplicationController
 
 
   def create
+    if current_user.organization_id.present?
+      redirect_to organization_path(current_user.organization_id), alert: "You can only have one organization."
+    end
     @organization       = Organization.new(organization_params)
-    puts "#{@current_user}"
-    puts "#{current_user}"
     @organization.user  = current_user
     if @organization.save
       flash[:notice] = "Organization created!"
@@ -78,9 +77,7 @@ class OrganizationsController < ApplicationController
     end
   end
 
-
   private
-
 
   def find_organization
     if current_user && current_user.admin?
