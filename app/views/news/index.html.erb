@@ -1,9 +1,16 @@
+<<<<<<< 22eccab1e3bfd85a95a5054bcb18087934e0ed58
 <h1>News Articles</h1>
 
 <% @articles.each do |article| %>
   <div class="row">
     <div class='col-sm-3'>
       <%= image_tag(article.thumbnail, class: "news-image", onerror: "validateImage(event)") %>
+=======
+<% @articles.each do |article| %>
+  <div class="row">
+    <div class='col-sm-3'>
+      <%= image_tag(article.thumbnail, class: "news-image") %>
+>>>>>>> Style layout of news article index
     </div>
     <div class="col-sm-9">
       <span class="h3"><%= link_to article.title.html_safe, article.link %></span>
