@@ -4,13 +4,33 @@
 
   <% events.each do |event| %>
     <div class="event-cal">
+      <%#= event.time.localtime.strftime('%I:%M %p')%>
       <%= link_to event.meetup_title, event.meetup_url %>
     </div>
   <% end %>
 <% end %>
-<%= form_tag class:"form-inline"%>
-<%= text_field_tag 'search',nil, class:"search col-md-3 form-control"%>
+<!-- <%= form_tag class:"form-inline"%>
+<%= text_field_tag 'search',nil, class:"search col-md-3 form-control"%> -->
 <!-- <%= button_tag 'Search',class:"search btn btn-primary" %> -->
+
+<!-- Search Bar -->
+<form role="form">
+  <div class="form-group">
+    <input type="text" class="search form-control empty" placeholder="&#xF002; Search All Events"/>
+  </div>
+</form>
+
+<!-- Search Bar to include Font Awesome Search Icon -->
+<script>
+$('#iconified').on('keyup', function() {
+  var input = $(this);
+  if(input.val().length === 0) {
+      input.addClass('empty');
+  } else {
+      input.removeClass('empty');
+  }
+});
+</script>
 
 <% @events.each do |list|%>
   <div class="event">
