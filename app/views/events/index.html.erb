@@ -9,8 +9,8 @@
   <% end %>
 <% end %>
 <%= form_tag class:"form-inline"%>
-<%= text_field_tag 'search',nil, class:"col-md-3 form-control"%>
-<%= button_tag 'Search',class:"search btn btn-primary" %>
+<%= text_field_tag 'search',nil, class:"search col-md-3 form-control"%>
+<!-- <%= button_tag 'Search',class:"search btn btn-primary" %> -->
 
 <% @events.each do |list|%>
   <div class="event">
