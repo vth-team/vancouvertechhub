@@ -6,7 +6,6 @@ RSpec.describe NewsController, type: :controller do
       get :index
       expect(response).to render_template(:index)
     end
-
     it "assigns an instance variable for all articles, ordered by published_date" do
       # given, there are at least two campaigns
       n1 = FactoryGirl.create(:news_article, published_on: Time.now - 3.days)
