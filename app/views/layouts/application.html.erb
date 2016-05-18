@@ -66,7 +66,7 @@
     <div class="navbar-left footer pull-left text-left">
       <ul class="nav navbar-nav">
         <li><%= link_to "About", about_path %></li>
-        <%if user_signed_in?%>
+        <% if user_signed_in?%>
         <% if current_user.missing_organization? && !current_user.admin?%>
         <li class="li-nav"><%= link_to "Create Organization", new_organization_path, class:"directory" %></li>
         <li class="user-profile"><%= link_to "Log out", sessions_path, method: :delete %></li>
