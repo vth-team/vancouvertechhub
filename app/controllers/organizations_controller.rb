@@ -2,7 +2,6 @@ class OrganizationsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show, :filter]
   before_action :find_organization, only: [:show, :edit, :update, :destroy]
 
-
   ORGANIZATIONS_PER_PAGE = 18
 
   def new
