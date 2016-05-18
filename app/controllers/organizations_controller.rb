@@ -11,6 +11,7 @@ class OrganizationsController < ApplicationController
   end
 
   def show
+
     @claimed = @organization.claim_requests.find_by_status(true)
     hosting_event
       respond_to do |format|
@@ -23,8 +24,12 @@ class OrganizationsController < ApplicationController
   def index
     # @organizations = Organization.all  # original
     # @organizations = Organization.paginate(:page => params[:page], :per_page => 3)
-     @organizations = Organization.page(params[:page]).per(18)
-
+		# TODO: Strech: make unpublished organizations display greyed out
+		 if current_user && current_user.admin?
+ 			@organizations = Organization.page(params[:page]).per(18)
+ 		else
+     	@organizations = Organization.published.page(params[:page]).per(18)
+ 		end
     # respond_to do |format|
       # format.html { render }
       # format.json { render json: @organizations }
@@ -83,7 +88,11 @@ private
 
 
   def find_organization
-    @organization = Organization.find params[:id]
+		if current_user && current_user.admin?
+			@organization = Organization.find params[:id]
+		else
+    	@organization = Organization.published.find params[:id]
+		end
   end
 
   def organization_params
