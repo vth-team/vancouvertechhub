@@ -5,7 +5,7 @@ FactoryGirl.define do
     sequence(:email) { |n| Faker::Internet.email.gsub("@", "-#{n}@")}
     password  { Faker::Internet.password}
     admin false
-    activated false
+    activated true
   end
   
   factory :admin, class: User do

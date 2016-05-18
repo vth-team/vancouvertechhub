@@ -14,6 +14,8 @@ class Ability
        org.user == user && user.persisted?
      end
 
+     
+
      can :cru, ClaimRequest do |claim|
        # making sure user is persisted in the database
        claim.user == user && user.persisted?
