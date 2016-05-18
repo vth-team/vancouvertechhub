@@ -2,9 +2,9 @@ class OrganizationsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show, :filter]
 
   before_action :find_organization, only: [:show, :edit, :update, :destroy]
-
-  before_action :authorize_organization, only: [:edit, :update, :destroy]
-  skip_before_action :authorize_organization
+  
+  # before_action :authorize_organization, only: [:edit, :update, :destroy]
+  # skip_before_action :authorize_organization
 
 
   ORGANIZATIONS_PER_PAGE = 18

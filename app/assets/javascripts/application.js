@@ -57,7 +57,7 @@ $(document).ready(function(){
         dataIdArray.push($(this).attr("data-id"))
       }
     });
-    
+
 
     //console.log(dataIdArray);
 
@@ -77,6 +77,7 @@ $(document).ready(function(){
       }
     });
 
+    
 
 
   });
