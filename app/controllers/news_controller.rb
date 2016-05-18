@@ -1,37 +1,47 @@
-require 'net/http'
+# require 'net/http'
 # require 'base64' # need this if you don't use searchbing gem
 
 class NewsController < ApplicationController
 
-  def search_news
-    @organization = params[:organization]
-    accountKey = ENV["bing_key"]
-    @bing_news = Bing.new(accountKey, 5, 'News')
-    # or optionally specify an offset for your search, to start retrieving results from the starting point provided
-    @bing_news_search_results = @bing_news.search(@organization, 0)
-    @bing_news_total = @bing_news_search_results[0][:NewsTotal]
-    @bing_news_results = @bing_news_search_results[0][:News]
+  def index
+    @articles = NewsArticle.all
+  end
 
-    respond_to do |format|
-      format.json { render json: @bing_news_results }
+  def string_search_terms
+    @search_terms = []
+    NewsFilter.all.each do |term|
+      @search_terms.push("#{term.search_term}")
     end
   end
 
-  def index
-
-    accountKey = ENV["bing_key"]
-    @bing_news = Bing.new(accountKey, 100, 'News')
-    @bing_news_results = []
-    # or optionally specify an offset for your search, to start retrieving results from the starting point provided
-
-    NewsFilter.all.each do |nf|
-      @bing_news_search_results = @bing_news.search(nf.search_term, 0)
-      @bing_news_total = @bing_news_search_results[0][:NewsTotal]
-      @bing_news_results.concat(@bing_news_search_results[0][:News])
-    end
-
-    @bing_news_paginate = Kaminari.paginate_array(@bing_news_results).page(params[:page]).per(10)
-
+  # def search_news
+  #   @organization = params[:organization]
+  #   accountKey = ENV["bing_key"]
+  #   @bing_news = Bing.new(accountKey, 5, 'News')
+  #   # or optionally specify an offset for your search, to start retrieving results from the starting point provided
+  #   @bing_news_search_results = @bing_news.search(@organization, 0)
+  #   @bing_news_total = @bing_news_search_results[0][:NewsTotal]
+  #   @bing_news_results = @bing_news_search_results[0][:News]
+  #
+  #   respond_to do |format|
+  #     format.json { render json: @bing_news_results }
+  #   end
+  # end
+  #
+  # def index
+  #
+  #   accountKey = ENV["bing_key"]
+  #   @bing_news = Bing.new(accountKey, 100, 'News')
+  #   @bing_news_results = []
+  #   # or optionally specify an offset for your search, to start retrieving results from the starting point provided
+  #
+  #   NewsFilter.all.each do |nf|
+  #     @bing_news_search_results = @bing_news.search(nf.search_term, 0)
+  #     @bing_news_total = @bing_news_search_results[0][:NewsTotal]
+  #     @bing_news_results.concat(@bing_news_search_results[0][:News])
+  #   end
+  #
+  #   @bing_news_paginate = Kaminari.paginate_array(@bing_news_results).page(params[:page]).per(10)
 
     # without using searchbing gem
     # http://stackoverflow.com/questions/13660455/bing-search-api-in-ruby
@@ -54,7 +64,6 @@ class NewsController < ApplicationController
     #   http.request(req)
     # }
     # puts @res.body
-
-  end
+  # end
 
 end

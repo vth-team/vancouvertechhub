@@ -249,7 +249,15 @@ GEM
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     gmaps4rails (2.1.2)
+    google-search (1.0.3)
+      json
+    google_custom_search_api (2.0.0)
+      addressable
+      httparty
     hirb (0.7.3)
+    httparty (0.13.7)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     i18n (0.7.0)
     inflecto (0.0.2)
     interactive_editor (0.0.10)
@@ -290,6 +298,7 @@ GEM
     mini_portile2 (2.0.0)
     minitest (5.8.4)
     multi_json (1.12.0)
+    multi_xml (0.5.5)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     pg (0.18.4)
@@ -445,6 +454,8 @@ DEPENDENCIES
   friendly_id
   geocoder
   gmaps4rails
+  google-search
+  google_custom_search_api
   hirb
   interactive_editor
   jbuilder (~> 2.0)
