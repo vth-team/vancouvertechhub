@@ -46,7 +46,7 @@ body {
   // }
 }
 @media (max-width: 767px) {
-  .navbar-collapse {
+  .navbar-fixed-top .navbar-collapse.collapse{
     width: 330px;
     float: right;
     margin-right: -30px;
@@ -55,12 +55,6 @@ body {
     background-color: #8AAFFF;
     padding: 0;
     width:100%;
-  }
-  .dropdown-menu .li-nav{
-    float:left;
-  }
-  .dropdown-menu .user-profile{
-    float:right;
   }
 
   .navbar-inverse .navbar-nav .open .dropdown-menu > li > a{
@@ -212,10 +206,6 @@ ul.nav.navbar-nav{
 
 .navbar-header{
   height:59px;
-}
-
-.navbar-fixed-top .navbar-collapse.collapse{
-  overflow-y: hidden;
 }
 
 .dropdown .divider{
