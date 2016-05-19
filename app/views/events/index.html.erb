@@ -4,7 +4,7 @@
   <% events.each do |event| %>
     <div class="event-cal">
       <span class="event-time">
-        <%= event.start_time.localtime.strftime('%I:%M %p')%>
+        <%= event.start_time.strftime('%I:%M %p')%>
       </span>
       <%= link_to event.meetup_title, event.meetup_url%>
     </div>
