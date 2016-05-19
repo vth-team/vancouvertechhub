@@ -59,6 +59,7 @@ gem 'gmaps4rails'
 gem 'searchbing'
 gem 'kaminari'
 gem 'kaminari-bootstrap'
+gem "fog"
 
 group :development, :test do
   gem 'pry'
