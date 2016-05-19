@@ -30,9 +30,9 @@ class Organization < ActiveRecord::Base
     user ? user.full_name : ""
   end
 
-	def self.published
-		where(published: true)
-	end
+  def self.published
+    where(published: true)
+  end
 
   private
 

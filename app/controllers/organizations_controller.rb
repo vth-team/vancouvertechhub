@@ -20,6 +20,7 @@ class OrganizationsController < ApplicationController
 		end
 	end
 
+<<<<<<< HEAD
 	def index
 		if current_user && current_user.admin?
 			@organizations = Organization.page(params[:page]).per(18)
@@ -27,24 +28,30 @@ class OrganizationsController < ApplicationController
 			@organizations = Organization.published.page(params[:page]).per(18)
 		end
 	end
+=======
+  def index
+    # TODO: Strech: make unpublished organizations display greyed out
+    if current_user && current_user.admin?
+       @organizations = Organization.page(params[:page]).per(18)
+     else
+       @organizations = Organization.published.page(params[:page]).per(18)
+     end
+  end
+>>>>>>> 392b13e5ee82a2bec061f4bf7e2166d8dd001b98
 
   def edit
     @organization = Organization.find params[:id]
   end
 
   def filter
-    #puts ">>>>>>>>>>>>>>>>>>>>"
-    #puts params[:data_value]
     organization_ids = params[:data_value]
     @organizations = Organization.where("id in (?)", organization_ids)
-    #binding.pry
     respond_to do |format|
       format.js { render :filter_success }
     end
   end
 
   def update
-    # @organization.slug = nil
     if @organization.update organization_params
 
       redirect_to organization_path(@organization), notice: "Organization Updated!"
@@ -80,11 +87,11 @@ private
 
 
   def find_organization
-		if current_user && current_user.admin?
-			@organization = Organization.find params[:id]
-		else
-    	@organization = Organization.published.find params[:id]
-		end
+    if current_user && current_user.admin?
+      @organization = Organization.find params[:id]
+    else
+      @organization = Organization.published.find params[:id]
+    end
   end
 
   def organization_params
