@@ -1,15 +1,11 @@
 require 'rails_helper'
 
+# TODO You should also use FactoryGirl.create rather than User.create with FactoryGirl.attributes_for
+
 RSpec.describe OrganizationsController, type: :controller do
-  let (:unpublished_organization) do
-    Organization.create(FactoryGirl.attributes_for(:organization).merge({published: false}))
-  end
-
-  let (:published_organization) do
-    Organization.create(FactoryGirl.attributes_for(:organization).merge({published: true}))
-  end
-
-  let (:admin_user) { User.create(FactoryGirl.attributes_for(:user).merge({admin: true})) }
+  let (:unpublished_organization) {FactoryGirl.create(:organization)}
+  let (:published_organization) {FactoryGirl.create(:published_organization)}
+  let (:admin_user) { FactoryGirl.create(:admin) }
 
   describe "#show" do
     describe "as anon user" do
