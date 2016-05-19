@@ -22,18 +22,12 @@ class OrganizationsController < ApplicationController
   end
 
   def index
-    # @organizations = Organization.all  # original
-    # @organizations = Organization.paginate(:page => params[:page], :per_page => 3)
     # TODO: Strech: make unpublished organizations display greyed out
     if current_user && current_user.admin?
        @organizations = Organization.page(params[:page]).per(18)
      else
        @organizations = Organization.published.page(params[:page]).per(18)
      end
-    # respond_to do |format|
-      # format.html { render }
-      # format.json { render json: @organizations }
-    # end
   end
 
   def edit
@@ -41,18 +35,14 @@ class OrganizationsController < ApplicationController
   end
 
   def filter
-    #puts ">>>>>>>>>>>>>>>>>>>>"
-    #puts params[:data_value]
     organization_ids = params[:data_value]
     @organizations = Organization.where("id in (?)", organization_ids)
-    #binding.pry
     respond_to do |format|
       format.js { render :filter_success }
     end
   end
 
   def update
-    # @organization.slug = nil
     if @organization.update organization_params
 
       redirect_to organization_path(@organization), notice: "Organization Updated!"
