@@ -2,11 +2,11 @@ require 'rails_helper'
 
 RSpec.describe OrganizationsController, type: :controller do
 
-   def unpublished_attributes
+   let (:unpublished_attributes) do
       FactoryGirl.attributes_for(:organization).merge({published: false})
    end
 
-   def published_attributes
+   let (:published_attributes) do
      FactoryGirl.attributes_for(:organization).merge({published: true})
    end
 
