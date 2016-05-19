@@ -7,29 +7,29 @@ class OrganizationsController < ApplicationController
   skip_before_action :authorize_organization
 
 
-	ORGANIZATIONS_PER_PAGE = 18
+  ORGANIZATIONS_PER_PAGE = 18
 
   def new
     @organization = Organization.new
   end
 
-	def show
-		@claimed = @organization.claim_requests.find_by_status(true)
-		hosting_event
-		respond_to do |format|
-			format.html { render } # render organizations/show.html.erb
-			format.json { render json: @organization.to_json }
-			format.xml  { render xml: @organization.to_xml }
-		end
-	end
+  def show
+    @claimed = @organization.claim_requests.find_by_status(true)
+    hosting_event
+    respond_to do |format|
+      format.html { render } # render organizations/show.html.erb
+      format.json { render json: @organization.to_json }
+      format.xml  { render xml: @organization.to_xml }
+    end
+  end
 
-	def index
-		if current_user && current_user.admin?
-			@organizations = Organization.page(params[:page]).per(ORGANIZATIONS_PER_PAGE)
-		else
-			@organizations = Organization.published.page(params[:page]).per(ORGANIZATIONS_PER_PAGE)
-		end
-	end
+  def index
+    if current_user && current_user.admin?
+      @organizations = Organization.page(params[:page]).per(ORGANIZATIONS_PER_PAGE)
+    else
+      @organizations = Organization.published.page(params[:page]).per(ORGANIZATIONS_PER_PAGE)
+    end
+  end
 
   def edit
     @organization = Organization.find params[:id]
@@ -75,14 +75,14 @@ class OrganizationsController < ApplicationController
   end
 
 
-private
+  private
 
 
   def find_organization
     if current_user && current_user.admin?
       @organization = Organization.find params[:id]
     else
-			@organization = Organization.published.find params[:id]
+      @organization = Organization.published.find params[:id]
     end
   end
 
