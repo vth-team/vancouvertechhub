@@ -87,6 +87,7 @@ GEM
       execjs
     coffee-script-source (1.10.0)
     concurrent-ruby (1.0.2)
+    connection_pool (2.2.0)
     cowsay (0.2.0)
     debug_inspector (0.0.2)
     delayed_job (4.1.1)
@@ -363,6 +364,7 @@ GEM
       trollop
     rdoc (4.2.2)
       json (~> 1.4)
+    redis (3.3.0)
     rspec-core (3.4.4)
       rspec-support (~> 3.4.0)
     rspec-expectations (3.4.0)
@@ -392,6 +394,10 @@ GEM
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
     searchbing (0.2.6)
+    sidekiq (4.1.2)
+      concurrent-ruby (~> 1.0)
+      connection_pool (~> 2.2, >= 2.2.0)
+      redis (~> 3.2, >= 3.2.1)
     simple_calendar (2.1.1)
       rails (>= 3.0)
     simple_form (3.2.1)
@@ -481,6 +487,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   searchbing
+  sidekiq
   simple_calendar (~> 2.0)
   simple_form
   spring

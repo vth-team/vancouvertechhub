@@ -62,8 +62,8 @@ gem "google_custom_search_api"
 gem 'kaminari'
 gem 'kaminari-bootstrap'
 gem "fog"
-
 gem 'exception_notification'
+gem 'sidekiq'
 
 group :development, :test do
   gem 'pry'
