@@ -97,7 +97,7 @@
           <% if current_user.missing_organization? %>
             <li><%= link_to "Create Organization", new_organization_path %></li>
           <% else %>
-            <li><%= link_to "My Organization", organization_path(current_user.organization_id) %></li>
+            <li><%= link_to "My Organization", organization_path(current_user.organization) %></li>
           <% end %>
         <% else %>
           <li><%= link_to "Create Organization", new_organization_path %></li>
