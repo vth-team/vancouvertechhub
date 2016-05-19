@@ -8,7 +8,7 @@ RSpec.describe ArticleParser do
         news_item = double('NewsItem')
         allow(news_item).to receive(:htmlTitle).and_return('expected_title')
         # can also receive a block
-        # allow(news_item).to receive(:htmlTitle) { 'expected_title' }
+        #allow(news_item).to receive(:htmlTitle) { 'expected_title' }
         # an alternative short form
         # news_item = double('NewsItem', htmlTitle: 'expected_title')
 
@@ -117,7 +117,6 @@ RSpec.describe ArticleParser do
         news_item = double('NewsItem')
         #allow(news_item).to receive(:pagemap).and_return('expected_title')
         allow(news_item).to receive(:snippet).and_return("Mar 2, 2016 <b>...</b> Fidelity wrote down its investment in social media marketing company Hootsuite <br>\nby 18%, a sign that lowered U.S. investor expectations are&nbsp;...")
-
         parser = ArticleParser.new(news_item)
 
         expect(parser.published_on).to eq("Mar 2, 2016".to_datetime)
@@ -128,7 +127,6 @@ RSpec.describe ArticleParser do
       news_item = double('NewsItem')
       #allow(news_item).to receive(:pagemap).and_return('expected_title')
       allow(news_item).to receive(:snippet).and_return("Read the latest <b>technology</b> news, trends, business coverage, gadgets, <br>\nelectronics, reviews and ... Grade Six girls from North <b>Vancouver</b> create Hike <br>\nSafe app.")
-
       parser = ArticleParser.new(news_item)
 
       expect(parser.published_on).to eq(nil)

@@ -30,7 +30,6 @@ class FetchNewsJob < ActiveJob::Base
         Rails.logger = Logger.new(STDOUT)
         Rails.logger.info "Not a real article"
       end
-
       if article && article.save
         @status = true
         Rails.logger.info "article saved"
