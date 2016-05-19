@@ -6,6 +6,9 @@ class OrganizationsController < ApplicationController
   before_action :authorize_organization, only: [:edit, :update, :destroy]
   skip_before_action :authorize_organization
 
+
+	ORGANIZATIONS_PER_PAGE = 18
+
   def new
     @organization = Organization.new
   end
@@ -20,24 +23,13 @@ class OrganizationsController < ApplicationController
 		end
 	end
 
-<<<<<<< HEAD
 	def index
 		if current_user && current_user.admin?
-			@organizations = Organization.page(params[:page]).per(18)
+			@organizations = Organization.page(params[:page]).per(ORGANIZATIONS_PER_PAGE)
 		else
-			@organizations = Organization.published.page(params[:page]).per(18)
+			@organizations = Organization.published.page(params[:page]).per(ORGANIZATIONS_PER_PAGE)
 		end
 	end
-=======
-  def index
-    # TODO: Strech: make unpublished organizations display greyed out
-    if current_user && current_user.admin?
-       @organizations = Organization.page(params[:page]).per(18)
-     else
-       @organizations = Organization.published.page(params[:page]).per(18)
-     end
-  end
->>>>>>> 392b13e5ee82a2bec061f4bf7e2166d8dd001b98
 
   def edit
     @organization = Organization.find params[:id]
@@ -90,7 +82,7 @@ private
     if current_user && current_user.admin?
       @organization = Organization.find params[:id]
     else
-      @organization = Organization.published.find params[:id]
+			@organization = Organization.published.find params[:id]
     end
   end
 
