@@ -22,7 +22,6 @@
 
 
 // Bootstrap body padding for fixed navbar
-
 .org-container {
   height: 200px;
 
@@ -42,10 +41,4 @@
 
 #admin-table {
   border: 4px solid darkgrey;
-}
-
-@media (max-width: 993px) {
-  .navbar-right.footer-text{
-    display:none;
-  }
 }
