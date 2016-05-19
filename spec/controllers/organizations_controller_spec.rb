@@ -20,13 +20,12 @@ RSpec.describe OrganizationsController, type: :controller do
     end
 
     describe "as an admin" do
+      before {login(admin_user)}
       it "display unpublished organizations" do
-        session[:user_id] = admin_user.id
         get :show, id: unpublished_organization.id
         expect(assigns(:organization)).to eq(unpublished_organization)
       end
       it "display published organizations" do
-        session[:user_id] = admin_user.id
         get :show, id: published_organization.id
         expect(assigns(:organization)).to eq(published_organization)
       end
@@ -47,13 +46,12 @@ RSpec.describe OrganizationsController, type: :controller do
     end
 
     describe "as an admin" do
+      before {login(admin_user)}
       it "does display unpublished organizations on index" do
-        session[:user_id] = admin_user.id
         get :index
         expect(assigns(:organizations)).to include(unpublished_organization)
       end
       it "does display published organizations on index" do
-        session[:user_id] = admin_user.id
         get :index
         expect(assigns(:organizations)).to include(published_organization)
       end
