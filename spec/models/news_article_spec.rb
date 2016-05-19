@@ -15,7 +15,7 @@ RSpec.describe NewsArticle, type: :model do
   #   end
   #
   #
-  # end
+  end
 
 
 
