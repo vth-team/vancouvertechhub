@@ -10,31 +10,23 @@ class OrganizationsController < ApplicationController
     @organization = Organization.new
   end
 
-  def show
+	def show
+		@claimed = @organization.claim_requests.find_by_status(true)
+		hosting_event
+		respond_to do |format|
+			format.html { render } # render organizations/show.html.erb
+			format.json { render json: @organization.to_json }
+			format.xml  { render xml: @organization.to_xml }
+		end
+	end
 
-    @claimed = @organization.claim_requests.find_by_status(true)
-    hosting_event
-      respond_to do |format|
-        format.html { render } # render organizations/show.html.erb
-        format.json { render json: @organization.to_json }
-        format.xml  { render xml: @organization.to_xml }
-      end
-  end
-
-  def index
-    # @organizations = Organization.all  # original
-    # @organizations = Organization.paginate(:page => params[:page], :per_page => 3)
-		# TODO: Strech: make unpublished organizations display greyed out
+	def index
 		if current_user && current_user.admin?
- 			@organizations = Organization.page(params[:page]).per(18)
- 		else
-     	@organizations = Organization.published.page(params[:page]).per(18)
- 		end
-    # respond_to do |format|
-      # format.html { render }
-      # format.json { render json: @organizations }
-    # end
-  end
+			@organizations = Organization.page(params[:page]).per(18)
+		else
+			@organizations = Organization.published.page(params[:page]).per(18)
+		end
+	end
 
   def edit
     @organization = Organization.find params[:id]
