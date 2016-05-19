@@ -6,7 +6,8 @@
   table tbody tr {height:50px;font-size:10px;}
   .day.active {background-color: aliceblue;}
   .event-cal {margin:0 0 10px 0}
-  .day.prev-month { background-color: lightgrey; }
+  .day.prev-month, .day.next-month { background-color: lightgrey; }
+  .day.active.prev-month, .day.active.next-month { background-color: lightgrey; }
   a { color: #0e6c67; }
 }
 
