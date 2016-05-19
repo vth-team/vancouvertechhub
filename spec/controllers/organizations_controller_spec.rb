@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 # TODO You should also use FactoryGirl.create rather than User.create with FactoryGirl.attributes_for
+<<<<<<< HEAD
 
 RSpec.describe OrganizationsController, type: :controller do
 <<<<<<< HEAD
@@ -18,6 +19,13 @@ RSpec.describe OrganizationsController, type: :controller do
 
   let (:admin_user) { User.create(FactoryGirl.attributes_for(:user).merge({admin: true})) }
 >>>>>>> convert tabs to spaces
+=======
+
+RSpec.describe OrganizationsController, type: :controller do
+  let (:unpublished_organization) {FactoryGirl.create(:organization)}
+  let (:published_organization) {FactoryGirl.create(:published_organization)}
+  let (:admin_user) { FactoryGirl.create(:admin) }
+>>>>>>> Add FactoryGirls for an admin user and for an unpublished company, modify organization publish status rspec test accordingly
 
   describe "#show" do
     describe "as anon user" do
