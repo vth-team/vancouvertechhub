@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   end
 
   def missing_organization?
-    organization.nil?
+    organization_id.nil?
   end
 
 
