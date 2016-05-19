@@ -5,7 +5,7 @@
   <p>You are about to request to claim the company, "<%= @organization.name%>"</p>
   <div class="row">
     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-      <%= button_to "Yes, Submit Request", organization_claim_requests_path(@organization), method: :post, class: "btn btn-success"%>
+      <%= button_to "Yes, Submit Request", organization_claim_requests_path(@organization), class: "btn btn-success"%>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
       <%= link_to "No, take me back", :back, class: "btn btn-warning"%>

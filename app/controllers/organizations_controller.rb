@@ -1,7 +1,7 @@
 class OrganizationsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show, :filter]
-
   before_action :find_organization, only: [:show, :edit, :update, :destroy]
+
 
   ORGANIZATIONS_PER_PAGE = 18
 
@@ -17,7 +17,7 @@ class OrganizationsController < ApplicationController
     @claimed = @organization.claim_requests.find_by_status(true)
     hosting_event
     respond_to do |format|
-      format.html { render } # render organizations/show.html.erb
+      format.html { render }
       format.json { render json: @organization.to_json }
       format.xml  { render xml: @organization.to_xml }
     end
@@ -33,7 +33,7 @@ class OrganizationsController < ApplicationController
 
   def edit
     @organization = Organization.find params[:id]
-    if current_user.organization_id != @organization.id
+    if current_user.organization != @organization
       redirect_to organization_path(current_user.organization_id), alert: "You cannot edit other people's organizations."
     end
   end
@@ -67,12 +67,9 @@ class OrganizationsController < ApplicationController
     @organization       = Organization.new(organization_params)
     @organization.user  = current_user
     if @organization.save
-      flash[:notice] = "Organization created!"
-
-      redirect_to organization_path(@organization)
+      redirect_to organization_path(@organization), notice: "Organization Created!"
     else
       flash[:alert] = "Organization didn't save!"
-
       render :new
     end
   end

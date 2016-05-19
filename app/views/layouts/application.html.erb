@@ -10,118 +10,112 @@
   <script src="https://cdn.rawgit.com/googlemaps/v3-utility-library/master/infobox/src/infobox_packed.js"></script>
 </head>
 <body>
-    <% if current_user && current_user.admin? %>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <a href="organizations#index" class="navbar-brand navbar-collapse" id="logo"> <%= image_tag("logo_white.png")%></a>
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-
-          </div>
-
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
-            <ul class="nav navbar-nav">
-              <li><%= link_to "Admin Panel: ", admin_organizations_path%> </li>
-              <li><%= link_to "Organizations", admin_organizations_path %></li>
-              <li><%= link_to "Events", admin_events_path %></li>
-              <li><%= link_to "News", admin_news_filters_path %></li>
-              <li><%= link_to "Users", admin_users_path %></li>
-              <li><%= link_to "Technologies", admin_technologies_path %></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    <% else %>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <!-- <a class="navbar-brand" href="#">Brand</a> -->
-          </div>
-          <a href="<%= root_path%>" class="navbar-brand" id="logo"> <%= image_tag("logo_white.png")%></a>
-
-
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
-            <ul class="nav navbar-nav">
-            <li class="li-nav"><%= link_to "Directory", root_path, class: "directory" %></li>
-            <li class="li-nav"><%= link_to "Events", events_path, class: "directory" %></li>
-            <li class="li-nav"><%= link_to "News", news_index_path, class: "directory" %></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    <% end %>
-    <% if flash[:notice] %>
-      <div class="alert alert-success">
-        <%= flash[:notice] %>
+  <% if current_user && current_user.admin? %>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a href="organizations#index" class="navbar-brand navbar-collapse" id="logo"> <%= image_tag("logo_white.png")%></a>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
       </div>
-    <% elsif flash[:alert] %>
-      <div class="alert alert-danger">
-        <%= flash[:alert] %>
-      </div>
-    <% end %>
-
-    <div class="container">
-      <%= yield %>
-    </div>
-
-    <div class="bottomMenu navbar-fixed-bottom navbar-inverse">
-      <div class="navbar-left footer">
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
         <ul class="nav navbar-nav">
-          <!-- <li><a href="#"></a></li> -->
-          <% if user_signed_in? %>
-            <li id="user-dropdown-menu" class="dropdown">
-              <a id="user-dropdown-button" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= "Hello #{current_user.first_name}" %><span class="caret"></span></a>
-              <ul id="user-dropdown-items" class="dropdown-menu bottom-up" role="menu">
-                <!-- <li><a href="#">Action</a></li> -->
-                <li><%= link_to "Edit Profile", edit_user_path(current_user) %></li>
-                <li><%= link_to "Edit Password", edit_password_change_path(current_user) %></li>
-                <!-- <li class="divider"></li> -->
-                <!-- <li><a href="#">Separated link</a></li> -->
-                <li class="divider"></li>
-                <!-- <li><a href="#">One more separated link</a></li> -->
-                <li><%= link_to "Log out", sessions_path, method: :delete %></li>
-              </ul>
-            </li>
-          <% else %>
-            <!-- <li><a href="#">Sign In</a></li> -->
-            <li><%= link_to "Sign In", new_session_path %></li>
-            <li> <%= link_to "Sign Up", new_user_path, id: "btn-sign-up" %></li>
-          <% end %>
+          <li><%= link_to "Admin Panel: ", admin_organizations_path%> </li>
+          <li><%= link_to "Organizations", admin_organizations_path %></li>
+          <li><%= link_to "Events", admin_events_path %></li>
+          <li><%= link_to "News", admin_news_filters_path %></li>
+          <li><%= link_to "Users", admin_users_path %></li>
+          <li><%= link_to "Technologies", admin_technologies_path %></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <% else %>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <a href="<%= root_path%>" class="navbar-brand" id="logo"> <%= image_tag("logo_white.png")%></a>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+        <ul class="nav navbar-nav">
+          <li class="li-nav"><%= link_to "Directory", root_path, class: "directory" %></li>
+          <li class="li-nav"><%= link_to "Events", events_path, class: "directory" %></li>
+          <li class="li-nav"><%= link_to "News", news_index_path, class: "directory" %></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <% end %>
+  <% if flash[:notice] %>
+  <div class="alert alert-success">
+    <%= flash[:notice] %>
+  </div>
+  <% elsif flash[:alert] %>
+  <div class="alert alert-danger">
+    <%= flash[:alert] %>
+  </div>
+  <% end %>
 
-          <% if user_signed_in? %>
-            <% if current_user.organization_id == nil %>
+  <div class="container">
+    <%= yield %>
+  </div>
+  <div class="bottomMenu navbar-fixed-bottom navbar-inverse">
+    <div class="navbar-left footer">
+      <ul class="nav navbar-nav">
+        <!-- <li><a href="#"></a></li> -->
+        <% if user_signed_in? %>
+        <li id="user-dropdown-menu" class="dropdown">
+          <a id="user-dropdown-button" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= "Hello #{current_user.first_name}" %><span class="caret"></span></a>
+          <ul id="user-dropdown-items" class="dropdown-menu bottom-up" role="menu">
+            <!-- <li><a href="#">Action</a></li> -->
+            <li><%= link_to "Edit Profile", edit_user_path(current_user) %></li>
+            <li><%= link_to "Edit Password", edit_password_change_path(current_user) %></li>
+            <!-- <li class="divider"></li> -->
+            <!-- <li><a href="#">Separated link</a></li> -->
+            <li class="divider"></li>
+            <!-- <li><a href="#">One more separated link</a></li> -->
+            <li><%= link_to "Log out", sessions_path, method: :delete %></li>
+          </ul>
+        </li>
+        <% else %>
+        <!-- <li><a href="#">Sign In</a></li> -->
+        <li><%= link_to "Sign In", new_session_path %></li>
+        <li> <%= link_to "Sign Up", new_user_path, id: "btn-sign-up" %></li>
+        <% end %>
+
+        <% if user_signed_in? %>
+          <% if current_user.missing_organization? %>
             <li><%= link_to "Create Organization", new_organization_path %></li>
-            <% else %>
-            <li><%= link_to "My Organization", organization_path(current_user.organization_id) %></li>
-            <% end %>
           <% else %>
-              <li><%= link_to "Create Organization", new_organization_path %></li>
+            <li><%= link_to "My Organization", organization_path(current_user.organization_id) %></li>
           <% end %>
-        </ul>
-        <ul class="nav navbar-nav">
-          <li><%= link_to "About", about_path	 %></li>
-        </ul>
-      </div>
-      <div class="navbar-right footer-icons">
-        <i class="fa fa-twitter" aria-hidden="true"></i>
-        <i class="fa fa-facebook-official" aria-hidden="true"></i>
-        <i class="fa fa-google-plus" aria-hidden="true"></i>
-      </div>
-      <div class="navbar-right footer-text">
-          Built and maintained by students from <a href="http://codecore.ca">CodeCore</a>
-      </div>
+        <% else %>
+          <li><%= link_to "Create Organization", new_organization_path %></li>
+        <% end %>
+      </ul>
+      <ul class="nav navbar-nav">
+        <li><%= link_to "About", about_path	 %></li>
+      </ul>
     </div>
+    <div class="navbar-right footer-icons">
+      <i class="fa fa-twitter" aria-hidden="true"></i>
+      <i class="fa fa-facebook-official" aria-hidden="true"></i>
+      <i class="fa fa-google-plus" aria-hidden="true"></i>
+    </div>
+    <div class="navbar-right footer-text">
+      Built and maintained by students from <a href="http://codecore.ca">CodeCore</a>
+    </div>
+  </div>
 
 </body>
 </html>

@@ -63,26 +63,17 @@ RSpec.describe OrganizationsController, type: :controller do
 
 
   describe "#new" do
-    context "user attempts to create another comapny while having an existing company" do
+    context "user attempts to create another company while having an existing company" do
       let(:organization) { FactoryGirl.create(:organization) }
       let(:user) { FactoryGirl.create(:user, organization: organization) }
-      before { request.session[:user_id] = user.id }
-
-      # def invalid_request
-      #   post :create, organization: FactoryGirl.attributes_for(:organization{})
-      # end
+      before { login(user) }
 
       it "redirects to the user's organization show page" do
         get :new
-        expect(response).to redirect_to(organization_path(user.organization_id))
+        expect(response).to redirect_to(organization_path(user.organization))
       end
-
     end
-  
   end
-
-
-
 
   describe "#create" do
     context "without a signed in user" do
@@ -93,7 +84,7 @@ RSpec.describe OrganizationsController, type: :controller do
     end
 
     context "with signed in user" do
-      before { request.session[:user_id] = user.id }
+      before { login(user) }
       describe "with valid attributes" do
         def valid_request
           post :create, organization: FactoryGirl.attributes_for(:organization)
@@ -117,10 +108,11 @@ RSpec.describe OrganizationsController, type: :controller do
         end
       end
 
-
     end
-
   end
+<<<<<<< ae81ec418ff60a6c667295d520217ecd21c48e90
 
 >>>>>>> Add rspec tests for creating organization
+=======
+>>>>>>> Update code per the code review comments
 end
