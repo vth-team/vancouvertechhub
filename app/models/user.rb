@@ -28,10 +28,14 @@ class User < ActiveRecord::Base
 
   def missing_organization?
 <<<<<<< HEAD
+<<<<<<< HEAD
     organization_id.nil?
 =======
     organization.nil?
 >>>>>>> Update code per the code review comments
+=======
+    organization_id.nil?
+>>>>>>> Fix organization show bug
   end
 
 
