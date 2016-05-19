@@ -1,4 +1,5 @@
 require 'rails_helper'
+<<<<<<< b8eb664fcc6b3f01892abefef453c60f71d648ae
 RSpec.describe FetchNewsJob, type: :job do
   include ActiveJob::TestHelper
   subject(:job) { described_class.perform_later(123) }
@@ -17,4 +18,9 @@ RSpec.describe FetchNewsJob, type: :job do
       expect(status).to eq(true)
     end
   end
+=======
+
+RSpec.describe FetchNewsJob, type: :job do
+  pending "add some examples to (or delete) #{__FILE__}"
+>>>>>>> Add fetch_news_job ActiveJob and call it from fetch_news.rake
 end

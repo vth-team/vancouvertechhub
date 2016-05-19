@@ -382,6 +382,10 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+<<<<<<< b8eb664fcc6b3f01892abefef453c60f71d648ae
+=======
+    searchbing (0.2.6)
+>>>>>>> Add fetch_news_job ActiveJob and call it from fetch_news.rake
     sidekiq (4.1.2)
       concurrent-ruby (~> 1.0)
       connection_pool (~> 2.2, >= 2.2.0)
@@ -473,6 +477,10 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+<<<<<<< b8eb664fcc6b3f01892abefef453c60f71d648ae
+=======
+  searchbing
+>>>>>>> Add fetch_news_job ActiveJob and call it from fetch_news.rake
   sidekiq
   simple_calendar (~> 2.0)
   simple_form

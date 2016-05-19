@@ -40,5 +40,4 @@ class FetchNewsJob < ActiveJob::Base
       end
     end
   end
-
 end
