@@ -70,7 +70,7 @@ group :development, :test do
   gem 'interactive_editor'
   gem 'awesome_print'
   gem 'hirb'
-  gem 'rspec-rails', '~> 3.4'
+  gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'faker', github: 'stympy/faker'
   gem 'cowsay'
