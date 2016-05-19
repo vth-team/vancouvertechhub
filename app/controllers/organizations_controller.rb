@@ -1,37 +1,40 @@
 class OrganizationsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show, :filter]
-
   before_action :find_organization, only: [:show, :edit, :update, :destroy]
 
-  before_action :authorize_organization, only: [:edit, :update, :destroy]
-  skip_before_action :authorize_organization
+  ORGANIZATIONS_PER_PAGE = 18
 
   def new
+    if current_user.organization.present?
+      redirect_to organization_path(current_user.organization_id), alert: "You can only have one organization."
+    end
     @organization = Organization.new
   end
 
   def show
-
     @claimed = @organization.claim_requests.find_by_status(true)
     hosting_event
-      respond_to do |format|
-        format.html { render } # render organizations/show.html.erb
-        format.json { render json: @organization.to_json }
-        format.xml  { render xml: @organization.to_xml }
-      end
+
+    respond_to do |format|
+      format.html { render }
+      format.json { render json: @organization.to_json }
+      format.xml  { render xml: @organization.to_xml }
+    end
   end
 
   def index
-    # TODO: Strech: make unpublished organizations display greyed out
     if current_user && current_user.admin?
-       @organizations = Organization.page(params[:page]).per(18)
-     else
-       @organizations = Organization.published.page(params[:page]).per(18)
-     end
+      @organizations = Organization.page(params[:page]).per(ORGANIZATIONS_PER_PAGE)
+    else
+      @organizations = Organization.published.page(params[:page]).per(ORGANIZATIONS_PER_PAGE)
+    end
   end
 
   def edit
     @organization = Organization.find params[:id]
+    if current_user.organization != @organization
+      redirect_to organization_path(current_user.organization_id), alert: "You cannot edit other people's organizations."
+    end
   end
 
   def filter
@@ -44,7 +47,6 @@ class OrganizationsController < ApplicationController
 
   def update
     if @organization.update organization_params
-
       redirect_to organization_path(@organization), notice: "Organization Updated!"
     else
       render :edit
@@ -56,26 +58,21 @@ class OrganizationsController < ApplicationController
     redirect_to organizations_path, notice: "organization: #{@organization.name} deleted!"
   end
 
-
   def create
+    if current_user.organization_id.present?
+      redirect_to organization_path(current_user.organization_id), alert: "You can only have one organization."
+    end
     @organization       = Organization.new(organization_params)
-    puts "#{@current_user}"
-    puts "#{current_user}"
     @organization.user  = current_user
     if @organization.save
-      flash[:notice] = "organization created!"
-
-      redirect_to organization_path(@organization)
+      redirect_to organization_path(@organization), notice: "Organization Created!"
     else
       flash[:alert] = "organization didn't save!"
-
       render :new
     end
   end
 
-
-private
-
+  private
 
   def find_organization
     if current_user && current_user.admin?
@@ -98,5 +95,4 @@ private
     org_add = @organization.address.split(",")[0]
     @find = events.where("location ILIKE ?", "%#{org_add}%")
   end
-
 end
