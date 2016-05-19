@@ -10,7 +10,7 @@
   a { color: #0e6c67; }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 560px) {
   .simple-calendar {
     table tbody {
       height:50px;
@@ -57,7 +57,7 @@
     }
     .month-nav {
       text-align: center;
-      margin-top: 20px;
+      margin: 10px 0 5px 0;
     }
     .event-time {
       margin-right: 25px;

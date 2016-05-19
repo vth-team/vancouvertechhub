@@ -1,7 +1,9 @@
 <div class="simple-calendar">
-  <%= link_to "Previous", calendar.url_for_previous_view %>
-  <%= I18n.t("date.month_names")[start_date.month] %> <%= start_date.year %>
-  <%= link_to "Next", calendar.url_for_next_view %>
+  <div class="month-nav">
+    <%= link_to "Prev", calendar.url_for_previous_view %>
+    <%= I18n.t("date.month_names")[start_date.month] %> <%= start_date.year %>
+    <%= link_to "Next", calendar.url_for_next_view %>
+  </div>
 
   <table class="table table-bordered table-condensed">
     <thead>
