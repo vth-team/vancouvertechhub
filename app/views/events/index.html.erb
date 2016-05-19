@@ -1,17 +1,15 @@
-
 <%= month_calendar events: @events do |date, events| %>
-   <%= date.strftime("%d") %>
+  <span class="event-date"><%= date.strftime("%d") %></span>
 
   <% events.each do |event| %>
     <div class="event-cal">
-      <%#= event.time.localtime.strftime('%I:%M %p')%>
-      <%= link_to event.meetup_title, event.meetup_url %>
+      <span class="event-time">
+        <%= event.start_time.localtime.strftime('%I:%M %p')%>
+      </span>
+      <%= link_to event.meetup_title, event.meetup_url%>
     </div>
   <% end %>
 <% end %>
-<!-- <%= form_tag class:"form-inline"%>
-<%= text_field_tag 'search',nil, class:"search col-md-3 form-control"%> -->
-<!-- <%= button_tag 'Search',class:"search btn btn-primary" %> -->
 
 <!-- Search Bar -->
 <form role="form">
