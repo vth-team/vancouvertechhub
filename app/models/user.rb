@@ -27,7 +27,11 @@ class User < ActiveRecord::Base
   end
 
   def missing_organization?
+<<<<<<< HEAD
     organization_id.nil?
+=======
+    organization.nil?
+>>>>>>> Update code per the code review comments
   end
 
 
