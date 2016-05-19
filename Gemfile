@@ -61,6 +61,8 @@ gem 'kaminari'
 gem 'kaminari-bootstrap'
 gem "fog"
 
+gem 'exception_notification'
+
 group :development, :test do
   gem 'pry'
   gem 'pry-byebug'
