@@ -1,31 +1,11 @@
 require 'rails_helper'
 
 # TODO You should also use FactoryGirl.create rather than User.create with FactoryGirl.attributes_for
-<<<<<<< HEAD
-
-RSpec.describe OrganizationsController, type: :controller do
-<<<<<<< HEAD
-  let (:unpublished_organization) {FactoryGirl.create(:organization)}
-  let (:published_organization) {FactoryGirl.create(:published_organization)}
-  let (:admin_user) { FactoryGirl.create(:admin) }
-=======
-  let (:unpublished_organization) do
-    Organization.create(FactoryGirl.attributes_for(:organization).merge({published: false}))
-  end
-
-  let (:published_organization) do
-    Organization.create(FactoryGirl.attributes_for(:organization).merge({published: true}))
-  end
-
-  let (:admin_user) { User.create(FactoryGirl.attributes_for(:user).merge({admin: true})) }
->>>>>>> convert tabs to spaces
-=======
 
 RSpec.describe OrganizationsController, type: :controller do
   let (:unpublished_organization) {FactoryGirl.create(:organization)}
   let (:published_organization) {FactoryGirl.create(:published_organization)}
   let (:admin_user) { FactoryGirl.create(:admin) }
->>>>>>> Add FactoryGirls for an admin user and for an unpublished company, modify organization publish status rspec test accordingly
 
   describe "#show" do
     describe "as anon user" do
@@ -40,21 +20,12 @@ RSpec.describe OrganizationsController, type: :controller do
     end
 
     describe "as an admin" do
-<<<<<<< HEAD
       before {login(admin_user)}
       it "display unpublished organizations" do
-=======
-      it "display unpublished organizations" do
-        session[:user_id] = admin_user.id
->>>>>>> convert tabs to spaces
         get :show, id: unpublished_organization.id
         expect(assigns(:organization)).to eq(unpublished_organization)
       end
       it "display published organizations" do
-<<<<<<< HEAD
-=======
-        session[:user_id] = admin_user.id
->>>>>>> convert tabs to spaces
         get :show, id: published_organization.id
         expect(assigns(:organization)).to eq(published_organization)
       end
@@ -75,27 +46,17 @@ RSpec.describe OrganizationsController, type: :controller do
     end
 
     describe "as an admin" do
-<<<<<<< HEAD
       before {login(admin_user)}
       it "does display unpublished organizations on index" do
-=======
-      it "does display unpublished organizations on index" do
-        session[:user_id] = admin_user.id
->>>>>>> convert tabs to spaces
         get :index
         expect(assigns(:organizations)).to include(unpublished_organization)
       end
       it "does display published organizations on index" do
-<<<<<<< HEAD
-=======
-        session[:user_id] = admin_user.id
->>>>>>> convert tabs to spaces
         get :index
         expect(assigns(:organizations)).to include(published_organization)
       end
     end
   end
-<<<<<<< HEAD
 
   let(:user) { FactoryGirl.create(:user) }
 
@@ -147,6 +108,4 @@ RSpec.describe OrganizationsController, type: :controller do
       end
     end
   end
-=======
->>>>>>> convert tabs to spaces
 end
