@@ -11,6 +11,7 @@
 /log/*
 !/log/.keep
 /tmp
+.byebug_history
 
 # ignore app key which contains email user name
 /config/initializers/app_keys.rb
