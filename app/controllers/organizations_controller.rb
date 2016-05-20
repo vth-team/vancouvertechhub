@@ -2,7 +2,6 @@ class OrganizationsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show, :filter]
   before_action :find_organization, only: [:show, :edit, :update, :destroy]
 
-
   ORGANIZATIONS_PER_PAGE = 18
 
   def new
@@ -15,6 +14,7 @@ class OrganizationsController < ApplicationController
   def show
     @claimed = @organization.claim_requests.find_by_status(true)
     hosting_event
+
     respond_to do |format|
       format.html { render }
       format.json { render json: @organization.to_json }
@@ -58,7 +58,6 @@ class OrganizationsController < ApplicationController
     redirect_to organizations_path, notice: "organization: #{@organization.name} deleted!"
   end
 
-
   def create
     if current_user.organization_id.present?
       redirect_to organization_path(current_user.organization_id), alert: "You can only have one organization."
@@ -68,7 +67,7 @@ class OrganizationsController < ApplicationController
     if @organization.save
       redirect_to organization_path(@organization), notice: "Organization Created!"
     else
-      flash[:alert] = "Organization didn't save!"
+      flash[:alert] = "organization didn't save!"
       render :new
     end
   end
@@ -96,5 +95,4 @@ class OrganizationsController < ApplicationController
     org_add = @organization.address.split(",")[0]
     @find = events.where("location ILIKE ?", "%#{org_add}%")
   end
-
 end

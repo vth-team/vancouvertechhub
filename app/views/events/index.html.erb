@@ -1,16 +1,34 @@
-
 <%= month_calendar events: @events do |date, events| %>
-   <%= date.strftime("%d") %>
+  <span class="event-date"><%= date.strftime("%d") %></span>
 
   <% events.each do |event| %>
     <div class="event-cal">
-      <%= link_to event.meetup_title, event.meetup_url %>
+      <span class="event-time">
+        <%= formatted_time(event.start_time) %>
+      </span>
+      <%= link_to event.meetup_title, event.meetup_url%>
     </div>
   <% end %>
 <% end %>
-<%= form_tag class:"form-inline"%>
-<%= text_field_tag 'search',nil, class:"col-md-3 form-control"%>
-<%= button_tag 'Search',class:"search btn btn-primary" %>
+
+<!-- Search Bar -->
+<form role="form">
+  <div class="form-group">
+    <input type="text" class="search form-control empty" placeholder="&#xF002; Search All Events"/>
+  </div>
+</form>
+
+<!-- Search Bar to include Font Awesome Search Icon -->
+<script>
+$('#iconified').on('keyup', function() {
+  var input = $(this);
+  if(input.val().length === 0) {
+    input.addClass('empty');
+  } else {
+    input.removeClass('empty');
+  }
+});
+</script>
 
 <% @events.each do |list|%>
   <div class="event">
