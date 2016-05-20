@@ -4,7 +4,7 @@
 
 .header-container {
   width: 100%;
-  min-height: 58vw;
+  min-height: 47vw;
   border-left: none;
   border-right: none;
   position: relative;
@@ -79,4 +79,9 @@ div.container div.single-map{
 div.container div.single-map:hover{
   width:400px;
   height:300px;
+}
+@media (max-width: 1020px) {
+.header-container{
+  min-height: 51vw;
+}
 }
