@@ -2,73 +2,73 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.header-container {
-  width: 100%;
-  min-height: 47vw;
-  border-left: none;
-  border-right: none;
-  position: relative;
-  padding: 20px;
-  position: inherit;
+  .header-container {
+    width: 100%;
+    min-height: 47vw;
+    border-left: none;
+    border-right: none;
+    position: relative;
+    padding: 20px;
+    position: inherit;
 
-  .video-container {
-  position: absolute;
-  top: 0%;
-  left: 0%;
-  height: 100%;
-  width: 101%;
-  overflow: hidden;
-  margin-left: -1%;
-  }
+    .video-container {
+      position: absolute;
+      top: 0%;
+      left: 0%;
+      height: 100%;
+      width: 101%;
+      overflow: hidden;
+      margin-left: -1%;
+    }
 
-  video {
-  position: absolute;
-  zoom: 110%;
-  z-index: -1;
-  width: 100%;
-  opacity:0.78;
-
-    h2{
-      opacity: 0.60;
-      font-size: 5vw;
-      margin-top: 10%;
+    video {
+      position: absolute;
+      zoom: 110%;
+      z-index: -1;
       width: 100%;
-      text-align: center;
+      opacity:0.78;
+
+      h2{
+        opacity: 0.60;
+        font-size: 5vw;
+        margin-top: 10%;
+        width: 100%;
+        text-align: center;
+      }
+      p{
+        font-size: 2vw;
+        width: 100%;
+        color: #0E426C;
+        text-align: center;
+      }
     }
-    p{
-      font-size: 2vw;
-      width: 100%;
-      color: #0E426C;
-      text-align: center;
+
+  }
+
+  form {
+    .checkbox {
+      display: inline-block;
+      margin-right: 10px;
+      input[type="checkbox"] {
+        margin-left: -13px;
+      }
+    }
+    .check_boxes {
+      label {
+        display: block;
+      }
     }
   }
 
-}
-
-form {
-  .checkbox {
-    display: inline-block;
-    margin-right: 10px;
-    input[type="checkbox"] {
-      margin-left: -13px;
-    }
+  img.full-width {
+    width: 100%;
   }
-  .check_boxes {
-    label {
-      display: block;
-    }
+
+  .company-name{
+    float:left;
   }
-}
 
-img.full-width {
-  width: 100%;
-}
-
-.company-name{
-  float:left;
-}
-
-div.container div.single-map{
+  div.container div.single-map{
     position:absolute;
     right:6%;
     top: 75px;
@@ -76,14 +76,15 @@ div.container div.single-map{
     width:200px;
     height:160px;
     transition: 1s;
-}
+  }
 
-div.container div.single-map:hover{
-  width:400px;
-  height:300px;
-}
-@media (max-width: 1020px) {
-.header-container{
-  min-height: 51vw;
-}
-}
+  div.container div.single-map:hover{
+    width:400px;
+    height:300px;
+  }
+  
+  @media (max-width: 1020px) {
+    .header-container{
+      min-height: 51vw;
+    }
+  }
