@@ -4,7 +4,7 @@
   <% events.each do |event| %>
     <div class="event-cal">
       <span class="event-time">
-        <%= event.start_time.strftime('%I:%M %p')%>
+        <%= formatted_time(event.start_time) %>
       </span>
       <%= link_to event.meetup_title, event.meetup_url%>
     </div>
@@ -23,9 +23,9 @@
 $('#iconified').on('keyup', function() {
   var input = $(this);
   if(input.val().length === 0) {
-      input.addClass('empty');
+    input.addClass('empty');
   } else {
-      input.removeClass('empty');
+    input.removeClass('empty');
   }
 });
 </script>
