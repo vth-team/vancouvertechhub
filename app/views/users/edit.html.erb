@@ -12,6 +12,10 @@
       <%= f.input :first_name%>
       <%= f.input :last_name %>
       <%= f.input :email %>
+      <%= f.association :organization, collection: @organizations, input_html: {class: "chosen-select"} %>
+
+
+
       <% if (can? :manage, @user) && (@user.id != current_user.id) %>
         <%= f.input :admin, label: "Admin",as: :boolean, checked_value: true, unchecked_value: false %>
       <% end %>
