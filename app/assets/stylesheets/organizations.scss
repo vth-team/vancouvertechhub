@@ -28,19 +28,20 @@
       width: 100%;
       opacity:0.78;
 
-      h2{
-        opacity: 0.60;
-        font-size: 5vw;
-        margin-top: 10%;
-        width: 100%;
-        text-align: center;
-      }
-      p{
-        font-size: 2vw;
-        width: 100%;
-        color: #0E426C;
-        text-align: center;
-      }
+    }
+    
+    h2{
+      opacity: 0.60;
+      font-size: 5vw;
+      margin-top: 10%;
+      width: 100%;
+      text-align: center;
+    }
+    p{
+      font-size: 2vw;
+      width: 100%;
+      color: #0E426C;
+      text-align: center;
     }
 
   }
@@ -82,7 +83,7 @@
     width:400px;
     height:300px;
   }
-  
+
   @media (max-width: 1020px) {
     .header-container{
       min-height: 51vw;
