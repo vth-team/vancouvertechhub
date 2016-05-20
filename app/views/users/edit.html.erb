@@ -7,29 +7,14 @@
 
 <br>
 <br>
-<%= form_for @user, class: "form-horizontal" do |f|%>
-  <div class="form-group row">
-    <%= f.label :first_name, class: "col-md-2 control-label" %>
-    <div class="col-md-8">
-      <%= f.text_field :first_name %>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <%= f.label :last_name, class: "col-md-2 control-label" %>
-    <div class="col-md-8">
-      <%= f.text_field :last_name %>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <%= f.label :email, class: "col-md-2 control-label" %>
-    <div class="col-md-8">
-      <%= f.email_field :email %>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <%= f.submit "Update User", class: "btn btn-primary col-md-offset-2" %>
-  </div>
-<% end  %>
+<div class="col-lg-3 col-md-4 col-xs-8">
+  <%= simple_form_for @user, class: "form-horizontal" do |f|%>
+      <%= f.input :first_name%>
+      <%= f.input :last_name %>
+      <%= f.input :email %>
+      <% if (can? :manage, @user) && (@user.id != current_user.id) %>
+        <%= f.input :admin, label: "Admin",as: :boolean, checked_value: true, unchecked_value: false %>
+      <% end %>
+      <%= f.submit "Update User", class: "btn btn-primary" %>
+  <% end  %>
+</div>

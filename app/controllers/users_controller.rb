@@ -18,15 +18,18 @@ class UsersController < ApplicationController
     end
   end
 
+ def update
+  @user = User.find_by_id params[:id]
+  if can? :manage, @user
+    user_params = params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :admin)
+  else
+    user_params = params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+  end
 
-  def update
-   @user = User.find_by_id params[:id]
-
-   if @user.update user_params
-     redirect_to root_path, notice: "Account Updated"
-   else
-     render :edit
-   end
+  if @user.update user_params
+    redirect_to root_path, notice: "Account Updated"
+  else
+    render :edit
   end
 
   def destroy
