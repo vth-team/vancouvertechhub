@@ -39,7 +39,11 @@
     <tbody>
       <% @users.each do |u| %>
       <tr>
-        <td><%= u.first_name %> <%= u.last_name %></td>
+        <td>
+          <%= u.first_name %> <%= u.last_name %>
+          <% if u.admin? %>
+            <i class="fa fa-key" aria-hidden="true"></i>
+          <% end %></td>
         <td><%= u.email %></td>
         <td><% if u.organization %>
         <%= u.organization.name %>
