@@ -45,9 +45,6 @@
 <% end %>
 
 
-
-<p><%#= @organization.manager %></p>
-
 <% if can? :manage, @organization %>
   <% if @organization.published %>
     <p>Published</p>
@@ -59,13 +56,10 @@
   <%= link_to "Edit", edit_organization_path(@organization), class: "btn btn-primary" %>
 <% end %>
 
-<% if user_signed_in? %>
-  <% if !(@claimed && @claimed.status == true)  %>
-    <% if @organization.user == nil %>
-      <%= link_to "Claim this business", new_organization_claim_request_path(@organization), class: "btn btn-primary"%>
-    <% end %>
-  <% end %>
+<% if !(@claimed && @claimed.status == true) || @organization.user == nil  %>
+    <%= link_to "Claim this business", new_organization_claim_request_path(@organization), class: "btn btn-primary"%>
 <% end %>
+
 <hr>
 <div class="container-fluid col-lg-6 col-md-6 col-sm-6 col-xs-12" id="twitter-feed">
   <a class="twitter-timeline" href="https://twitter.com/<%= @organization.twitter %>" data-widget-id="729049490544427008" data-screen-name="<%= @organization.twitter %>">Tweets by @<%= @organization.twitter %></a>
