@@ -3,12 +3,26 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .simple-calendar{
-  table tbody tr {height:50px;font-size:10px;}
-  .day.active {background-color: aliceblue;}
-  .event-cal {margin:0 0 10px 0}
-  .day.prev-month, .day.next-month { background-color: lightgrey; }
-  .day.active.prev-month, .day.active.next-month { background-color: lightgrey; }
-  a { color: #0e6c67; }
+  table tbody tr {
+    height:50px;
+    font-size:10px;
+  }
+  .day.active {
+    background-color: aliceblue;
+  }
+  .event-cal {
+    margin:0 0 10px 0;
+  }
+  .day.prev-month, .day.next-month {
+    background-color: lightgrey;
+  }
+  .day.active.prev-month,
+  .day.active.next-month {
+    background-color: lightgrey;
+  }
+  a {
+    color: #0e6c67;
+  }
 }
 
 @media (max-width: 560px) {
@@ -27,15 +41,15 @@
       display: none;
     }
     th:before {
-          /* Now like a table header */
-          position: absolute;
-          /* Top/left values mimic padding */
-          top: 6px;
-          left: 6px;
-          width: 45%;
-          padding-right: 10px;
-          white-space: nowrap;
-      }
+      /* Now like a table header */
+      position: absolute;
+      /* Top/left values mimic padding */
+      top: 6px;
+      left: 6px;
+      width: 45%;
+      padding-right: 10px;
+      white-space: nowrap;
+    }
 
     td:nth-of-type(1):before { content: "MON"; font-weight: bold; }
     td:nth-of-type(2):before { content: "TUE"; font-weight: bold; }
@@ -63,7 +77,6 @@
     .event-time {
       margin-right: 25px;
     }
-
     a {
       color: #0e6c67;
     }
