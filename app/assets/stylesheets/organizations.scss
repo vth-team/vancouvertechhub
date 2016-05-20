@@ -19,28 +19,30 @@
   width: 101%;
   overflow: hidden;
   margin-left: -1%;
-}
+  }
+
   video {
   position: absolute;
   zoom: 110%;
   z-index: -1;
   width: 100%;
   opacity:0.78;
+
+    h2{
+      opacity: 0.60;
+      font-size: 5vw;
+      margin-top: 10%;
+      width: 100%;
+      text-align: center;
+    }
+    p{
+      font-size: 2vw;
+      width: 100%;
+      color: #0E426C;
+      text-align: center;
+    }
   }
 
-  h2{
-    opacity: 0.60;
-    font-size: 5vw;
-    margin-top: 10%;
-    width: 100%;
-    text-align: center;
-  }
-  p{
-    font-size: 2vw;
-    width: 100%;
-    color: #0E426C;
-    text-align: center;
-  }
 }
 
 form {

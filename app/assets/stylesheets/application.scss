@@ -22,51 +22,7 @@
 
 
 // Bootstrap body padding for fixed navbar
-<<<<<<< HEAD
-=======
-body {
-  padding-bottom: 80px;
-}
 
-.navbar {
-  height: 60px;
-  background-color: #0E426C;
-  opacity: 0.80;
-  position: relative;
-  margin-bottom: 0px;
-
-  #logo img {
-    width: 100px;
-    margin-top: -27px;
-  }
-
-  .navbar-header{
-    height:59px;
-    }
-
-  ul.nav.navbar-nav{
-    margin-top: 0px;
-
-    .directory{
-      font-size: 2em;
-    }
-
-    li a{
-      height: 60px;
-      padding-top: 19px;
-    }
-
-    li a.dropdown-toggle.directory{
-      padding-top: 15px;
-    }
-
-    .divider{
-      margin:0
-    }
-  }
-}
-
->>>>>>> updated the scss, added videobackground, modify header and footer
 .org-container {
   height: 200px;
 
@@ -76,7 +32,6 @@ body {
   }
 }
 
-<<<<<<< HEAD
 #mission-div1, #mission-div2, #mission-div3 {
   display: block;
 }
@@ -88,128 +43,9 @@ body {
 #admin-table {
   border: 4px solid darkgrey;
 }
-=======
-#mission-div1 {
-  display: block;
-}
-#mission-div2 {
-  display: block;
-}
-#mission-div3 {
-  display: block;
-}
-#mission-p {
-  zoom: 1.5;
-}
-#team-p {
-  zoom: 1.5;
-}
-
-.bottomMenu {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: 60px;
-  border-top: 1px solid #000;
-  padding: 10px 0 0 30px;
-  background-color: #0E426C;
-  z-index: 99;
-  opacity: 0.80;
-
-  .navbar-left.footer {
-    .navbar-nav {
-      margin: 0;
-
-      li{
-        display: inline-block;
-
-        a{
-          padding-top:10px
-        }
-      }
-    }
-  }
-
-  .footer-text{
-    color:#D0D0D0;
-    margin: 10px 0 0 0;
-
-    a {
-      color:#FFF;
-    }
-  }
-
-  .footer-icons {
-    font-size: 2.1em;
-    margin: 0 35px;
-    float:right;
-
-    a {
-      color: #9d9d9d;
-    }
-
-    a:hover{
-      color:#FFF;
-      cursor: pointer;
-    }
-  }
-
-}
-
-#admin-table {
-  border: 4px solid darkgrey;
-}
-
 
 @media (max-width: 993px) {
   .navbar-right.footer-text{
     display:none;
   }
 }
-
-@media (max-width: 767px) {
-  .navbar-fixed-top .navbar-collapse.collapse{
-    background-color: #0E426C;
-    max-height: none;
-    width: 330px;
-    float: right;
-    margin-right: -30px;
-    overflow: visible;
-
-    ul.nav li{
-      height: 40px;
-      a{
-        height: 40px;
-        padding-top: 10px;
-      }
-       a.directory, a.dropdown-toggle.directory{
-        font-size: 18px;
-      }
-      .dropdown-menu a{
-        height: 40px;
-        padding-top: 10px;
-      }
-      .divider{
-        height:0;
-      }
-    }
-  }
-
-  .navbar-nav .open ul.dropdown-menu{
-    background-color: #8AAFFF;
-    padding: 0;
-    width:100%;
-  }
-
-  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a{
-    font-weight: 600;
-    color: #0F0F0F;
-  }
-}
-
-@media only screen and (max-width: 600px){
-  .bottomMenu.navbar-fixed-bottom{
-    padding: 10px 0 0 0;
-  }
-}
->>>>>>> updated the scss, added videobackground, modify header and footer
