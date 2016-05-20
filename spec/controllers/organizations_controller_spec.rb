@@ -57,4 +57,55 @@ RSpec.describe OrganizationsController, type: :controller do
       end
     end
   end
+
+  let(:user) { FactoryGirl.create(:user) }
+
+
+  describe "#new" do
+    context "user attempts to create another company while having an existing company" do
+      let(:organization) { FactoryGirl.create(:organization) }
+      let(:user) { FactoryGirl.create(:user, organization: organization) }
+      before { login(user) }
+
+      it "redirects to the user's organization show page" do
+        get :new
+        expect(response).to redirect_to(organization_path(user.organization))
+      end
+    end
+  end
+
+  describe "#create" do
+    context "without a signed in user" do
+      it "redirects to sign up page" do
+        post :create, organization: FactoryGirl.attributes_for(:organization)
+        expect(response).to redirect_to(new_session_path)
+      end
+    end
+
+    context "with signed in user" do
+      before { login(user) }
+      describe "with valid attributes" do
+        def valid_request
+          post :create, organization: FactoryGirl.attributes_for(:organization)
+        end
+
+        it "saves a record to the database" do
+          count_before = Organization.count
+          valid_request
+          count_after = Organization.count
+          expect(count_after).to eq(count_before + 1)
+        end
+
+        it "redirects to the organization's show page" do
+          valid_request
+          expect(response).to redirect_to(organization_path(Organization.last))
+        end
+
+        it "sets a flash message" do
+          valid_request
+          expect(flash[:notice]).to be
+        end
+      end
+    end
+  end
 end

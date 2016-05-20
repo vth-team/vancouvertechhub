@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   has_secure_password
   belongs_to :organization
   belongs_to :claim_request
-  
+
   validates :first_name, presence: true
   validates :last_name, presence: true
 
@@ -24,6 +24,10 @@ class User < ActiveRecord::Base
     self.password_reset_requested_at = Time.now
     # save the record in the database
     save
+  end
+
+  def missing_organization?
+    organization_id.nil?
   end
 
 
