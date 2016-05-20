@@ -1,6 +1,9 @@
 require 'rails_helper'
+require 'pry'
 
 RSpec.describe UsersController, type: :controller do
+  let (:admin_user) { FactoryGirl.create(:admin) }
+  let (:user) { FactoryGirl.create(:user) }
   describe "#new" do
     it "renders the new template" do
       get :new
@@ -61,5 +64,46 @@ RSpec.describe UsersController, type: :controller do
       end
     end
 
+  end
+
+
+  describe "#edit" do
+    render_views
+    describe "as a mortal" do
+    before { login(user) }
+      it "doesn't show the option make the user an admin" do
+        get :edit, id: user.id
+        expect(response.body).not_to include("Admin")
+      end
+    end
+    describe "as an admin" do
+    before { login(admin_user) }
+      it "shows the option to make the user an admin" do
+        get :edit, id: user.id
+        expect(response.body).to include("Admin")
+      end
+    end
+  end
+
+  describe "#update" do
+
+    describe "as a mortal" do
+      before do
+        login(user)
+        patch :update, id: user.id, user: {admin: true}
+      end
+      it "mortals update their own status to admin" do
+        expect(user.reload.admin).to eq(false)
+      end
+    end
+    describe "as administrators" do
+      before do
+        login(admin_user)
+        patch :update, id: user.id, user: {admin: true}
+      end
+      it "administrators can make more administrators" do
+        expect(user.reload.admin).to eq(true)
+      end
+    end
   end
 end
