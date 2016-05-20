@@ -10,7 +10,6 @@ class OrganizationsController < ApplicationController
       redirect_to organization_path(current_user.organization_id), alert: "You can only have one organization."
     end
     @organization = Organization.new
-
   end
 
   def show
