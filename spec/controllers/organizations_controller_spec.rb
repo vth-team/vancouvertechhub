@@ -45,7 +45,6 @@ RSpec.describe OrganizationsController, type: :controller do
       end
     end
 
-<<<<<<< 81e672fcd3f36f3feb25b88f0c47d134445b7f63
     describe "as an admin" do
       before {login(admin_user)}
       it "does display unpublished organizations on index" do
@@ -58,7 +57,7 @@ RSpec.describe OrganizationsController, type: :controller do
       end
     end
   end
-=======
+
   let(:user) { FactoryGirl.create(:user) }
 
 
@@ -107,12 +106,6 @@ RSpec.describe OrganizationsController, type: :controller do
           expect(flash[:notice]).to be
         end
       end
-
     end
   end
-<<<<<<< ae81ec418ff60a6c667295d520217ecd21c48e90
-
->>>>>>> Add rspec tests for creating organization
-=======
->>>>>>> Update code per the code review comments
 end
