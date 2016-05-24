@@ -1,5 +1,5 @@
 class Organization < ActiveRecord::Base
-  belongs_to :user
+  has_one :user, dependent: :nullify
   has_many :claim_requests
 
   validates :name, presence: true
@@ -28,6 +28,10 @@ class Organization < ActiveRecord::Base
 
   def user_full_name
     user ? user.full_name : ""
+  end
+
+  def self.published
+    where(published: true)
   end
 
   private

@@ -58,9 +58,7 @@ $(document).ready(function(){
       }
     });
 
-
     //console.log(dataIdArray);
-
     $.ajax({
       method: "POST",
       url: baseUrl + "/organizations/filter",
@@ -76,8 +74,5 @@ $(document).ready(function(){
         console.log("Problem posting dataIdArray. Please retry.");
       }
     });
-
-
-
   });
 });

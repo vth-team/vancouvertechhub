@@ -27,8 +27,33 @@
 // Bootstrap body padding for fixed navbar
 body {
   padding-top: 80px;
-  padding-bottom: 50px;
+  padding-bottom: 80px;
 }
+
+@media (max-width: 1200px) {
+  li .directory{
+    margin-left: 70px !important;
+    margin-right: 70px !important;
+  }
+}
+@media (max-width: 993px) {
+  li .directory{
+    margin-left: 50px !important;
+    margin-right: 50px !important;
+  }
+}
+@media (max-width: 830px) {
+  li .directory{
+    margin-left: 30px !important;
+    margin-right: 30px !important;
+  }
+  #logo img {
+    width: 100px;
+    margin-top: -76px !important;
+    // height: 30px;
+  }
+}
+
 #logo img {
   width: 100px;
   margin-top: -27px;
@@ -43,8 +68,33 @@ body {
   height: 60px;
 }
 
+#mission-div1 {
+
+  // height: 250px;
+  display: block;
+  // margin: 30px 30px 30px 30px;
+}
+#mission-div2 {
+  // height: 450px;
+  display: block;
+  // background-color: lightgrey;
+  // margin: 30px 30px 30px 30px;
+}
+#mission-div3 {
+  // height: 250px;
+  display: block;
+  // background-color: lightgrey;
+  // margin: 30px 30px 30px 30px;
+}
+#mission-p {
+  zoom: 1.5;
+}
+#team-p {
+  zoom: 1.5;
+}
 .navbar {
   height: 60px;
+  background-color: #0E426C;
 }
 
 .footer-text {
@@ -59,15 +109,15 @@ body {
 }
 
 .bottomMenu {
-  //  display: none;
+
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 40px;
+  height: 60px;
   border-top: 1px solid #000;
   //  padding-top: 15px;
   padding-left:30px;
-
+  background-color: #0E426C;
   //  background-color: black;
   z-index: 99;
 }
@@ -85,8 +135,15 @@ body {
   // border-radius: 25px;
 }
 li .directory{
-  
-  margin-left: 70px;
-  margin-right: 70px;
+
+  margin-left: 110px;
+  margin-right: 110px;
   font-size: 2em;
+}
+.li-nav:hover {
+  background-color: #546F8B;
+}
+
+ul.nav.navbar-nav{
+    background: #0E426C;
 }
