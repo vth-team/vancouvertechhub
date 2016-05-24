@@ -65,8 +65,8 @@ RSpec.describe ArticleParser do
         allow(news_item).to receive(:pagemap).and_return("cse_thumbnail"=>[{"width"=>"259", "height"=>"194", "src"=>"https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRkK6sGvVXZgE6pdn6THj5PyHa07hGnH4uelptZXHLsSnA3m7jGUq91oBqZ"}])
 
         parser = ArticleParser.new(news_item)
-
-        expect(parser.thumbnail).to eq('https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRkK6sGvVXZgE6pdn6THj5PyHa07hGnH4uelptZXHLsSnA3m7jGUq91oBqZ')
+        THUMBNAIL_LINK= 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRkK6sGvVXZgE6pdn6THj5PyHa07hGnH4uelptZXHLsSnA3m7jGUq91oBqZ'
+        expect(parser.thumbnail).to eq(THUMBNAIL_LINK)
       end
     end
 
@@ -88,11 +88,12 @@ RSpec.describe ArticleParser do
       it 'returns the value of #link' do
         news_item = double('NewsItem')
         #allow(news_item).to receive(:pagemap).and_return('expected_title')
-        allow(news_item).to receive(:link).and_return("http://www.theguardian.com/environment/2016/may/05/elon-musk-we-need-a-revolt-against-the-fossil-fuel-industry")
+        NEWS_ITEM_LINK="http://www.theguardian.com/environment/2016/may/05/elon-musk-we-need-a-revolt-against-the-fossil-fuel-industry"
+        allow(news_item).to receive(:link).and_return(NEWS_ITEM_LINK)
 
         parser = ArticleParser.new(news_item)
-
-        expect(parser.link).to eq("http://www.theguardian.com/environment/2016/may/05/elon-musk-we-need-a-revolt-against-the-fossil-fuel-industry")
+        PARSER_LINK="http://www.theguardian.com/environment/2016/may/05/elon-musk-we-need-a-revolt-against-the-fossil-fuel-industry"
+        expect(parser.link).to eq(PARSER_LINK)
       end
     end
 

@@ -56,7 +56,6 @@ gem 'mini_magick'
 gem 'geocoder'
 gem 'underscore-rails'
 gem 'gmaps4rails'
-gem 'searchbing'
 gem 'google-search'
 gem "google_custom_search_api"
 gem 'kaminari'

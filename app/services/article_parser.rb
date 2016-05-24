@@ -21,13 +21,15 @@ class ArticleParser
   end
 
   def published_on
+  ELIPSIS_REGEX=/([^.?!;\u2026]+[.?!;\u2026]+)/
+  BOUNDARY=-8
     # Matching '...' with regex
     # http://stackoverflow.com/questions/21357295/javascript-regex-cant-match-ellipsis
     #puts /([^.?!;\u2026]+[.?!;\u2026]+)/.match(htmlSnippet)
     # The first [0] returns the first matching group before the ... in the htmlSnippet
     # [0..-8] is from the first character to, eight characters before ...
     # ie. "Mar 2, 2016 <b>..." => "Mar 2, 2016"
-    published_on_string = /([^.?!;\u2026]+[.?!;\u2026]+)/.match(htmlSnippet)[0][0..-8]
+    published_on_string = ELIPSIS_REGEX.match(htmlSnippet)[0][0..EIGHT]
     published_on_string.to_datetime rescue nil
   end
 
