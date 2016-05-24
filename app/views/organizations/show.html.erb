@@ -57,7 +57,9 @@
 <% end %>
 
 <% if !(@claimed && @claimed.status == true) || @organization.user == nil  %>
+  <% if !current_user.organization.present? %>
     <%= link_to "Claim this business", new_organization_claim_request_path(@organization), class: "btn btn-primary"%>
+  <% end %>
 <% end %>
 
 <hr>
