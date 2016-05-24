@@ -67,7 +67,11 @@ RSpec.describe ArticleParser do
         allow(news_item).to receive(:pagemap).and_return("cse_thumbnail"=>[{"width"=>"259", "height"=>"194", "src"=>THUMBNAIL_LINK}])
 
         parser = ArticleParser.new(news_item)
+<<<<<<< baefa52b7a7a85af626914230f43da5f8a4c92c2
 
+=======
+        THUMBNAIL_LINK= 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRkK6sGvVXZgE6pdn6THj5PyHa07hGnH4uelptZXHLsSnA3m7jGUq91oBqZ'
+>>>>>>> adressed most of the comments from the pull request
         expect(parser.thumbnail).to eq(THUMBNAIL_LINK)
       end
     end

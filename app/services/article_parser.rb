@@ -30,7 +30,6 @@ class ArticleParser
     # [0..-5] is from the first character to, eight characters before ...
     # ie. "Mar 2, 2016 ..." => "Mar 2, 2016"
     published_on_string = ELIPSIS_REGEX.match(snippet)[0][0..BOUNDARY]
-    puts published_on_string
     published_on_string.to_datetime rescue nil
   end
 end

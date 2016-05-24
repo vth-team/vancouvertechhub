@@ -49,7 +49,6 @@ RSpec.describe NewsFiltersController, type: :controller do
       count_before = NewsFilter.count
       delete :destroy, id: news_filter.id
       count_after = NewsFilter.count
-
       expect(count_after).to eq(count_before-1)
     end
   end
