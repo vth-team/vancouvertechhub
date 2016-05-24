@@ -1,9 +1,8 @@
-$(document).ready(function() {
-  //this will check if the image exists. if not, it will put a placeholder image there bu use of jquery. 
-  var newsImage = $(".news-image");
-  for (var i = 0; i < newsImage.length; i++) {
-    if (parseInt(newsImage.eq(i).css("width")) <= 1) {
-      newsImage.eq(i).attr("src", "<%= image_path('news_placeholder.png') %>");
-    }
+//this will check if the image exists. if not, it will put a placeholder image there bu use of jquery
+function validateImage(event) {
+
+  if (parseInt($(event.target).css("width")) <= 1) {
+    $(event.target).attr("src", "<%= image_path('news_placeholder.png') %>");
   }
-});
+
+}

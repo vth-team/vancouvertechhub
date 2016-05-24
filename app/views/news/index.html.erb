@@ -4,7 +4,7 @@
 <% @articles.each do |article| %>
 <div class="row">
   <div class='col-sm-3'>
-    <%= image_tag(article.thumbnail, class: "news-image") %>
+    <%= image_tag(article.thumbnail, class: "news-image", onerror: "validateImage(event)") %>
   </div>
   <div class="col-sm-9">
     <span class="h3"><%= link_to article.title.html_safe, article.link %></span>

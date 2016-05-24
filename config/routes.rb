@@ -28,8 +28,7 @@ Rails.application.routes.draw do
 
   resources :technologies
 
-
-  root "organizations#index", as: :root
+  root "organizations#index"
 
   resources :events
 
