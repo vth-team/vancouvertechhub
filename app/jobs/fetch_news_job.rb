@@ -9,7 +9,6 @@ class FetchNewsJob < ActiveJob::Base
       rescue => err
         logger.info(err.message)
       end
-
     end
     return @status
   end

@@ -28,7 +28,6 @@ RSpec.describe NewsFiltersController, type: :controller do
         count_before = NewsFilter.count
         invalid_request
         count_after = NewsFilter.count
-
         expect(count_after).to eq(count_before)
       end
 
