@@ -1,12 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe NewsController, type: :controller do
-
   describe "#index" do
     it "renders the index template" do
       get :index
       expect(response).to render_template(:index)
-
     end
 
     it "assigns an instance variable for all articles, ordered by published_date" do
@@ -22,7 +20,4 @@ RSpec.describe NewsController, type: :controller do
       expect(assigns(:articles)).to eq([n3, n2, n1])
     end
   end
-
-
-
 end
