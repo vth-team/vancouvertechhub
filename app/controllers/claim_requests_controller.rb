@@ -4,16 +4,16 @@ class ClaimRequestsController < ApplicationController
   before_action :find_organization, only: [:new, :create, :edit, :update, :show]
 
   def new
-    if @organization.user_id?
-      redirect_to organization_path(@organization), alert: "This company has already been claimed!"
-    end
     @claims = ClaimRequest.all
     @user = current_user
+    if @organization.user.present? || @user.organization.present?
+      redirect_to organization_path(@organization), alert: "You either: (a) already have a company or (b) are trying to claim an already claimed company"
+    end
   end
 
   def create
-    if @organization.user_id?
-      redirect_to organization_path(@organization), alert: "This company has already been claimed!"
+    if @organization.user.present? || @user.organization.present?
+      redirect_to organization_path(@organization), alert: "You either: (a) already have a company or (b) are trying to claim an already claimed company"
     end
     @claim = ClaimRequest.new
     @claim.user = current_user
