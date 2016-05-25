@@ -14,11 +14,17 @@
     margin:0 0 10px 0;
   }
   .day.prev-month, .day.next-month {
-    background-color: lightgrey;
+    background-color: #EDEDED;
   }
   .day.active.prev-month,
   .day.active.next-month {
-    background-color: lightgrey;
+    background-color: #EDEDED;
+  }
+  .event-date {
+    font-weight: bold;
+  }
+  .weekday-header {
+    background-color: rgba(75, 82, 110, 0.61);
   }
   a {
     color: #0e6c67;
