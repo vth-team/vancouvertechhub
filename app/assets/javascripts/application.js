@@ -48,36 +48,24 @@ $(document).ready(function(){
     var word = $("#organization-search").val().toLowerCase();
     $(".org-container").hide();
     $(".org-container").each(function (){
-      // find the link
       var filter = $(this).find(".link-to-org").text().toLowerCase();
-
-      // -1 is no match
       if(filter.search(word) > -1) {
         $(this).show();
         dataIdArray.push($(this).attr("data-id"))
       }
     });
-    
-
-    //console.log(dataIdArray);
 
     $.ajax({
       method: "POST",
       url: baseUrl + "/organizations/filter",
-      //data: dataIdArray,
-      //data: { data_value: "string" },
       data: { data_value: dataIdArray },
       success: function(data)
       {
         console.log("dataIdArray posted")
-
       },
       error: function() {
         console.log("Problem posting dataIdArray. Please retry.");
       }
     });
-
-
-
   });
 });

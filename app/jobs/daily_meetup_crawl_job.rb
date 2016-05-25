@@ -5,6 +5,7 @@ class DailyMeetupCrawlJob < ActiveJob::Base
     # Do something later
     meetup_api = MeetupApi.new
     @meet = meetup_api.method_request('self/calendar', {})
+
     @meet.each do |list|
       if list["venue"]
       url = list["link"]
