@@ -1,32 +1,28 @@
 class ClaimRequestsController < ApplicationController
 
-  before_action :authenticate_user!, except: [:index, :show]  #should happen first
-
-  # remove :edit from before_action find_organization
-  # before_action(:find_organization, {only: [:show, :update, :destroy]})
-
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :find_organization, only: [:new, :create, :edit, :update, :show]
-  before_action :authorize_organization, only: [:edit, :update, :destroy]
-  skip_before_action :authorize_organization
 
   def new
     @claims = ClaimRequest.all
     @user = current_user
-
+    if @organization.user.present? || current_user.organization.present?
+      redirect_to organization_path(@organization), alert: "You either: (a) already have a company or (b) are trying to claim an already claimed company"
+    end
   end
 
   def create
+    if @organization.user.present? || current_user.organization.present?
+      redirect_to organization_path(@organization), alert: "You either: (a) already have a company or (b) are trying to claim an already claimed company"
+    end
     @claim = ClaimRequest.new
-
     @claim.user = current_user
     @claim.organization = @organization
     if @claim.save
         redirect_to organization_path(@organization), notice: "Claim Request Submitted!"
       else
         redirect_to organization_path(@organization), alert: "Claim Request not saved!"
-
       end
-
   end
 
   def update
@@ -37,26 +33,25 @@ class ClaimRequestsController < ApplicationController
     if @claims.update claims_params
       @claims.user.save
       @claims.organization.save
-  
-    redirect_to admin_users_path
-  else
-    flash[:notice] = "No"
-    render admin_users_path
+      redirect_to admin_users_path, notice: "Claim Request updated."
+    else
+      redirect_to admin_users_path, alert: "Claim Request not updated."
+    end
   end
+
+  def destroy
+    @claims = ClaimRequest.find params[:id]
+    @claims.destroy
+    redirect_to admin_users_path, notice: "Claim Request deleted."
   end
 
   def update_status
-
   end
 
   private
 
   def find_organization
     @organization = Organization.find params[:organization_id]
-  end
-
-  def find_claim
-    @claim = ClaimRequest.find params[:claim_request_id]
   end
 
   def organization_params
