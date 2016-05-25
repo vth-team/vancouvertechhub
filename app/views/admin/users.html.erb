@@ -20,7 +20,7 @@
         <%= link_to "Accept", organization_claim_request_path(c.organization, c, status: true), method: :patch%> |
         <% end %>
         <% if can? :delete, @claims %>
-        <%= link_to "Delete", organization_claim_request_path(c.organization, c,status:false),method: :patch%>
+        <%= link_to "Delete", organization_claim_request_path(c.organization, c,status:false),method: :delete%>
         <% end %></td>
         <%end%>
       </tr>

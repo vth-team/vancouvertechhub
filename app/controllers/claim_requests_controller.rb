@@ -6,13 +6,13 @@ class ClaimRequestsController < ApplicationController
   def new
     @claims = ClaimRequest.all
     @user = current_user
-    if @organization.user.present? || @user.organization.present?
+    if @organization.user.present? || current_user.organization.present?
       redirect_to organization_path(@organization), alert: "You either: (a) already have a company or (b) are trying to claim an already claimed company"
     end
   end
 
   def create
-    if @organization.user.present? || @user.organization.present?
+    if @organization.user.present? || current_user.organization.present?
       redirect_to organization_path(@organization), alert: "You either: (a) already have a company or (b) are trying to claim an already claimed company"
     end
     @claim = ClaimRequest.new
@@ -33,11 +33,16 @@ class ClaimRequestsController < ApplicationController
     if @claims.update claims_params
       @claims.user.save
       @claims.organization.save
-      redirect_to admin_users_path
+      redirect_to admin_users_path, notice: "Claim Request updated."
     else
-      flash[:notice] = "No"
-      render admin_users_path
+      redirect_to admin_users_path, alert: "Claim Request not updated."
     end
+  end
+
+  def destroy
+    @claims = ClaimRequest.find params[:id]
+    @claims.destroy
+    redirect_to admin_users_path, notice: "Claim Request deleted."
   end
 
   def update_status
@@ -47,13 +52,6 @@ class ClaimRequestsController < ApplicationController
 
   def find_organization
     @organization = Organization.find params[:organization_id]
-  end
-  def find_user
-    @user = User.find params[:user_id]
-  end
-
-  def find_claim
-    @claim = ClaimRequest.find params[:claim_request_id]
   end
 
   def organization_params
