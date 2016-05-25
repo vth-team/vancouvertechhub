@@ -4,6 +4,7 @@ require 'pry'
 RSpec.describe UsersController, type: :controller do
   let (:admin_user) { FactoryGirl.create(:admin) }
   let (:user) { FactoryGirl.create(:user) }
+  let (:organization) { FactoryGirl.create(:organization) }
   describe "#new" do
     it "renders the new template" do
       get :new
@@ -90,19 +91,27 @@ RSpec.describe UsersController, type: :controller do
     describe "as a mortal" do
       before do
         login(user)
-        patch :update, id: user.id, user: {admin: true}
       end
-      it "mortals update their own status to admin" do
+      it "cannot update status to admin" do
+        patch :update, id: user.id, user: {admin: true}
         expect(user.reload.admin).to eq(false)
+      end
+      it "cannot add organizations to users" do
+        patch :update, id: user.id, user: {organization_id: organization.id}
+        expect(user.reload.organization).not_to eq(organization)
       end
     end
     describe "as administrators" do
       before do
         login(admin_user)
-        patch :update, id: user.id, user: {admin: true}
       end
-      it "administrators can make more administrators" do
+      it "can make more administrators" do
+        patch :update, id: user.id, user: {admin: true}
         expect(user.reload.admin).to eq(true)
+      end
+      it "can add organizations to users" do
+        patch :update, id: user.id, user: {organization_id: organization.id}
+        expect(user.reload.organization).to eq(organization)
       end
     end
   end
