@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  match "/delayed_job" => DelayedJobWeb, :anchor => false, via: [:get, :post]
 
   resources :users, only: [:new, :create, :edit, :update, :destroy]
 
