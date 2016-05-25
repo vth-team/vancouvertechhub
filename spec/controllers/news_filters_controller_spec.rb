@@ -9,31 +9,33 @@ RSpec.describe NewsFiltersController, type: :controller do
       end
 
       it "adds @news_filter to the database" do
-        count_before = NewsFilter.count
-        valid_request
-        count_after = NewsFilter.count
-        expect(count_after).to eq(count_before +1)
+        expect { valid_request }.to change{ NewsFilter.count }.by(1)
       end
 
-      it "redirects to admin_news_filters_path" do
-        valid_request
-        expect(response).to redirect_to(admin_news_filters_path)
-      end
-
-      it "gives a notice" do
-        valid_request
-        expect(flash[:notice]).to be
+      context "admin news filter behaviour" do
+        before { valid_request }
+        it { expect(response).to redirect_to(admin_news_filters_path) }
+        it { expect(flash[:notice]).to be }
       end
     end
 
     context "with invalid attributes" do
-      it "does not add  @news_filter to the database" do
+      def invalid_request
+        post :create, news_filter: { search_term: "" }
       end
 
-      it "redirects to admin_news_filters_path" do
+      it "does not add @news_filter to the database", skip_before: true do
+        count_before = NewsFilter.count
+        invalid_request
+        count_after = NewsFilter.count
+
+        expect(count_after).to eq(count_before)
       end
 
-      it "gives a alert" do
+      context "admin news filter behaviour" do
+        before { invalid_request }
+        it { expect(response).to redirect_to(admin_news_filters_path) }
+        it { expect(flash[:alert]).to be }
       end
     end
   end
@@ -43,9 +45,11 @@ RSpec.describe NewsFiltersController, type: :controller do
 
     it "removes the newsfilter from the database " do
       news_filter
-      count_before=NewsFilter.count
+
+      count_before = NewsFilter.count
       delete :destroy, id: news_filter.id
-      count_after= NewsFilter.count
+      count_after = NewsFilter.count
+
       expect(count_after).to eq(count_before-1)
     end
   end
