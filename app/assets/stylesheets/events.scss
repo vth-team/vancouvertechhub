@@ -24,10 +24,11 @@
     font-weight: bold;
   }
   .weekday-header {
-    background-color: rgba(75, 82, 110, 0.61);
+    background-color: rgba(0, 0, 0, 0.24);
   }
   a {
     color: #0e6c67;
+    font-size: 11.5px;
   }
 }
 
@@ -85,8 +86,29 @@
     }
     a {
       color: #0e6c67;
+      font-size: 11.5px;
     }
   }
+
+  .event-list-name {
+    font-size: 15px;
+  }
+
+}
+
+.event-list-month {
+  font-size: 13px;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+.event-list-date {
+  font-size: 19px;
+  font-weight: bold;
+}
+
+.event-list-name {
+  font-size: 15px;
 }
 
 input.empty {
@@ -98,4 +120,13 @@ input.empty {
 
 .search {
   margin-bottom: 20px;
+}
+
+hr {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+a {
+  color: #0e6c67;
 }

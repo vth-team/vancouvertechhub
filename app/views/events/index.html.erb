@@ -4,7 +4,7 @@
   <% events.each do |event| %>
     <div class="event-cal">
       <span class="event-time">
-        <%= formatted_time(event.start_time) %>
+        <%= formatted_time_zeropadded(event.start_time) %>
       </span>
       <%= link_to event.meetup_title, event.meetup_url%>
     </div>
@@ -30,11 +30,20 @@ $('#iconified').on('keyup', function() {
 });
 </script>
 
-<% @events.each do |list|%>
-  <div class="event">
-    <div class="event-name"><%= link_to list.meetup_title,list.meetup_url %></div>
-    <div class="event-date">On <%= list.start_time%></div>
-    <hr>
+<% @events.each do |event|%>
+  <div class="event row">
+    <div class="event-date col-md-1 col-xs-2 text-center">
+      <span class="event-list-month"><%= event.start_time.strftime('%b') %></span><br>
+      <span class="event-list-date"><%= event.start_time.strftime('%d') %></span>
+      <%# formatted_date(event.start_time) %>
+    </div>
+    <div class="event-name col-md-11 col-xs-10">
+      <span class="event-list-name"><%= link_to event.meetup_title, event.meetup_url %><span><br>
+      <%= formatted_time(event.start_time) %>
+    </div>
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <hr>
+    </div>
   </div>
 <%end%>
 
