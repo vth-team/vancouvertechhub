@@ -10,7 +10,7 @@ class EventsController < ApplicationController
   end
 
   def index
-    @events = Event.all
+    @events = Event.order(:start_time)
   end
 
   def destroy
