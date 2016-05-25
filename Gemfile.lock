@@ -495,3 +495,9 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   underscore-rails
   web-console (~> 2.0)
+<<<<<<< 866102c3cfff049a213c3c4d5ab93b86035ee6e6
+=======
+
+BUNDLED WITH
+   1.12.4
+>>>>>>> Fix some more unit test for fetch news and article parser

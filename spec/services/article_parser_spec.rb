@@ -2,23 +2,23 @@ require 'rails_helper'
 
 RSpec.describe ArticleParser do
 
-  describe "htmlTitle" do
-    context 'when news_item responds to #htmlTitle' do
-      it 'returns the value of #htmlTitle' do
+  describe "title" do
+    context 'when news_item responds to #title' do
+      it 'returns the value of #title' do
         news_item = double('NewsItem')
-        allow(news_item).to receive(:htmlTitle).and_return('expected_title')
+        allow(news_item).to receive(:title).and_return('expected_title')
         # can also receive a block
-        # allow(news_item).to receive(:htmlTitle) { 'expected_title' }
+        # allow(news_item).to receive(:title) { 'expected_title' }
         # an alternative short form
-        # news_item = double('NewsItem', htmlTitle: 'expected_title')
+        # news_item = double('NewsItem', title: 'expected_title')
 
         parser = ArticleParser.new(news_item)
 
-        expect(parser.htmlTitle).to eq('expected_title')
+        expect(parser.title).to eq('expected_title')
       end
     end
 
-    context 'when news_item does not respond to #htmlTitle' do
+    context 'when news_item does not respond to #title' do
       it 'raises NoMethodError' do
         # pass in an empty hash as news_item, if we pass in a double instead
         # then we will get a MockExpectationError
@@ -26,7 +26,7 @@ RSpec.describe ArticleParser do
 
         parser = ArticleParser.new(news_item)
 
-        expect { parser.htmlTitle }.to raise_error(NoMethodError)
+        expect { parser.title }.to raise_error(NoMethodError)
       end
     end
   end
