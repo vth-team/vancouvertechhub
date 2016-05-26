@@ -70,24 +70,25 @@
 </div>
 
 <div class="right-container col-lg-6 col-md-6 col-sm-6 col-xs-12">
-  <h2>Powered by Bing News</h2>
   <div>
-    <ul id="bing_organization_news"></ul>
+    <h2>News</h2>
+    <div>
+      <ul class="organization-news"></ul>
+    </div>
   </div>
-  <script type="text/javascript">
-  <%= render "load_news.js" %>
-  </script>
-  <div >
+
+  <div>
     <h2>Upcoming Events</h2>
     <% @find.each do |list| %>
-    <p>
-      <div class="event-name">
-        <%= link_to list.meetup_title, list.meetup_url %>
-      </div>
-      <div class="event-date">
-        <%= list.start_time %>
-      </div>
-    </p>
-    <%end%>
+      <p>
+        <div class="event-name">
+          <%= link_to list.meetup_title, list.meetup_url %>
+        </div>
+
+        <div class="event-date">
+          <%= list.start_time %>
+        </div>
+      </p>
+    <% end %>
   </div>
 </div>
