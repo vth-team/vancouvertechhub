@@ -33,7 +33,7 @@ class AdminController < ApplicationController
   private
 
   def authenticate_admin!
-    if !current_user.admin?
+    if  !user_signed_in? || !current_user.admin?
       redirect_to root_path, alert: "You are not allowed to access that page"
     end
   end
