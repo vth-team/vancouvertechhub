@@ -24,8 +24,6 @@ class Organization < ActiveRecord::Base
   mount_uploader :image3, ImageUploader
   mount_uploader :image4, ImageUploader
 
-
-
   def user_full_name
     user ? user.full_name : ""
   end

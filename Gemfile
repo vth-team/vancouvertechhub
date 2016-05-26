@@ -61,6 +61,7 @@ gem 'kaminari-bootstrap'
 gem "fog"
 gem 'exception_notification'
 gem 'sidekiq'
+gem 'react-rails'
 
 gem "virtus"
 
