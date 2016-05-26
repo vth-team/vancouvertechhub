@@ -14,14 +14,14 @@
     <div class="container-fluid">
       <a href="<%= root_path%>" class="navbar-brand" id="logo"> <%= image_tag("logo_white.png")%></a>
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#responsive-menu">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
       </div>
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+      <div class="collapse navbar-collapse" id="responsive-menu">
         <ul class="nav navbar-nav">
           <li class="li-nav"><%= link_to "Directory", root_path, class: "directory" %></li>
           <li class="li-nav"><%= link_to "Events", events_path, class: "directory" %></li>
@@ -50,13 +50,13 @@
     </nav>
     <% if flash[:notice] %>
     <div class="alert alert-success">
-    <%= flash[:notice] %>
-  </div>
+      <%= flash[:notice] %>
+    </div>
   <% elsif flash[:alert] %>
   <div class="alert alert-danger">
-  <%= flash[:alert] %>
-</div>
-<% end %>
+    <%= flash[:alert] %>
+  </div>
+  <% end %>
 
 <div class="container">
 <%= yield %>
@@ -71,12 +71,12 @@
         <li class="li-nav"><%= link_to "Create Organization", new_organization_path, class:"directory" %></li>
         <li class="user-profile"><%= link_to "Log out", sessions_path, method: :delete %></li>
         <% elsif !current_user.admin? %>
-        <li class="li-nav"><%= link_to "My Organization", organization_path(current_user.organization),class:"directory" %></li>
+        <li class="li-nav"><%= link_to "My Organization", organization_path(current_user.organization), class:"directory" %></li>
         <li class="user-profile"><%= link_to "Log out", sessions_path, method: :delete %></li>
         <% end %>
-        <%else%>
+        <% else %>
         <li><%= link_to "Create Organization", new_organization_path %></li>
-        <%end%>
+        <% end %>
       </ul>
     </div>
     <div class="navbar-right footer-icons">

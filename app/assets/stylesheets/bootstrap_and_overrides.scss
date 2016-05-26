@@ -3,6 +3,10 @@ $brand-primary: #cc0000;
 // turn buttons square
 $border-radius-base: 0;
 
+$base-background-color: #0E426C;
+
+$base-white-color: #FFF;
+
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
@@ -13,7 +17,7 @@ body {
 
 .navbar {
   height: 60px;
-  background-color: #0E426C;
+  background-color: $base-background-color;
   opacity: 0.80;
   position: relative;
   margin-bottom: 0px;
@@ -21,30 +25,30 @@ body {
   #logo img {
     width: 100px;
     margin-top: -27px;
-    }
+  }
 
-  .navbar-header{
-    height:59px;
-    }
+  .navbar-header {
+    height: 59px;
+  }
 
-  ul.nav.navbar-nav{
+  ul.nav.navbar-nav {
     margin-top: 0px;
 
-    .directory{
+    .directory {
       font-size: 2em;
     }
 
-    li a{
+    li a {
       height: 60px;
       padding-top: 19px;
     }
 
-    li a.dropdown-toggle.directory{
+    li a.dropdown-toggle.directory {
       padding-top: 15px;
     }
 
-    .divider{
-      margin:0;
+    .divider {
+      margin: 0;
     }
   }
 }
@@ -56,7 +60,7 @@ body {
   height: 60px;
   border-top: 1px solid #000;
   padding: 10px 0 0 30px;
-  background-color: #0E426C;
+  background-color: $base-background-color;
   z-index: 99;
   opacity: 0.80;
 
@@ -64,83 +68,84 @@ body {
     .navbar-nav {
       margin: 0;
 
-      li{
+      li {
         display: inline-block;
 
-        a{
-          padding-top:10px
+        a {
+          padding-top: 10px;
         }
       }
     }
   }
 
-  .footer-text{
-    color:#D0D0D0;
+  .footer-text {
+    color: #D0D0D0;
     margin: 10px 0 0 0;
 
     a {
-      color:#FFF;
+      color: $base-white-color;
     }
   }
 
   .footer-icons {
     font-size: 2.1em;
     margin: 0 35px;
-    float:right;
+    float: right;
 
     a {
       color: #9d9d9d;
     }
 
-    a:hover{
-      color:#FFF;
+    a:hover {
+      color: $base-white-color;
       cursor: pointer;
     }
   }
 }
 
 @media (max-width: 767px) {
-  .navbar-fixed-top .navbar-collapse.collapse{
-    background-color: #0E426C;
+  .navbar-fixed-top .navbar-collapse {
+    background-color: $base-background-color;
     max-height: none;
     width: 330px;
-    float: right;
     margin-right: -30px;
     overflow: visible;
+    position: absolute;
+    right: 0;
 
-    ul.nav li{
+    ul.nav li {
       height: 40px;
-      a{
+      a {
         height: 40px;
         padding-top: 10px;
       }
-       a.directory, a.dropdown-toggle.directory{
+      a.directory, a.dropdown-toggle.directory {
         font-size: 18px;
       }
-      .dropdown-menu a{
+      .dropdown-menu a {
         height: 40px;
         padding-top: 10px;
       }
-      .divider{
-        height:0;
+      .divider {
+        height: 0;
       }
     }
   }
 
-  .navbar-nav .open ul.dropdown-menu{
+  .navbar-nav .open ul.dropdown-menu {
     background-color: #8AAFFF;
     padding: 0;
-    width:100%;
+    width: 100%;
   }
 
-  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a{
+  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
     font-weight: 600;
     color: #0F0F0F;
   }
 }
 
 @media only screen and (max-width: 600px){
-  .bottomMenu.navbar-fixed-bottom{
+  .bottomMenu.navbar-fixed-bottom {
     padding: 10px 0 0 0;
   }
 }
