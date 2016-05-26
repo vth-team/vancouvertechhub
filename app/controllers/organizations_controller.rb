@@ -64,6 +64,8 @@ class OrganizationsController < ApplicationController
     @organization       = Organization.new(organization_params)
     @organization.user  = current_user
     if @organization.save
+      FetchOrganizationNewsJob.perform_now(@organization.name)
+
       redirect_to organization_path(@organization), notice: "Organization Created!"
     else
       flash[:alert] = "organization didn't save!"
