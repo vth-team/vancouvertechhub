@@ -18,7 +18,7 @@
     </tr>
     <tr>
       <td>Twitter:</td>
-      <td><%= link_to @organization.twitter,"https://twitter.com/#{@organization.twitter}" %></td>
+      <td><%= link_to @organization.twitter,"https://twitter.com/#{@organization.twitter}" if @organization.twitter%></td>
     </tr>
     <tr>
       <td>Manager:</td>
