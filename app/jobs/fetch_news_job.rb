@@ -20,8 +20,8 @@ class FetchNewsJob < ActiveJob::Base
 
       if parser.published_on
         article = NewsArticle.new(
-          title: parser.htmlTitle,
-          snippet: parser.htmlSnippet,
+          title: parser.title,
+          snippet: parser.snippet,
           link: parser.link,
           thumbnail: parser.thumbnail,
           published_on: parser.published_on
@@ -30,6 +30,7 @@ class FetchNewsJob < ActiveJob::Base
         Rails.logger = Logger.new(STDOUT)
         Rails.logger.info "Not a real article"
       end
+
       if article && article.save
         @status = true
         Rails.logger.info "article saved"

@@ -25,10 +25,7 @@ RSpec.describe NewsFiltersController, type: :controller do
       end
 
       it "does not add @news_filter to the database", skip_before: true do
-        count_before = NewsFilter.count
-        invalid_request
-        count_after = NewsFilter.count
-        expect(count_after).to eq(count_before)
+        expect { invalid_request }.to_not change{ NewsFilter.count }
       end
 
       context "admin news filter behaviour" do
@@ -44,11 +41,7 @@ RSpec.describe NewsFiltersController, type: :controller do
 
     it "removes the newsfilter from the database " do
       news_filter
-
-      count_before = NewsFilter.count
-      delete :destroy, id: news_filter.id
-      count_after = NewsFilter.count
-      expect(count_after).to eq(count_before-1)
+      expect { delete :destroy, id: news_filter.id }.to change{ NewsFilter.count }.by(-1)
     end
   end
 end

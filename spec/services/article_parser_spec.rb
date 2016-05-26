@@ -111,11 +111,11 @@ RSpec.describe ArticleParser do
   end
 
   describe "published_on" do
+    let(:expected_title) { "Mar 2, 2016 <b>...</b> Fidelity wrote down its investment in social media marketing company Hootsuite <br>\nby 18%, a sign that lowered U.S. investor expectations are&nbsp;..." }
     context 'when news_item responds to #published_on' do
       it 'returns the value of #published_on if snippet in the returned JSON contains a date' do
         news_item = double('NewsItem')
-        #allow(news_item).to receive(:pagemap).and_return('expected_title')
-        allow(news_item).to receive(:snippet).and_return("Mar 2, 2016 <b>...</b> Fidelity wrote down its investment in social media marketing company Hootsuite <br>\nby 18%, a sign that lowered U.S. investor expectations are&nbsp;...")
+        allow(news_item).to receive(:snippet).and_return(expected_title)
         parser = ArticleParser.new(news_item)
 
         expect(parser.published_on).to eq("Mar 2, 2016".to_datetime)
