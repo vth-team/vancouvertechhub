@@ -22,20 +22,20 @@ img.full-width {
 }
 
 .company-name{
-  float:left;
+  float: left;
 }
 
 div.container div.single-map{
-    position:absolute;
-    right:6%;
+    position: absolute;
+    right: 6%;
     top: 75px;
-    float:right;
-    width:200px;
-    height:160px;
+    float: right;
+    width: 200px;
+    height: 160px;
     transition: 1s;
 }
 
 div.container div.single-map:hover{
-  width:400px;
-  height:300px;
+  width: 400px;
+  height: 300px;
 }

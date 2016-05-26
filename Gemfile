@@ -45,8 +45,6 @@ gem 'jquery-ui-rails'
 gem 'jquery-turbolinks'
 gem 'cancancan'
 gem 'quiet_assets'
-gem 'delayed_job_active_record'
-gem 'delayed_job_web'
 gem 'chosen-rails'
 gem 'rails_12factor', group: :production
 gem 'simple_form'
@@ -56,12 +54,13 @@ gem 'mini_magick'
 gem 'geocoder'
 gem 'underscore-rails'
 gem 'gmaps4rails'
-gem 'searchbing'
+gem 'google-search'
+gem "google_custom_search_api"
 gem 'kaminari'
 gem 'kaminari-bootstrap'
 gem "fog"
-
 gem 'exception_notification'
+gem 'sidekiq'
 
 group :development, :test do
   gem 'pry'
