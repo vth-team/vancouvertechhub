@@ -22,6 +22,7 @@ class OrganizationsController < ApplicationController
   end
 
   def index
+    @technologies = Technology.all
     if current_user && current_user.admin?
       @organizations = Organization.page(params[:page]).per(ORGANIZATIONS_PER_PAGE)
     else
