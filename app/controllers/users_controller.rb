@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
+  before_action :find_user, only: [:edit, :update, :destroy]
 
   def new
-   @user = User.new
+    @user = User.new
   end
 
   def edit
-    @user = User.find_by_id params[:id]
     @organizations = unclaimed_organizations
     @organizations.push @user.organization if @user.organization.present?
     render "edit"
@@ -22,27 +22,23 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find_by_id params[:id]
-    if can? :manage, @user
-      user_update_params = params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :admin, :organization_id)
-    else
-      user_update_params = params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
-    end
-
-    if @user.update user_update_params
-      redirect_to root_path, notice: "Account Updated"
+    if @user.update update_user_params
+      redirect_to admin_users_path, notice: "Account Updated"
     else
       render :edit
     end
   end
 
   def destroy
-    user = User.find_by_id params[:id]
-    session[:user_id] = nil
-    user.destroy
-    redirect_to root_path, notice: "User deleted!"
+    if current_user == @user
+      session[:user_id] = nil
+      path = root_path
+    else
+      path = admin_users_path
+    end
+    @user.destroy
+    redirect_to path, notice: "User deleted!"
   end
-
 
 
   private
@@ -51,12 +47,22 @@ class UsersController < ApplicationController
     params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
   end
 
+  def find_user
+    @user ||= User.find_by_id params[:id]
+  end
+
+  def update_user_params
+    if can? :manage, @user
+      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :admin, :organization_id)
+    else
+      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+    end
+  end
+
   def unclaimed_organizations
     unclaimed = []
     Organization.all.each do |org|
-      if org.user.nil?
-        unclaimed.push(org)
-      end
+      unclaimed.push(org) if org.user.nil?
     end
     unclaimed
   end
