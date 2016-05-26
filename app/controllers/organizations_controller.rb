@@ -13,6 +13,11 @@ class OrganizationsController < ApplicationController
 
   def show
     @claimed = @organization.claim_requests.find_by_status(true)
+    @related_news_article_ids = OrganizationNews.where(organization_id: @organization.id)
+    @news_articles = []
+    @related_news_article_ids.each do |hi|
+      @news_articles.push(NewsArticle.find(hi.news_article_id))
+    end
     hosting_event
 
     respond_to do |format|
@@ -58,15 +63,20 @@ class OrganizationsController < ApplicationController
   end
 
   def create
-    if current_user.organization_id.present?
-      redirect_to organization_path(current_user.organization_id), alert: "You can only have one organization."
-    end
-    @organization       = Organization.new(organization_params)
-    @organization.user  = current_user
-    if @organization.save
-      FetchOrganizationNewsJob.perform_now(@organization.name)
+    @organization      = Organization.new(organization_params)
+    @organization.user = current_user
 
-      redirect_to organization_path(@organization), notice: "Organization Created!"
+    if @organization.save
+      FetchOrganizationNewsJob.perform_now(@organization.name, @organization.id)
+      Rails.logger.info ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+      Rails.logger.info "GO FETCH"
+      Rails.logger.info ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+
+      if current_user.organization_id.present?
+        redirect_to organization_path(current_user.organization_id), alert: "You can only have one organization."
+      else
+        redirect_to organization_path(@organization), notice: "Organization Created!"
+      end
     else
       flash[:alert] = "organization didn't save!"
       render :new

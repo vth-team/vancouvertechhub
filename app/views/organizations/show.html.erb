@@ -73,6 +73,12 @@
   <div>
     <h2>News</h2>
     <div>
+      <% @news_articles.each do |article| %>
+        <div class="">
+          <%= link_to article.title, article.link %>
+          <hr>
+        </div>
+      <% end %>
       <ul class="organization-news"></ul>
     </div>
   </div>
