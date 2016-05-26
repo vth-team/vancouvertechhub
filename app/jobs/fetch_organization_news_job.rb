@@ -19,7 +19,7 @@ class FetchOrganizationNewsJob < ActiveJob::Base
 
   def associate_that_fool(organization_id, article_ids)
     article_ids.each do |article_id|
-      OrganizationNews.create(organization_id: organization_id, article_id: article_id)
+      OrganizationNews.create(organization_id: organization_id, news_article_id: article_id)
     end
   end
 end
