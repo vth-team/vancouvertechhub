@@ -18,7 +18,6 @@ class OrganizationsController < ApplicationController
     respond_to do |format|
       format.html { render }
       format.json { render json: @organization.to_json }
-      format.xml  { render xml: @organization.to_xml }
     end
   end
 

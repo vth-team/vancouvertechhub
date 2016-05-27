@@ -64,6 +64,10 @@ GEM
     autoprefixer-rails (6.3.6)
       execjs
     awesome_print (1.6.1)
+    axiom-types (0.1.1)
+      descendants_tracker (~> 0.0.4)
+      ice_nine (~> 0.11.0)
+      thread_safe (~> 0.3, >= 0.3.1)
     bcrypt (3.1.11)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
@@ -79,6 +83,8 @@ GEM
       railties (>= 3.0)
       sass-rails (>= 3.2)
     coderay (1.1.1)
+    coercible (1.0.0)
+      descendants_tracker (~> 0.0.1)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.1.x)
@@ -87,18 +93,14 @@ GEM
       execjs
     coffee-script-source (1.10.0)
     concurrent-ruby (1.0.2)
+    connection_pool (2.2.0)
     cowsay (0.2.0)
     debug_inspector (0.0.2)
-    delayed_job (4.1.1)
-      activesupport (>= 3.0, < 5.0)
-    delayed_job_active_record (4.1.0)
-      activerecord (>= 3.0, < 5)
-      delayed_job (>= 3.0, < 5)
-    delayed_job_web (1.2.10)
-      activerecord (> 3.0.0)
-      delayed_job (> 2.0.3)
-      sinatra (>= 1.4.4)
+    descendants_tracker (0.0.4)
+      thread_safe (~> 0.3, >= 0.3.1)
     diff-lcs (1.2.5)
+    docile (1.1.5)
+    equalizer (0.0.11)
     erubis (2.7.0)
     exception_notification (4.0.1)
       actionmailer (>= 3.0.4)
@@ -249,8 +251,17 @@ GEM
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     gmaps4rails (2.1.2)
+    google-search (1.0.3)
+      json
+    google_custom_search_api (2.0.0)
+      addressable
+      httparty
     hirb (0.7.3)
+    httparty (0.13.7)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     i18n (0.7.0)
+    ice_nine (0.11.2)
     inflecto (0.0.2)
     interactive_editor (0.0.10)
       spoon (>= 0.0.1)
@@ -290,6 +301,7 @@ GEM
     mini_portile2 (2.0.0)
     minitest (5.8.4)
     multi_json (1.12.0)
+    multi_xml (0.5.5)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     pg (0.18.4)
@@ -309,8 +321,6 @@ GEM
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
     rack (1.6.4)
-    rack-protection (1.5.3)
-      rack
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.6)
@@ -354,6 +364,7 @@ GEM
       trollop
     rdoc (4.2.2)
       json (~> 1.4)
+    redis (3.3.0)
     rspec-core (3.4.4)
       rspec-support (~> 3.4.0)
     rspec-expectations (3.4.0)
@@ -382,16 +393,20 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
-    searchbing (0.2.6)
+    sidekiq (4.1.2)
+      concurrent-ruby (~> 1.0)
+      connection_pool (~> 2.2, >= 2.2.0)
+      redis (~> 3.2, >= 3.2.1)
     simple_calendar (2.1.1)
       rails (>= 3.0)
     simple_form (3.2.1)
       actionpack (> 4, < 5.1)
       activemodel (> 4, < 5.1)
-    sinatra (1.4.7)
-      rack (~> 1.5)
-      rack-protection (~> 1.4)
-      tilt (>= 1.3, < 3)
+    simplecov (0.11.2)
+      docile (~> 1.1.0)
+      json (~> 1.8)
+      simplecov-html (~> 0.10.0)
+    simplecov-html (0.10.0)
     slop (3.6.0)
     spoon (0.0.4)
       ffi
@@ -414,6 +429,11 @@ GEM
     uglifier (3.0.0)
       execjs (>= 0.3.0, < 3)
     underscore-rails (1.8.3)
+    virtus (1.0.5)
+      axiom-types (~> 0.1)
+      coercible (~> 1.0)
+      descendants_tracker (~> 0.0, >= 0.0.3)
+      equalizer (~> 0.0, >= 0.0.9)
     web-console (2.3.0)
       activemodel (>= 4.0)
       binding_of_caller (>= 0.7.2)
@@ -435,8 +455,6 @@ DEPENDENCIES
   chosen-rails
   coffee-rails (~> 4.1.0)
   cowsay
-  delayed_job_active_record
-  delayed_job_web
   exception_notification
   factory_girl_rails
   faker!
@@ -445,6 +463,8 @@ DEPENDENCIES
   friendly_id
   geocoder
   gmaps4rails
+  google-search
+  google_custom_search_api
   hirb
   interactive_editor
   jbuilder (~> 2.0)
@@ -469,11 +489,16 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
-  searchbing
+  sidekiq
   simple_calendar (~> 2.0)
   simple_form
+  simplecov
   spring
   turbolinks
   uglifier (>= 1.3.0)
   underscore-rails
+  virtus
   web-console (~> 2.0)
+
+BUNDLED WITH
+   1.11.2

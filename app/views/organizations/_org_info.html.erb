@@ -10,7 +10,7 @@
     </tr>
     <tr>
       <td>Website:</td>
-      <td><%= link_to @organization.website, @organization.website%></td>
+      <td><%= link_to @organization.website, @organization.website %></td>
     </tr>
     <tr>
       <td>Tags:</td>
@@ -18,7 +18,7 @@
     </tr>
     <tr>
       <td>Twitter:</td>
-      <td><%= link_to @organization.twitter,"https://twitter.com/#{@organization.twitter}" %></td>
+      <td><%= link_to @organization.twitter,"https://twitter.com/#{@organization.twitter}" if @organization.twitter %></td>
     </tr>
     <tr>
       <td>Manager:</td>

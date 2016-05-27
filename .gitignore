@@ -12,8 +12,12 @@
 !/log/.keep
 /tmp
 .byebug_history
+/coverage/*
 
 # ignore app key which contains email user name
 /config/initializers/app_keys.rb
 
 /public/uploads
+/.byebug_history
+/dump.rdb
+.DS_Store

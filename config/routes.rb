@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  match "/delayed_job" => DelayedJobWeb, :anchor => false, via: [:get, :post]
 
   resources :users, only: [:new, :create, :edit, :update, :destroy]
 
@@ -28,8 +27,7 @@ Rails.application.routes.draw do
 
   resources :technologies
 
-
-  root "organizations#index", as: :root
+  root "organizations#index"
 
   resources :events
 
