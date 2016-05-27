@@ -2,6 +2,7 @@ class NewsSearch
   def search(search_term)
     article_ids = []
     @news = GoogleCustomSearchApi.search(search_term, page: 1)
+
     @news.items.each do |item|
       parser = ArticleParser.new(item)
 
