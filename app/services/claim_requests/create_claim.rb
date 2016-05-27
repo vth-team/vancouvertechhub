@@ -15,6 +15,4 @@ class ClaimRequests::CreateClaim
     @claim_request.save
   end
 
-  private
-
 end
