@@ -6,7 +6,7 @@
       <span class="event-time">
         <%= formatted_time_zeropadded(event.start_time) %>
       </span>
-      <%= link_to event.meetup_title, event.meetup_url%>
+      <%= link_to event.meetup_title, event.meetup_url, target: "blank" %>
     </div>
   <% end %>
 <% end %>
@@ -38,7 +38,7 @@ $('#iconified').on('keyup', function() {
       <%# formatted_date(event.start_time) %>
     </div>
     <div class="event-name col-md-11 col-xs-10">
-      <span class="event-list-name"><%= link_to event.meetup_title, event.meetup_url %><span><br>
+      <span class="event-list-name"><%= link_to event.meetup_title, event.meetup_url, target: "blank" %><span><br>
       <%= formatted_time(event.start_time) %>
     </div>
     <div class="col-md-12 col-sm-12 col-xs-12">
