@@ -1,0 +1,31 @@
+<h1>News</h1>
+
+<div class="container-fluid">
+<p>
+<%= simple_form_for @news_filter do |f| %>
+<%= f.input :search_term %>
+<%= f.submit "Add", class: "btn btn-primary" %>
+<% end %>
+</p>
+</div>
+
+<div class="container-fluid">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>News Filter</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @news_filters.each do |nf| %>
+    <tr>
+      <td><%= nf.search_term %></td>
+      <td><%= link_to "Remove", news_filter_path(nf),
+      data: {confirm: "Are you sure?"},
+      method: :delete%></td>
+    <% end %>
+    <tr/>
+    </tbody>
+  </table>
+</div>
