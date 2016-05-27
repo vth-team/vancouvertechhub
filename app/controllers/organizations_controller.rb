@@ -69,6 +69,7 @@ class OrganizationsController < ApplicationController
 
     if @organization.save
       FetchOrganizationNewsJob.perform_now(@organization.name, @organization.id)
+
       if current_user.organization_id.present?
         redirect_to organization_path(current_user.organization_id), alert: "You can only have one organization."
       else
