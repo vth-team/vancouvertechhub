@@ -15,6 +15,7 @@ class FetchNewsJob < ActiveJob::Base
   end
 
   def search(search_term)
-    NewsSearch(search_term)
+    news_search = NewsSearch.new
+    news_search.search(search_term)
   end
 end
