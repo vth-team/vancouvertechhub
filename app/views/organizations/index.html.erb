@@ -25,22 +25,19 @@ google.maps.event.addDomListener(window, 'page:load', initialize);
 <br>
 <%= react_component "OrganizationsDisplay", organizations: @organizations %>
 
+<!-- TODO: Change searches below to input_tags, put in partial -->
 <!-- Search Bar -->
-<input id="organization-search" type="text" class="form-control" placeholder="Search" name="search">
+<!-- <input id="organization-search" type="text" class="form-control" placeholder="Search" name="search"> -->
 
 <!-- Tech Stacks -->
-<select id="tech-stacks" class="chosen-select form-control" multiple="true" data-placeholder= "Tech Stacks">
-  <% @technologies.each do |stack| %>
-    <option> <%= stack.name %> </option>
-  <% end %>
-</select>
+<%= select_tag :technologies, options_for_select(@technologies.each.map{|stack| stack.name}), class: "chosen-select form-control", id: "tech-stacks", multiple: true, data: {placeholder: "Tech Stacks (Max 3)"} %>
 
 <!-- Team Size Filter -->
 <select id="team-size" class="form-control ">
-  <option value="0">      Team Size    </option>
-  <option value="1">      Under 250    </option>
-  <option value="2">      251 - 500    </option>
-  <option value="3">      Above 500    </option>
+  <option value="0"> Team Size </option>
+  <option value="1"> Under 250 </option>
+  <option value="2"> 251 - 500 </option>
+  <option value="3"> Above 500 </option>
 </select>
 
 <br><br /><br /><br />
@@ -67,3 +64,8 @@ google.maps.event.addDomListener(window, 'page:load', initialize);
 <div class="container-fluid text-center">
   <%= page_entries_info @organizations %>
 </div>
+
+<!-- Restrict to three tech stacks -->
+<script>
+  $(".chosen-select").chosen({ max_selected_options: 3 });
+</script>
