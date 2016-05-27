@@ -1,6 +1,6 @@
 class Organization < ActiveRecord::Base
   has_one :user, dependent: :nullify
-  has_many :claim_requests
+  has_many :claim_requests, dependent: :destroy
 
   validates :name, presence: true
   validates :address, presence: true
