@@ -62,6 +62,10 @@ gem "fog"
 gem 'exception_notification'
 gem 'sidekiq'
 
+gem "virtus"
+
+gem 'simplecov', require: false, group: :test
+
 group :development, :test do
   gem 'pry'
   gem 'pry-byebug'
