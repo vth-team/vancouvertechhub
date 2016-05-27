@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_secure_password
   belongs_to :organization
-  has_many :claim_request, dependent: :nullify
+  has_many :claim_request, dependent: :destroy
 
   validates :first_name, presence: true
   validates :last_name, presence: true
