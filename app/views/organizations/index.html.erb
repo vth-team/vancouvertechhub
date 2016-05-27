@@ -29,12 +29,12 @@ google.maps.event.addDomListener(window, 'page:load', initialize);
 <%= select_tag :technologies, options_for_select(@technologies.each.map{|stack| stack.name}), class: "chosen-select form-control", id: "tech-stacks", multiple: true, data: {placeholder: "Tech Stacks (Max 3)"} %>
 
 <!-- Team Size Filter -->
-<select id="team-size" class="form-control ">
+<!-- <select id="team-size" class="form-control ">
   <option value="0"> Team Size </option>
   <option value="1"> Under 250 </option>
   <option value="2"> 251 - 500 </option>
   <option value="3"> Above 500 </option>
-</select>
+</select> -->
 
 <!-- Pagination for Organizations -->
 <div class="container-fluid text-center">

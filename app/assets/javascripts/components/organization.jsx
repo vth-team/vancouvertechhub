@@ -2,8 +2,18 @@ var Organization = React.createClass({
   nameMatched: function() {
     return this.props.searchTerm === null || this.props.organization.name.toLowerCase().match(this.props.searchTerm.toLowerCase());
   },
+  // techMatched: function() {
+  //   return
+  // },
+  teamSizeMatched: function() {
+    var sizeInput = this.props.sizeInput;
+    var techTeamSize = this.props.organization.tech_team_size;
+
+    return this.props.techSizeSearch === null || (sizeInput === "1" && techTeamSize < 25) || (sizeInput === "2" && techTeamSize > 25 && techTeamSize < 50) || (sizeInput === "3" && techTeamSize > 50);
+  },
   render: function() {
-    if (!this.nameMatched()) {
+    if ((!this.nameMatched()) || (!this.teamSizeMatched())) {
+      debugger
       var styles = { display: "none" };
     }
 
@@ -14,3 +24,16 @@ var Organization = React.createClass({
             </div>;
   }
 });
+
+// PSEUDOCODE
+//
+// this.setState({filteredOrganizations: this.filterOrganizations();)});
+// filterOrganizations: function() {
+//   this.props.organizations.filter(function(element){
+//     return this.elementMatched(element);
+//   }.bind(this));
+// }
+//
+// elementMatched: function(element) {
+//   returnee this .pr
+// }
