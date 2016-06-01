@@ -64,10 +64,17 @@ class OrganizationsController < ApplicationController
     @organization.user = current_user
 
     if @organization.save
+<<<<<<< HEAD
       FetchOrganizationNewsJob.perform_later(@organization.name, @organization.id)
 
       if current_user.organization_id.present?
         redirect_to current_user.organization, alert: "You can only have one organization."
+=======
+      FetchOrganizationNewsJob.perform_now(@organization.name, @organization.id)
+
+      if current_user.organization_id.present?
+        redirect_to organization_path(current_user.organization_id), alert: "You can only have one organization."
+>>>>>>> d235b59d5c28f0e00408216f11f6f9e4be15a759
       else
         redirect_to organization_path(@organization), notice: "Organization Created!"
       end
