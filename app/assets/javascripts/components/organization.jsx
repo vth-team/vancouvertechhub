@@ -13,7 +13,6 @@ var Organization = React.createClass({
   },
   render: function() {
     if ((!this.nameMatched()) || (!this.teamSizeMatched())) {
-      debugger
       var styles = { display: "none" };
     }
 

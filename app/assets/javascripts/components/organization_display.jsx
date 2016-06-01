@@ -1,6 +1,6 @@
 var OrganizationsDisplay = React.createClass({
   getInitialState: function() {
-    return { searchTerm: null, techSizeSearch: null };
+    return { searchTerm: null, techSizeSearch: null, techStacks: null };
   },
   filterOrganizations: function() {
     var searchTerm = this.refs.searchInput.value.toLowerCase();
@@ -19,8 +19,15 @@ var OrganizationsDisplay = React.createClass({
     }.bind(this));
 
     return <div>
-              <input id="organization-search" type="text" className="form-control" placeholder="Search" ref="searchInput" onChange= { this.filterOrganizations } />
-              {/*<select :technologies, options_for_select(@technologies.each.map{|stack| stack.name}), class: "chosen-select form-control", id: "tech-stacks", multiple: true, data: {placeholder: "Tech Stacks (Max 3)"} />*/}
+              <input id="organization-search" type="text" className="form-control" placeholder="Search" ref="searchInput" onChange= { this.filterOrganizations } ></input>
+
+              {/*<select id="tech-stacks" className="form-control" multiple="true" >
+                {this.props.techStacks.map(function(techStack, index) {
+                    return <option key={index}>{techStack.name}</option>
+                  })
+                }
+              </select>*/}
+
               <select id="team-size" className="form-control" ref="sizeInput" onChange= { this.filterOrganizationTechSize } >
                 <option value="0" defaultValue> Team Size </option>
                 <option value="1"> 25 or less </option>
