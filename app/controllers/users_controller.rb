@@ -1,11 +1,14 @@
 class UsersController < ApplicationController
+  before_action :find_user, only: [:edit, :update, :destroy]
+
   def new
-   @user = User.new
+    @user = User.new
   end
 
   def edit
-   @user = User.find_by_id params[:id]
-   render "edit"
+    @organizations = Organization.unclaimed
+    # The line below adds to the dropdown of organizations the users current organization.
+    @organizations.push @user.organization if @user.organization.present?
   end
 
   def create
@@ -18,28 +21,42 @@ class UsersController < ApplicationController
     end
   end
 
-
   def update
-   @user = User.find_by_id params[:id]
-
-   if @user.update user_params
-     redirect_to root_path, notice: "Account Updated"
-   else
-     render :edit
-   end
+    if @user.update update_user_params
+      redirect_to admin_users_path, notice: "Account Updated"
+    else
+      render :edit
+    end
   end
 
   def destroy
-   user = User.find_by_id params[:id]
-   session[:user_id] = nil
-   user.destroy
-   redirect_to root_path, notice: "User deleted!"
+    if current_user == @user
+      session[:user_id] = nil
+      path = root_path
+    else
+      path = admin_users_path
+    end
+    @user.destroy
+    redirect_to path, notice: "User deleted!"
   end
+
 
   private
 
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+  end
+
+  def find_user
+    @user ||= User.find params[:id]
+  end
+
+  def update_user_params
+    if can? :manage, @user
+      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :admin, :organization_id)
+    else
+      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+    end
   end
 
 end

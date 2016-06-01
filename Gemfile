@@ -71,7 +71,7 @@ group :development, :test do
   gem 'pry'
   gem 'pry-byebug'
   gem 'pry-doc'
-  gem 'pry-rails'
+  # gem 'pry-rails'
   gem 'interactive_editor'
   gem 'awesome_print'
   gem 'hirb'
