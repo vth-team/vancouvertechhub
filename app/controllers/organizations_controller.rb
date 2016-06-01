@@ -23,7 +23,7 @@ class OrganizationsController < ApplicationController
 
   def index
     @technologies = Technology.all
-    if current_user && current_user.admin?
+    if current_user && user_is_admin?
       @organizations = Organization.page(params[:page]).per(ORGANIZATIONS_PER_PAGE)
     else
       @organizations = Organization.published.page(params[:page]).per(ORGANIZATIONS_PER_PAGE)
@@ -75,7 +75,7 @@ class OrganizationsController < ApplicationController
   private
 
   def find_organization
-    if current_user && current_user.admin?
+    if current_user && user_is_admin?
       @organization = Organization.find params[:id]
     else
       @organization = Organization.published.find params[:id]

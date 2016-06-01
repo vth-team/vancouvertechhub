@@ -95,11 +95,11 @@ ActiveRecord::Schema.define(version: 20160518184854) do
     t.integer  "user_id"
     t.float    "longitude"
     t.float    "latitude"
+    t.string   "logo"
     t.string   "image"
     t.string   "image2"
     t.string   "image3"
     t.string   "image4"
-    t.string   "logo"
   end
 
   add_index "organizations", ["user_id"], name: "index_organizations_on_user_id", using: :btree
