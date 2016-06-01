@@ -10,8 +10,8 @@ class Organization < ActiveRecord::Base
 
   has_many :organization_technologies, dependent: :destroy
   has_many :technologies, through: :organization_technologies
-  has_many :news_articles, through: :organization_news
   has_many :organization_news, dependent: :destroy
+  has_many :news_articles, through: :organization_news
 
   # # validates :twitter, uniqueness: true
   validates_inclusion_of :published, in: [true, false]

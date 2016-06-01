@@ -13,11 +13,7 @@ class OrganizationsController < ApplicationController
 
   def show
     @claimed = @organization.claim_requests.find_by_status(true)
-    @related_news_article_ids = OrganizationNews.where(organization_id: @organization.id)
-    @news_articles = []
-    @related_news_article_ids.each do |hi|
-      @news_articles.push(NewsArticle.find(hi.news_article_id))
-    end
+    @news_articles = @organization.news_articles
     hosting_event
 
     respond_to do |format|
@@ -68,10 +64,10 @@ class OrganizationsController < ApplicationController
     @organization.user = current_user
 
     if @organization.save
-      FetchOrganizationNewsJob.perform_now(@organization.name, @organization.id)
+      FetchOrganizationNewsJob.perform_later(@organization.name, @organization.id)
 
       if current_user.organization_id.present?
-        redirect_to organization_path(current_user.organization_id), alert: "You can only have one organization."
+        redirect_to current_user.organization, alert: "You can only have one organization."
       else
         redirect_to organization_path(@organization), notice: "Organization Created!"
       end
