@@ -19,6 +19,9 @@
 //= require jquery-ui
 //= require underscore
 //= require gmaps/google
+//= require react
+//= require react_ujs
+//= require components
 //= require_tree .
 //
 // AppKey is from Bing Market Place account

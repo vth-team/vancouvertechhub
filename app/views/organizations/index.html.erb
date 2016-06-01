@@ -22,22 +22,13 @@ google.maps.event.addDomListener(window, 'load', initialize);
 google.maps.event.addDomListener(window, 'page:load', initialize);
 
 </script>
-<br>
-<input id="organization-search" type="text" class="form-control" placeholder="Search" name="search">
-<br>
-<div class="container-fluid text-center">
-  <div class="row">
-    <% @organizations.each do |organization| %>
-    <a href="<%= organization_path(organization) %>">
-      <div class="org-container col-lg-3 col-md-4 col-sm-6 col-xs-12" data-id="<%=organization.id%>" >
-        <img src="<%= organization.logo%>" id="org-logo"/>
-        <h3><%= link_to organization.name, organization_path(organization), class: "link-to-org" %></h3>
-        <p><%= organization.employee_count %> Employees</p>
-      </div>
-    </a>
-    <% end %>
-  </div>
-</div>
+
+<!-- Tech Stacks -->
+<%= select_tag :technologies, options_for_select(@technologies.each.map{|stack| stack.name}), class: "chosen-select form-control", id: "tech-stacks", multiple: true, data: {placeholder: "Tech Stacks (Max 3)"} %>
+
+<%= react_component "OrganizationsDisplay", organizations: @organizations, techStacks: @technologies %>
+
+<!-- Pagination for Organizations -->
 <div class="container-fluid text-center">
   <%= paginate @organizations %>
 </div>
