@@ -27,7 +27,6 @@ class OrganizationsController < ApplicationController
       @organizations = Organization.page(params[:page]).per(ORGANIZATIONS_PER_PAGE)
     else
       @organizations = Organization.published.page(params[:page]).per(ORGANIZATIONS_PER_PAGE)
-      # @organizations = Organization.search(params)
     end
   end
 
