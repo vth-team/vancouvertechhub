@@ -6,9 +6,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @organizations = unclaimed_organizations
+    @organizations = Organization.unclaimed
+    # The line below adds to the dropdown of organizations the users current organization.
     @organizations.push @user.organization if @user.organization.present?
-    render "edit"
   end
 
   def create
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
   end
 
   def find_user
-    @user ||= User.find_by_id params[:id]
+    @user ||= User.find params[:id]
   end
 
   def update_user_params
@@ -57,14 +57,6 @@ class UsersController < ApplicationController
     else
       params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
     end
-  end
-
-  def unclaimed_organizations
-    unclaimed = []
-    Organization.all.each do |org|
-      unclaimed.push(org) if org.user.nil?
-    end
-    unclaimed
   end
 
 end
