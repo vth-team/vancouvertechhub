@@ -7,13 +7,7 @@ class NewsSearch
       parser = ArticleParser.new(item)
 
       if parser.published_on
-        article = NewsArticle.new(
-          title: parser.title,
-          snippet: parser.snippet,
-          link: parser.link,
-          thumbnail: parser.thumbnail,
-          published_on: parser.published_on
-        )
+        article = NewsArticle.new parser.slice(:title, :snippet, :link, :thubmnail, :published_on)
       else
         Rails.logger = Logger.new(STDOUT)
         Rails.logger.info "Not a real article"
