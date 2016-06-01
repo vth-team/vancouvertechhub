@@ -4,7 +4,6 @@
 
 .header-container {
   width: 100%;
-  min-height: 47vw;
   border-left: none;
   border-right: none;
   position: relative;
@@ -21,19 +20,8 @@
     margin-left: -1%;
   }
 
-  video {
-    position: absolute;
-    zoom: 110%;
-    z-index: -1;
-    width: 100%;
-    opacity:0.78;
-
-  }
-
   h2 {
     opacity: 0.60;
-    font-size: 5vw;
-    margin-top: 10%;
     width: 100%;
     text-align: center;
   }
