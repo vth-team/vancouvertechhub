@@ -25,8 +25,8 @@
 //= require_tree .
 //
 
-var baseUrl = "http://localhost:3000";
 var dataIdArray;
+
 $(document).ready(function(){
   $("#organization-search").on("keyup", function(){
     dataIdArray = [];
@@ -42,7 +42,7 @@ $(document).ready(function(){
 
     $.ajax({
       method: "POST",
-      url: baseUrl + "/organizations/filter",
+      url: BASEURL + "/organizations/filter",
       data: { data_value: dataIdArray },
       success: function(data)
       {

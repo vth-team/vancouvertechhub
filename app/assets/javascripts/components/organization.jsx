@@ -4,9 +4,6 @@ var Organization = React.createClass({
       this.props.searchTerm === null || this.props.organization.name.toLowerCase().match(this.props.searchTerm.toLowerCase())
     );
   },
-  // techMatched: function() {
-  //   return
-  // },
   teamSizeMatched: function() {
     var sizeInput = this.props.sizeInput;
     var techTeamSize = this.props.organization.tech_team_size;
