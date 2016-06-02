@@ -69,7 +69,7 @@ class OrganizationsController < ApplicationController
       if current_user.organization_id.present?
         redirect_to current_user.organization, alert: "You can only have one organization."
       else
-        redirect_to organization_path(@organization), notice: "Organization Created!"
+        redirect_to @organization, notice: "Organization Created!"
       end
     else
       flash[:alert] = "organization didn't save!"
