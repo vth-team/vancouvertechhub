@@ -27,16 +27,3 @@ var Organization = React.createClass({
             </div>;
   }
 });
-
-// PSEUDOCODE to refactor multiple param search in React
-//
-// this.setState({filteredOrganizations: this.filterOrganizations();)});
-// filterOrganizations: function() {
-//   this.props.organizations.filter(function(element){
-//     return this.elementMatched(element);
-//   }.bind(this));
-// }
-//
-// elementMatched: function(element) {
-//   returnee this .pr
-// }

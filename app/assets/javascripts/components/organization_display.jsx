@@ -21,13 +21,6 @@ var OrganizationsDisplay = React.createClass({
     return <div>
               <input id="organization-search" type="text" className="form-control" placeholder="Search" ref="searchInput" onChange= { this.filterOrganizations } ></input>
 
-              {/*<select id="tech-stacks" className="form-control" multiple="true" >
-                {this.props.techStacks.map(function(techStack, index) {
-                    return <option key={index}>{techStack.name}</option>
-                  })
-                }
-              </select>*/}
-
               <select id="team-size" className="form-control" ref="sizeInput" onChange= { this.filterOrganizationTechSize } >
                 <option value="0" defaultValue> Team Size </option>
                 <option value="1"> 25 or less </option>
