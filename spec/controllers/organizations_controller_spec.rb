@@ -100,11 +100,6 @@ RSpec.describe OrganizationsController, type: :controller do
           valid_request
           expect(response).to redirect_to(organization_path(Organization.last))
         end
-
-        it "sets a flash message" do
-          valid_request
-          expect(flash[:notice]).to be
-        end
       end
     end
   end

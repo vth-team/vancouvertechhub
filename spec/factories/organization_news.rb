@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :organization_news do
-    news_article nil
-    organization nil
+    association :organization, factory: :organization
+    association :news_article, factory: :news_article
   end
 end
