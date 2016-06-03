@@ -18,14 +18,14 @@
     </tr>
     </thead>
     <tbody>
-    <% @news_filters.each do |nf| %>
-    <tr>
-      <td><%= nf.search_term %></td>
-      <td><%= link_to "Remove", news_filter_path(nf),
-      data: {confirm: "Are you sure?"},
-      method: :delete%></td>
-    <% end %>
-    <tr/>
+      <% @news_filters.each do |nf| %>
+        <tr>
+          <td><%= nf.search_term %></td>
+          <td><%= link_to "Remove", news_filter_path(nf),
+          data: {confirm: "Are you sure?"},
+          method: :delete%></td>
+        </tr>
+      <% end %>
     </tbody>
   </table>
 </div>

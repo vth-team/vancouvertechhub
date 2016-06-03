@@ -8,7 +8,7 @@ var OrganizationsDisplay = React.createClass({
   },
   filterOrganizationTechSize: function() {
     var techSizeSearch = this.refs.sizeInput.value;
-    this.setState({ techSizeSearch: techSizeSearch});
+    this.setState({ techSizeSearch: techSizeSearch });
   },
   render: function() {
     var organizations = this.props.organizations.map(function(organization, index) {

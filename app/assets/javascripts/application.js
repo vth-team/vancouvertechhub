@@ -42,7 +42,8 @@ $(document).ready(function(){
 
     $.ajax({
       method: "POST",
-      url: BASEURL + "/organizations/filter",
+      url: "/organizations/filter",
+      url: "/organizations/filter",
       data: { data_value: dataIdArray },
       success: function(data)
       {
