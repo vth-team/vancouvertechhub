@@ -4,9 +4,6 @@ var Organization = React.createClass({
       this.props.searchTerm === null || this.props.organization.name.toLowerCase().match(this.props.searchTerm.toLowerCase())
     );
   },
-  // techMatched: function() {
-  //   return
-  // },
   teamSizeMatched: function() {
     var sizeInput = this.props.sizeInput;
     var techTeamSize = this.props.organization.tech_team_size;
@@ -30,16 +27,3 @@ var Organization = React.createClass({
             </div>;
   }
 });
-
-// PSEUDOCODE to refactor multiple param search in React
-//
-// this.setState({filteredOrganizations: this.filterOrganizations();)});
-// filterOrganizations: function() {
-//   this.props.organizations.filter(function(element){
-//     return this.elementMatched(element);
-//   }.bind(this));
-// }
-//
-// elementMatched: function(element) {
-//   returnee this .pr
-// }

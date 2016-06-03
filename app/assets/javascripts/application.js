@@ -24,27 +24,9 @@
 //= require components
 //= require_tree .
 //
-// AppKey is from Bing Market Place account
-// var AppKey = ""
-// var encodedAppKey = Base64.encode(':' + AppKey);
-// //
-// $.ajax({
-//   //url: "https://api.datamarket.azure.com/Bing/Search/v1/Web?Query='sushi'&$format=JSON",
-//   url: "https://api.datamarket.azure.com/Bing/Search/v1/News?Query='Vancouver Tech'&$format=JSON",
-//   method: "GET",
-//   headers: {
-//     "Authorization": "Basic " + encodedAppKey
-//   },
-//   error: function() {
-//     alert("Failed bing search");
-//   },
-//   success: function(data){
-//     console.log(data)
-//   }
-// });
 
-var baseUrl = "http://localhost:3000";
 var dataIdArray;
+
 $(document).ready(function(){
   $("#organization-search").on("keyup", function(){
     dataIdArray = [];
@@ -60,7 +42,8 @@ $(document).ready(function(){
 
     $.ajax({
       method: "POST",
-      url: baseUrl + "/organizations/filter",
+      url: "/organizations/filter",
+      url: "/organizations/filter",
       data: { data_value: dataIdArray },
       success: function(data)
       {
