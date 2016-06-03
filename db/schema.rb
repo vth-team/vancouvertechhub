@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160518184854) do
+ActiveRecord::Schema.define(version: 20160526173010) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,16 @@ ActiveRecord::Schema.define(version: 20160518184854) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "organization_news", force: :cascade do |t|
+    t.integer  "news_article_id"
+    t.integer  "organization_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "organization_news", ["news_article_id"], name: "index_organization_news_on_news_article_id", using: :btree
+  add_index "organization_news", ["organization_id"], name: "index_organization_news_on_organization_id", using: :btree
+
   create_table "organization_technologies", force: :cascade do |t|
     t.integer  "technology_id"
     t.integer  "organization_id"
@@ -95,11 +105,11 @@ ActiveRecord::Schema.define(version: 20160518184854) do
     t.integer  "user_id"
     t.float    "longitude"
     t.float    "latitude"
+    t.string   "logo"
     t.string   "image"
     t.string   "image2"
     t.string   "image3"
     t.string   "image4"
-    t.string   "logo"
   end
 
   add_index "organizations", ["user_id"], name: "index_organizations_on_user_id", using: :btree
@@ -130,6 +140,8 @@ ActiveRecord::Schema.define(version: 20160518184854) do
 
   add_foreign_key "claim_requests", "organizations"
   add_foreign_key "claim_requests", "users"
+  add_foreign_key "organization_news", "news_articles"
+  add_foreign_key "organization_news", "organizations"
   add_foreign_key "organization_technologies", "organizations"
   add_foreign_key "organization_technologies", "technologies"
   add_foreign_key "organizations", "users"

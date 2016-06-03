@@ -13,6 +13,7 @@ class OrganizationsController < ApplicationController
 
   def show
     @claimed = @organization.claim_requests.find_by_status(true)
+    @news_articles = @organization.news_articles
     hosting_event
 
     respond_to do |format|
@@ -22,7 +23,8 @@ class OrganizationsController < ApplicationController
   end
 
   def index
-    if current_user && current_user.admin?
+    @technologies = Technology.all
+    if current_user && user_is_admin?
       @organizations = Organization.page(params[:page]).per(ORGANIZATIONS_PER_PAGE)
     else
       @organizations = Organization.published.page(params[:page]).per(ORGANIZATIONS_PER_PAGE)
@@ -58,13 +60,17 @@ class OrganizationsController < ApplicationController
   end
 
   def create
-    if current_user.organization_id.present?
-      redirect_to organization_path(current_user.organization_id), alert: "You can only have one organization."
-    end
-    @organization       = Organization.new(organization_params)
-    @organization.user  = current_user
+    @organization      = Organization.new(organization_params)
+    @organization.user = current_user
+
     if @organization.save
-      redirect_to organization_path(@organization), notice: "Organization Created!"
+      FetchOrganizationNewsJob.perform_later(@organization.name, @organization.id)
+
+      if current_user.organization_id.present?
+        redirect_to current_user.organization, alert: "You can only have one organization."
+      else
+        redirect_to @organization, notice: "Organization Created!"
+      end
     else
       flash[:alert] = "organization didn't save!"
       render :new
@@ -74,7 +80,7 @@ class OrganizationsController < ApplicationController
   private
 
   def find_organization
-    if current_user && current_user.admin?
+    if current_user && user_is_admin?
       @organization = Organization.find params[:id]
     else
       @organization = Organization.published.find params[:id]
