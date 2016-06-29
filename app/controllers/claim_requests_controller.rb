@@ -1,28 +1,21 @@
 class ClaimRequestsController < ApplicationController
-
   before_action :authenticate_user!, except: [:index, :show]
   before_action :find_organization, only: [:new, :create, :edit, :update, :show]
+  before_action :authorize_claimability, only: [:new, :create]
 
   def new
     @claims = ClaimRequest.all
     @user = current_user
-    if @organization.user.present? || current_user.organization.present?
-      redirect_to organization_path(@organization), alert: "You either: (a) already have a company or (b) are trying to claim an already claimed company"
-    end
   end
 
   def create
-    if @organization.user.present? || current_user.organization.present?
-      redirect_to organization_path(@organization), alert: "You either: (a) already have a company or (b) are trying to claim an already claimed company"
+    service = ClaimRequests::CreateClaim.new(user:         current_user,
+                                             organization: @organization)
+    if service.call
+      redirect_to organization_path(@organization), notice: "Claim Request Submitted!"
+    else
+      redirect_to organization_path(@organization), alert: "Claim Request not saved!"
     end
-    @claim = ClaimRequest.new
-    @claim.user = current_user
-    @claim.organization = @organization
-    if @claim.save
-        redirect_to organization_path(@organization), notice: "Claim Request Submitted!"
-      else
-        redirect_to organization_path(@organization), alert: "Claim Request not saved!"
-      end
   end
 
   def update
@@ -49,6 +42,12 @@ class ClaimRequestsController < ApplicationController
   end
 
   private
+
+  def authorize_claimability
+    if @organization.user.present? || current_user.organization.present?
+      redirect_to organization_path(@organization), alert: "You either: (a) already have a company or (b) are trying to claim an already claimed company"
+    end
+  end
 
   def find_organization
     @organization = Organization.find params[:organization_id]

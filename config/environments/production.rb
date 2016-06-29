@@ -83,4 +83,6 @@ Rails.application.configure do
       :sender_address => %{"notifier" <error@vancouvertechhub.ca>},
       :exception_recipients => %w{tam@codecore.ca codecorefrank@gmail.com}
     }
+
+  ENV["BASE_URL"] = "http://vancouvertechhub.ca"
 end

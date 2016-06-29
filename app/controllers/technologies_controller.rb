@@ -17,7 +17,7 @@ class TechnologiesController < ApplicationController
     end
   end
 
-private
+  private
 
   def technology_params
     params.require(:technology).permit([:name])

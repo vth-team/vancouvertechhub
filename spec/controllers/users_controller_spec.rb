@@ -1,6 +1,10 @@
 require 'rails_helper'
+require 'pry'
 
 RSpec.describe UsersController, type: :controller do
+  let (:admin_user) { FactoryGirl.create(:admin) }
+  let (:user) { FactoryGirl.create(:user) }
+  let (:organization) { FactoryGirl.create(:organization) }
   describe "#new" do
     it "renders the new template" do
       get :new
@@ -61,5 +65,54 @@ RSpec.describe UsersController, type: :controller do
       end
     end
 
+  end
+
+
+  describe "#edit" do
+    render_views
+    describe "as a mortal" do
+    before { login(user) }
+      it "doesn't show the option make the user an admin" do
+        get :edit, id: user.id
+        expect(response.body).not_to include("Admin")
+      end
+    end
+    describe "as an admin" do
+    before { login(admin_user) }
+      it "shows the option to make the user an admin" do
+        get :edit, id: user.id
+        expect(response.body).to include("Admin")
+      end
+    end
+  end
+
+  describe "#update" do
+
+    describe "as a mortal" do
+      before do
+        login(user)
+      end
+      it "cannot update status to admin" do
+        patch :update, id: user.id, user: {admin: true}
+        expect(user.reload.admin).to eq(false)
+      end
+      it "cannot add organizations to users" do
+        patch :update, id: user.id, user: {organization_id: organization.id}
+        expect(user.reload.organization).not_to eq(organization)
+      end
+    end
+    describe "as administrators" do
+      before do
+        login(admin_user)
+      end
+      it "can make more administrators" do
+        patch :update, id: user.id, user: {admin: true}
+        expect(user.reload.admin).to eq(true)
+      end
+      it "can add organizations to users" do
+        patch :update, id: user.id, user: {organization_id: organization.id}
+        expect(user.reload.organization).to eq(organization)
+      end
+    end
   end
 end

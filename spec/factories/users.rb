@@ -7,7 +7,7 @@ FactoryGirl.define do
     admin false
     activated true
   end
-  
+
   factory :admin, class: User do
     first_name { Faker::Name.first_name}
     last_name { Faker::Name.last_name}

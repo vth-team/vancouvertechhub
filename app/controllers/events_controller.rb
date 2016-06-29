@@ -27,5 +27,4 @@ class EventsController < ApplicationController
   def event_params
     params.require(:event).permit([:meetup_title, :meetup_url, :location])
   end
-
 end
