@@ -3,8 +3,130 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .simple-calendar{
-  table tbody tr{height:50px;font-size:10px}
-  .day:hover {background-color: lightgrey;}
-  .day.active{background-color: #FFCC99;}
-  .event-cal{margin:0 0 10px 0}
+  table tbody tr {
+    height:50px;
+    font-size:10px;
+  }
+  .day.active {
+    background-color: aliceblue;
+  }
+  .event-cal {
+    margin:0 0 10px 0;
+  }
+  .day.prev-month, .day.next-month {
+    background-color: #EDEDED;
+  }
+  .day.active.prev-month,
+  .day.active.next-month {
+    background-color: #EDEDED;
+  }
+  .event-date {
+    font-weight: bold;
+  }
+  .weekday-header {
+    background-color: rgba(0, 0, 0, 0.24);
+  }
+  a {
+    color: #0e6c67;
+    font-size: 11.5px;
+  }
+}
+
+@media (max-width: 560px) {
+  .simple-calendar {
+    table tbody {
+      height:50px;
+      font-size:10px;
+    }
+    td {
+      border: none;
+      border-bottom: 1px solid #eee;
+      position: relative;
+      padding-left: 50%;
+    }
+    .weekday-header {
+      display: none;
+    }
+    th:before {
+      /* Now like a table header */
+      position: absolute;
+      /* Top/left values mimic padding */
+      top: 6px;
+      left: 6px;
+      width: 45%;
+      padding-right: 10px;
+      white-space: nowrap;
+    }
+
+    td:nth-of-type(1):before { content: "MON"; font-weight: bold; }
+    td:nth-of-type(2):before { content: "TUE"; font-weight: bold; }
+    td:nth-of-type(3):before { content: "WED"; font-weight: bold; }
+    td:nth-of-type(4):before { content: "THU"; font-weight: bold; }
+    td:nth-of-type(5):before { content: "FRI"; font-weight: bold; }
+    td:nth-of-type(6):before { content: "SAT"; font-weight: bold; }
+    td:nth-of-type(7):before { content: "SUN"; font-weight: bold; }
+
+    .day.active{
+      background-color: aliceblue;
+    }
+    .event-cal {
+      margin: 3px 0 3px 0;
+    }
+    .day {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    .month-nav {
+      text-align: center;
+      margin: 10px 0 5px 0;
+    }
+    .event-time {
+      margin-right: 25px;
+    }
+    a {
+      color: #0e6c67;
+      font-size: 11.5px;
+    }
+  }
+
+  .event-list-name {
+    font-size: 15px;
+  }
+
+}
+
+.event-list-month {
+  font-size: 13px;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+.event-list-date {
+  font-size: 19px;
+  font-weight: bold;
+}
+
+.event-list-name {
+  font-size: 15px;
+}
+
+input.empty {
+  font-family: Arial, FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+}
+
+.search {
+  margin-bottom: 20px;
+}
+
+hr {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+a {
+  color: #0e6c67;
 }
