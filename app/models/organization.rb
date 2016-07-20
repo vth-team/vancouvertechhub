@@ -2,11 +2,12 @@ class Organization < ActiveRecord::Base
   has_one :user, dependent: :nullify
   has_many :claim_requests, dependent: :destroy
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
   validates :address, presence: true
   validates :overview, presence: true
   validates :employee_count, presence: true, numericality: {greater_than_or_equal_to: 1}
-  validates :tech_team_size, presence: true, numericality: {greater_than_or_equal_to: 1}
+  validates :tech_team_size, presence: true, numericality: {greater_than_or_equal_to: 1 }
+  validate :reasonable_tech_team_size
 
   has_many :organization_technologies, dependent: :destroy
   has_many :technologies, through: :organization_technologies
@@ -45,5 +46,9 @@ class Organization < ActiveRecord::Base
     else
       all
     end
+  end
+
+  def reasonable_tech_team_size
+    errors.add(:tech_team_size, "Team size must be less than organization size") unless tech_team_size < employee_count
   end
 end
