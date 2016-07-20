@@ -86,6 +86,10 @@ GEM
       coffee-rails (>= 3.2)
       railties (>= 3.0)
       sass-rails (>= 3.2)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.8)
+      climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.1)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
@@ -104,6 +108,8 @@ GEM
       thread_safe (~> 0.3, >= 0.3.1)
     diff-lcs (1.2.5)
     docile (1.1.5)
+    dropzonejs-rails (0.4.16)
+      rails (> 3.1)
     equalizer (0.0.11)
     erubis (2.7.0)
     exception_notification (4.0.1)
@@ -308,6 +314,11 @@ GEM
     multi_xml (0.5.5)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
+    paperclip (4.2.4)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      cocaine (~> 0.5.5)
+      mime-types
     pg (0.18.4)
     pry (0.10.3)
       coderay (~> 1.1.0)
@@ -464,6 +475,7 @@ DEPENDENCIES
   chosen-rails
   coffee-rails (~> 4.1.0)
   cowsay
+  dropzonejs-rails (~> 0.4.16)
   exception_notification
   factory_girl_rails
   faker!
@@ -485,6 +497,7 @@ DEPENDENCIES
   letter_opener
   meetup_client!
   mini_magick
+  paperclip (~> 4.2.0)
   pg (~> 0.15)
   pry
   pry-byebug
@@ -508,3 +521,6 @@ DEPENDENCIES
   underscore-rails
   virtus
   web-console (~> 2.0)
+
+BUNDLED WITH
+   1.12.5
