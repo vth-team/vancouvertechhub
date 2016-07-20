@@ -82,6 +82,7 @@ div.container {
   }
 }
 
+
 .chosen-container-multi .chosen-choices {
   width: 100%;
   display: block;
@@ -109,4 +110,26 @@ div.container {
 #team-size {
   float: right;
   width: 20%;
+}
+
+// adding a right windows for tweets
+
+#right-sidebar {
+  @media (min-width: 768px) {
+    position: fixed;
+    width: 250px;
+    overflow-y: scroll;
+    top: 60px;
+    bottom: 0;
+    right: 0;
+    border: 2px black solid;
+  }
+  @media (max-width: 768px) {
+    width: 100%;
+    border: 2px black solid;
+  }
+}
+
+#twitter-feed{
+  padding: 0px;
 }
