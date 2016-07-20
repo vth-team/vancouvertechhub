@@ -18,7 +18,7 @@ class NewsFiltersController < ApplicationController
     end
   end
 
-private
+  private
 
   def news_filter_params
     params.require(:news_filter).permit([:search_term])

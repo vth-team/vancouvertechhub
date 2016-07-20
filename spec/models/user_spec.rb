@@ -39,5 +39,5 @@ RSpec.describe User, type: :model do
       expect(u.password_digest).to be
     end
   end
-  
+
 end

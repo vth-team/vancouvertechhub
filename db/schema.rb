@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160509020303) do
+ActiveRecord::Schema.define(version: 20160526173010) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,11 +53,33 @@ ActiveRecord::Schema.define(version: 20160509020303) do
     t.string   "meetup_group"
   end
 
+  create_table "news_articles", force: :cascade do |t|
+    t.string   "title"
+    t.text     "snippet"
+    t.string   "link"
+    t.string   "thumbnail"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.datetime "published_on"
+  end
+
+  add_index "news_articles", ["published_on"], name: "index_news_articles_on_published_on", using: :btree
+
   create_table "news_filters", force: :cascade do |t|
     t.string   "search_term"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  create_table "organization_news", force: :cascade do |t|
+    t.integer  "news_article_id"
+    t.integer  "organization_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "organization_news", ["news_article_id"], name: "index_organization_news_on_news_article_id", using: :btree
+  add_index "organization_news", ["organization_id"], name: "index_organization_news_on_organization_id", using: :btree
 
   create_table "organization_technologies", force: :cascade do |t|
     t.integer  "technology_id"
@@ -118,6 +140,8 @@ ActiveRecord::Schema.define(version: 20160509020303) do
 
   add_foreign_key "claim_requests", "organizations"
   add_foreign_key "claim_requests", "users"
+  add_foreign_key "organization_news", "news_articles"
+  add_foreign_key "organization_news", "organizations"
   add_foreign_key "organization_technologies", "organizations"
   add_foreign_key "organization_technologies", "technologies"
   add_foreign_key "organizations", "users"
