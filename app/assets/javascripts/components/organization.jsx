@@ -5,13 +5,13 @@ var Organization = React.createClass({
     );
   },
   teamSizeMatched: function() {
-    var sizeInput = this.props.sizeInput;
+    var sizeInput = this.props.techSizeSearch;
     var techTeamSize = this.props.organization.tech_team_size;
 
     return (
       this.props.techSizeSearch === null ||
-      (sizeInput === "1" && techTeamSize < 25) ||
-      (sizeInput === "2" && techTeamSize > 25 && techTeamSize < 50) ||
+      (sizeInput === "1" && techTeamSize <= 25) ||
+      (sizeInput === "2" && techTeamSize > 25 && techTeamSize <= 50) ||
       (sizeInput === "3" && techTeamSize > 50)
     );
   },
