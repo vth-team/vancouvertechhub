@@ -1,3 +1,4 @@
+<!-- Search function -->
 <script>
 console.log("hihihi")
 $(document).ready(function(){
@@ -7,9 +8,10 @@ $(document).ready(function(){
  $("td.day .event-cal").parent().addClass("active")
 })
 
+// Lucas Search
 var search = function(){
-  $(".search").on("click", function(event){
-    event.preventDefault()
+  $(".search").on("keyup", function(event){
+    // event.preventDefault()
     var word = $('input:text').val().toLowerCase();
     $('.event').hide();
       $(".event").each(function(){
@@ -20,5 +22,4 @@ var search = function(){
     })
   })
 }
-
 </script>
