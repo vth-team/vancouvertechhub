@@ -122,9 +122,6 @@ puts "adding o11 to o20"
 o11 = Organization.create(name: 'Food.ee', address: '120 Columbia St, Vancouver, BC V6A 3Z8, Canada', overview: 'Foodee works with the city\'s best restaurants to provide delicious, healthy, and sustainable food to the best teams. We believe every meal should be made with fresh, local ingredients and always provide exceptional taste. Eating great food with your team improves communication, productivity, and most importantly provides quality team time.', employee_count: 70, tech_team_size: 70, website: 'https://www.food.ee/', logo: 'https://pbs.twimg.com/profile_images/623564641277349888/xrmab42a_400x400.png', twitter: 'foodee', published: true)
 sleep(0.2);
 
-o12 = Organization.create(name: 'SKIO Music', address: '390 Cambie St, Vancouver, BC V6B 2N3, Canada', overview: 'SKIO Music is a collaboration platform that empowers creatives by making music licensing in the digital era more efficient, transparent and fair, allowing artists to focus more on creating.', employee_count: 20, tech_team_size: 20, website: 'https://skiomusic.com/', logo: 'https://pbs.twimg.com/profile_images/635932240619270148/-NHmbdbw_400x400.jpg', twitter: 'skiomusic', published: true)
-sleep(0.2);
-
 o13 = Organization.create(name: '14 Oranges', address: '3820 Cessna Dr #295, Richmond, BC V7B 0A2, Canada', overview: '"14 Oranges provides mobile and web application development services. Our goal is to delight our customers with the best mobile and web applications in the market. We offer full end-to-end solutions, including web, back-end, and app interface design, to companies of all sizes: from small businesses to large enterprises."', employee_count: 12, tech_team_size: 12, website: 'http://www.14oranges.com/', logo: 'https://pbs.twimg.com/profile_images/3755888753/e46d78c947ddfc3285d102a8f6736a60_400x400.png', twitter: '14oranges', published: true)
 sleep(0.2);
 
