@@ -3,27 +3,8 @@
   <p><%= @organization.address %></p>
   <p><%= @organization.overview %></p>
 
-
-<div id="map" class="single-map"></div>
-
   <%= render "org_info"%>
 
-<script type="text/javascript">
-  handler = Gmaps.build('Google');
-
-  handler.buildMap({ provider: { scrollwheel: false, zoomControl: false }, internal: {id: 'map'}}, function(){
-    markers = handler.addMarkers([
-      {
-        "lat": <%= @organization.latitude %>,
-        "lng": <%= @organization.longitude %>,
-        "infowindow": "<%= @organization.name %>"
-      }
-    ]);
-    handler.bounds.extendWith(markers);
-    handler.fitMapToBounds();
-    handler.getMap().setZoom(17);
-  });
-</script>
 
 
 
@@ -61,6 +42,27 @@
   <% if !(@claimed && @claimed.status?) || @organization.user.nil?  %>
     <%= link_to "Claim this business", new_organization_claim_request_path(@organization), class: "btn btn-primary"%>
   <% end %>
+
+  <div class="map-container" style='width: 100%;'>
+    <div id="map" class="single-map" style='width: 100%; height: 400px'></div>
+  </div>
+
+  <script type="text/javascript">
+    handler = Gmaps.build('Google');
+
+    handler.buildMap({ provider: { zoomControl: true }, internal: {id: 'map'}}, function(){
+      markers = handler.addMarkers([
+        {
+          "lat": <%= @organization.latitude %>,
+          "lng": <%= @organization.longitude %>,
+          "infowindow": "<%= @organization.name %>"
+        }
+      ]);
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+      handler.getMap().setZoom(13);
+    });
+  </script>
 </div>
 
 <hr>
