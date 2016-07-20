@@ -1,0 +1,6 @@
+//this will check if the image exists. if not, it will put a placeholder image there bu use of jquery
+function validateImage(event) {
+  if (parseInt($(event.target).css("width")) <= 1) {
+    $(event.target).attr("src", "<%= image_path('news_placeholder.png') %>");
+  }
+}
