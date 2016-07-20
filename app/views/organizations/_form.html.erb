@@ -2,8 +2,8 @@
   <%= f.input :name, input_html: {class: "abc"}, label_html: {class: "hey"} %>
   <%= f.input :address %>
   <%= f.input :overview %>
-  <%= f.input :employee_count %>
-  <%= f.input :tech_team_size %>
+  <%= f.input :employee_count, :label => "Employee Count", :class => "scroll-fix" %>
+  <%= f.input :tech_team_size, :label => "Tech Team Size", :class => "scroll-fix" %>
   <%= f.input :website %>
   <%= f.input :twitter %>
   <%#= f.input :manager %>
@@ -15,5 +15,6 @@
   <%= f.file_field :image2 %>
   <%= f.file_field :image3 %>
   <%= f.file_field :image4 %>
+  <hr>
   <%= f.submit class: "btn btn-primary" %>
 <% end %>
