@@ -1,11 +1,12 @@
-<div class="company-name col-lg-9 col-md-9 col-sm-9 col-xs-9">
+<div class="company-name col-lg-9 col-md-9 col-sm-12 col-xs-12">
   <h1><%= @organization.name %></h1>
   <p><%= @organization.address %></p>
   <p><%= @organization.overview %></p>
-</div>
+
 
 <div id="map" class="single-map"></div>
-<%= render "org_info"%>
+
+  <%= render "org_info"%>
 
 <script type="text/javascript">
   handler = Gmaps.build('Google');
@@ -26,40 +27,41 @@
 
 
 
-<!-- Company "Avatar" -->
-<% if @organization.image.present? %>
-  <%= image_tag @organization.image.url(:large) %>
-<% end %>
-
-  <!-- Company Images -->
-<% if @organization.image2.present? %>
-    <%= image_tag @organization.image2.url(:small) %>
-<% end %>
-
-<% if @organization.image3.present? %>
-    <%= image_tag @organization.image3.url(:small) %>
+  <!-- Company "Avatar" -->
+  <% if @organization.image.present? %>
+    <%= image_tag @organization.image.url(:large) %>
   <% end %>
 
-<% if @organization.image4.present? %>
-  <%= image_tag @organization.image4.url(:small) %>
-<% end %>
-
-
-<% if can? :manage, @organization %>
-  <% if @organization.published %>
-    <p>Published</p>
+    <!-- Company Images -->
+  <% if @organization.image2.present? %>
+      <%= image_tag @organization.image2.url(:small) %>
   <% end %>
-<% end %>
+
+  <% if @organization.image3.present? %>
+      <%= image_tag @organization.image3.url(:small) %>
+    <% end %>
+
+  <% if @organization.image4.present? %>
+    <%= image_tag @organization.image4.url(:small) %>
+  <% end %>
 
 
-<% if can? :cru, @organization %>
-  <%= link_to "Edit", edit_organization_path(@organization), class: "btn btn-primary" %>
-<% end %>
+  <% if can? :manage, @organization %>
+    <% if @organization.published %>
+      <p>Published</p>
+    <% end %>
+  <% end %>
 
 
-<% if !(@claimed && @claimed.status?) || @organization.user.nil?  %>
-  <%= link_to "Claim this business", new_organization_claim_request_path(@organization), class: "btn btn-primary"%>
-<% end %>
+  <% if can? :cru, @organization %>
+    <%= link_to "Edit", edit_organization_path(@organization), class: "btn btn-primary" %>
+  <% end %>
+
+
+  <% if !(@claimed && @claimed.status?) || @organization.user.nil?  %>
+    <%= link_to "Claim this business", new_organization_claim_request_path(@organization), class: "btn btn-primary"%>
+  <% end %>
+</div>
 
 <hr>
 <div class="container-fluid col-lg-6 col-md-6 col-sm-6 col-xs-12" id="twitter-feed">
