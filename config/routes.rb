@@ -30,21 +30,23 @@ Rails.application.routes.draw do
 
   get "/about"                => "home#about"
 
-  get "/admin/organizations"  => "admin#organizations",
-                              as: :admin_organizations
+  namespace :admin do
+    get "/organizations"  => "admin#organizations",
+                                as: :organizations
 
-  get "/admin/events"         => "admin#events",
-                              as: :admin_events
+    get "/events"         => "admin#events",
+                                as: :events
 
-  get "/admin/users"          => "admin#users",
-                              as: :admin_users
+    get "/users"          => "admin#users",
+                                as: :users
 
-  post "/admin/users"         => "admin#users"
+    post "/users"         => "admin#users"
 
-  get "/admin/technologies"   => "admin#technologies",
-                              as: :admin_technologies
-  get "/admin/news_filters"   => "admin#news_filters",
-                              as: :admin_news_filters
+    get "/technologies"   => "admin#technologies",
+                                as: :technologies
+    get "/news_filters"   => "admin#news_filters",
+                                as: :news_filters
+  end
 
 
   root "organizations#index"
