@@ -1,20 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe AdminController, type: :controller do
-
-  describe "#organizations" do
-    context "non-signed-in users" do
-      it "redirects to home page" do
-        get :organizations
-        expect(response).to redirect_to(root_path)
-      end
-    end
+RSpec.describe Admin::BaseController, type: :controller do
 
     context "signed-in non-admin users" do
       let(:user) { FactoryGirl.create(:user) }
       it "redirects to home page" do
         login(user)
-        get :organizations
+        # get controller: :admin, action: :organizations
+        # get :organizations
         expect(response).to redirect_to(root_path)
       end
     end
@@ -27,7 +20,5 @@ RSpec.describe AdminController, type: :controller do
         expect(response).to render_template(:organizations)
       end
     end
-  end
-
 
 end
