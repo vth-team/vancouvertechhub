@@ -48,4 +48,7 @@ Rails.application.routes.draw do
 
 
   root "organizations#index"
+
+  # Search route
+  get '/search' => "search#search"
 end
