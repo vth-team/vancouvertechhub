@@ -6,9 +6,54 @@ RSpec.describe OrganizationsController, type: :controller do
   let (:unpublished_organization) {FactoryGirl.create(:organization)}
   let (:published_organization) {FactoryGirl.create(:published_organization)}
   let (:admin_user) { FactoryGirl.create(:admin) }
+  let (:user) {FactoryGirl.create(:user)}
 
   describe "#show" do
     describe "as anon user" do
+      it "doesn't display unpublished organizations" do
+        expect {get :show, id: unpublished_organization.id}.to raise_exception(ActiveRecord::RecordNotFound)
+      end
+
+      it "displays published organizations show page" do
+        get :show, id: published_organization.id
+        expect(assigns(:organization)).to eq(published_organization)
+      end
+    end
+
+    describe "as owner" do
+      before {login(user)}
+      it "display unpublished organizations" do
+        user.organization_id = unpublished_organization.id
+        user.save
+        get :show, id: unpublished_organization.id
+        expect(assigns(:organization)).to eq(unpublished_organization)
+      end
+      it "display published organizations" do
+        user.organization_id = published_organization.id
+        user.save
+        get :show, id: published_organization.id
+        expect(assigns(:organization)).to eq(published_organization)
+      end
+    end
+
+    describe "as user that owns another organization" do
+      before do
+        unpublished_organization
+        login(user)
+      end
+      it "doesn't display unpublished organizations" do
+        expect {get :show, id: unpublished_organization.id }.to raise_exception(ActiveRecord::RecordNotFound)
+      end
+      it "display published organizations" do
+        unpublished_organization.user = user
+        unpublished_organization.save
+        get :show, id: published_organization.id
+        expect(assigns(:organization)).to eq(published_organization)
+      end
+    end
+
+    describe "as common user" do
+      before { login(user) }
       it "doesn't display unpublished organizations" do
         expect {get :show, id: unpublished_organization.id}.to raise_exception(ActiveRecord::RecordNotFound)
       end
