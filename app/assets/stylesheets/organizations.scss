@@ -75,6 +75,7 @@ div.container {
   }
 }
 
+
 .chosen-container-multi .chosen-choices {
   width: 100%;
   display: block;
@@ -102,4 +103,21 @@ div.container {
 #team-size {
   float: right;
   width: 20%;
+}
+
+.sidebar-news{
+  max-height: 400px;
+  padding: 0px;
+  overflow-y: scroll;
+}
+.sidebar-upcoming-events{
+  max-height: 400px;
+  padding: 0px;
+  overflow-y: scroll;
+}
+
+.sidebar-twitter{
+  max-height: 400px;
+  padding: 0px;
+  overflow-y: scroll;
 }
