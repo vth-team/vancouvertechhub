@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+<<<<<<< b9194b89f41b39dbe3aa74df28069c5fe8d65753
 RSpec.describe Admin::TechnologiesController, type: :controller do
   let(:technology) { FactoryGirl.create(:technology) }
   let (:admin_user) { FactoryGirl.create(:admin) }
@@ -50,5 +51,8 @@ RSpec.describe Admin::TechnologiesController, type: :controller do
       end
     end
   end
+=======
+RSpec.describe TechnologiesController, type: :controller do
+>>>>>>> team 7 refactored admin controllers and 1/6 tests
 
 end
