@@ -6,7 +6,7 @@ class Organization < ActiveRecord::Base
   validates :address, presence: true
   validates :overview, presence: true
   validates :employee_count, presence: true, numericality: {greater_than_or_equal_to: 1}
-  validates :tech_team_size, presence: true, numericality: {greater_than_or_equal_to: 1 }
+  validates :tech_team_size, presence: true, numericality: {greater_than_or_equal_to: 1}
   validate :reasonable_tech_team_size
 
   has_many :organization_technologies, dependent: :destroy
