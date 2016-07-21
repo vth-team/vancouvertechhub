@@ -8,6 +8,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'pg_search'
 gem "puma"
 gem "meetup_client", github: 'yeeie201/meetup_client'
 gem "simple_calendar", "~> 2.0"

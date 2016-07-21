@@ -1,7 +1,6 @@
 class SearchController < ApplicationController
 
   # The organization_display.jsx react component sends an ajax request with the appropriate parameters
-  
   def search
     unless params[:term].empty?
       term = Organization.published.where('name ILIKE ? OR overview ILIKE ?', "%#{params[:term]}%", "%#{params[:term]}%").flatten
@@ -44,5 +43,4 @@ class SearchController < ApplicationController
       format.json { render json: @results }
     end
   end
-
 end
