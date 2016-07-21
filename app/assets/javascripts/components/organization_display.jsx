@@ -26,7 +26,6 @@ var OrganizationsDisplay = React.createClass({
 
     //this.setState({ searchTerm: termSearch });
   },
-
   // filterOrganizationTechSize: function() {
   //   var techSizeSearch = this.refs.sizeInput.value;
   //   this.setState({ techSizeSearch: techSizeSearch });
@@ -34,6 +33,11 @@ var OrganizationsDisplay = React.createClass({
 
   render: function() {
     console.log(this.state.organizations)
+  filterOrganizationTechnology: function(){
+    //code goes here
+  },
+  render: function() {
+    console.log(organizations)
     var organizations = this.state.organizations.map(function(organization, index) {
       return <Organization organization = { organization }
                            key = { index }
