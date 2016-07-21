@@ -17,7 +17,6 @@ class UsersController < ApplicationController
       session[:user_id] = service.user.id
       render "users/account_verifications/create"
     else
-      @user = service.user
       render :new
     end
   end
