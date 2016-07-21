@@ -1,17 +1,35 @@
 var OrganizationsDisplay = React.createClass({
   getInitialState: function() {
-    return { searchTerm: null, techSizeSearch: null, techStacks: null };
+    return { organizations: this.props.organizations, searchTerm: null, techSizeSearch: null, techStacks: null };
   },
   filterOrganizations: function() {
-    var searchTerm = this.refs.searchInput.value.toLowerCase();
-    this.setState({ searchTerm: searchTerm });
+    var termSearch = this.refs.searchInput.value.toLowerCase();
+    var techSizeSearch = this.refs.sizeInput.value;
+    var technologySearch = this.refs.technologyInput.value;
+
+    var url = "search/?term="+termSearch+"?size="+techSizeSearch;
+
+    console.log(url)
+    $.ajax({
+      url: url,
+      method: "get",
+      success: function(data) {
+        this.setState({organizations: data.body})
+      },
+      error: function () {
+        console.log("Error")
+      }
+    }.bind(this));
+
+    this.setState({ searchTerm: termSearch });
   },
+
   filterOrganizationTechSize: function() {
     var techSizeSearch = this.refs.sizeInput.value;
     this.setState({ techSizeSearch: techSizeSearch });
   },
   render: function() {
-    var organizations = this.props.organizations.map(function(organization, index) {
+    var organizations = this.state.organizations.map(function(organization, index) {
       return <Organization organization = { organization }
                            key = { index }
                            searchTerm = { this.state.searchTerm }
@@ -19,9 +37,9 @@ var OrganizationsDisplay = React.createClass({
     }.bind(this));
 
     return <div>
-              <input id="organization-search" type="text" className="form-control" placeholder="Search" ref="searchInput" onChange= { this.filterOrganizations } ></input>
 
-              <select id="team-size" className="form-control" ref="sizeInput" onChange= { this.filterOrganizationTechSize } >
+              <input id="organization-search" type="text" className="form-control" placeholder="Search" ref="searchInput" onChange= { this.filterOrganizations } ></input>
+              <select id="team-size" className="form-control" ref="sizeInput" onChange= { this.filterOrganizations } >
                 <option value="0" defaultValue> Team Size </option>
                 <option value="1"> 25 or less </option>
                 <option value="2"> 26 - 50 </option>
