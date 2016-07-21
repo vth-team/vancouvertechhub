@@ -26,7 +26,8 @@ class SessionsController < ApplicationController
     redirect_to root_path, notice: "Logged out!"
   end
 
-private
+  private
+
   def redirect_if_loggedin
     redirect_to root_path, notice: "Already logged in" if user_signed_in?
   end
