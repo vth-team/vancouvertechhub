@@ -2,7 +2,7 @@
 
 <% @articles.each do |article| %>
   <div class="row">
-    <div class='col-sm-3'>
+    <div class='col-sm-6 col-md-3'>
       <%= image_tag(article.thumbnail, class: "news-image", onerror: "validateImage(event)") %>
     </div>
     <div class="col-sm-9">
