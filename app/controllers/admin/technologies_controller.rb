@@ -1,5 +1,5 @@
-class TechnologiesController < ApplicationController
-  
+class Admin::TechnologiesController < Admin::BaseController
+
   def create
     @technology = Technology.new(technology_params)
     if @technology.save
