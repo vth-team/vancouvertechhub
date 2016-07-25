@@ -38,19 +38,18 @@ Rails.application.routes.draw do
       resources :claim_requests
     end
 
-  get "/admin/events"         => "admin#events",
+    get "/events"         => "admin#events",
                               as: :admin_events
 
-  post "/admin/users"         => "admin#users"
-  resources :users, only: [:new, :create, :edit, :update, :destroy]
+    post "/users"         => "admin#users"
+    resources :users, only: [:new, :create, :edit, :update, :destroy]
 
-  get "/technologies"   => "admin#technologies",
+    get "/technologies"   => "admin#technologies",
                                 as: :technologies
 
-  resources :technologies, only: [:create, :destroy]
+    resources :technologies, only: [:create, :destroy]
 
   end
-
 
   root "organizations#index"
 end

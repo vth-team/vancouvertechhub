@@ -1,5 +1,12 @@
 class Admin::TechnologiesController < Admin::BaseController
 
+<<<<<<< a9cb6b6b25aac7983a2bb2986f40c46cf35e6223
+=======
+  # def index
+  #   @technologies = Technology.all
+  # end
+
+>>>>>>> add more testings
   def create
     @technology = Technology.new(technology_params)
     if @technology.save

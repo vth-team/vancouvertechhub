@@ -12,6 +12,7 @@ class OrganizationsController < ApplicationController
   end
 
   def show
+    binding.pry
     @claimed = @organization.claim_requests.find_by_status(true)
     @news_articles = @organization.news_articles
     hosting_event
