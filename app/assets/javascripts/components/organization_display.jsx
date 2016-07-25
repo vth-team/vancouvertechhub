@@ -1,33 +1,35 @@
 var OrganizationsDisplay = React.createClass({
+
   getInitialState: function() {
     return { organizations: this.props.organizations, searchTerm: null, techSizeSearch: null, techStacks: null };
   },
+
   filterOrganizations: function() {
     var termSearch = this.refs.searchInput.value.toLowerCase();
     var techSizeSearch = this.refs.sizeInput.value;
-    var technologySearch = this.refs.technologyInput.value;
-
+    // var technologySearch = this.refs.technologyInput.value; comes in pluses
     var url = "search/?term="+termSearch+"?size="+techSizeSearch;
 
-    console.log(url)
     $.ajax({
       url: url,
       method: "get",
       success: function(data) {
-        this.setState({organizations: data.body})
+        this.setState({organizations: data})
+        console.log(data)
       },
       error: function () {
         console.log("Error")
       }
     }.bind(this));
 
-    this.setState({ searchTerm: termSearch });
+    //this.setState({ searchTerm: termSearch });
   },
 
-  filterOrganizationTechSize: function() {
-    var techSizeSearch = this.refs.sizeInput.value;
-    this.setState({ techSizeSearch: techSizeSearch });
-  },
+  // filterOrganizationTechSize: function() {
+  //   var techSizeSearch = this.refs.sizeInput.value;
+  //   this.setState({ techSizeSearch: techSizeSearch });
+  // },
+
   render: function() {
     var organizations = this.state.organizations.map(function(organization, index) {
       return <Organization organization = { organization }
@@ -37,7 +39,6 @@ var OrganizationsDisplay = React.createClass({
     }.bind(this));
 
     return <div>
-
               <input id="organization-search" type="text" className="form-control" placeholder="Search" ref="searchInput" onChange= { this.filterOrganizations } ></input>
               <select id="team-size" className="form-control" ref="sizeInput" onChange= { this.filterOrganizations } >
                 <option value="0" defaultValue> Team Size </option>
@@ -52,6 +53,6 @@ var OrganizationsDisplay = React.createClass({
                 </div>
               </div>
               <br />
-            </div>;
+          </div>;
   }
 });
