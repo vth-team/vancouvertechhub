@@ -80,9 +80,9 @@ class OrganizationsController < ApplicationController
   private
 
   def find_organization
-    if current_user && user_is_admin?
-      @organization = Organization.find params[:id]
-    else
+    @organization = Organization.find params[:id]
+    if not (current_user && user_is_admin?) ||
+      (current_user && current_user.organization_id == @organization.id)
       @organization = Organization.published.find params[:id]
     end
   end
