@@ -29,7 +29,8 @@ class Organization < ActiveRecord::Base
 
   # Search using the pg_search gem
   include PgSearch
-  pg_search_scope :search_in_name_and_overview, against: %i(name overview), using: { tsearch: { any_word: true } }
+  pg_search_scope :search_in_name, against: :name, using: { tsearch: { prefix: true, suffix: true } }
+  pg_search_scope :search_in_overview, against: :overview, using: { tsearch: {any_word: true } }
   pg_search_scope :search_by_tech_team_size, against: :tech_team_size
   pg_search_scope :search_by_tech_stack, against: :tech_stack
   def tech_stack

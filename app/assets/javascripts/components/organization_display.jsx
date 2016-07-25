@@ -42,9 +42,9 @@ var OrganizationsDisplay = React.createClass({
               <input id="organization-search" type="text" className="form-control" placeholder="Search" ref="searchInput" onChange= { this.filterOrganizations } ></input>
               <select id="team-size" className="form-control" ref="sizeInput" onChange= { this.filterOrganizations } >
                 <option value="0" defaultValue> Team Size </option>
-                <option value="1"> 25 or less </option>
+                <option value="1"> 25 or fewer </option>
                 <option value="2"> 26 - 50 </option>
-                <option value="3"> 50 or more </option>
+                <option value="3"> more than 50 </option>
               </select>
               <br />
               <div class="container-fluid text-center">
