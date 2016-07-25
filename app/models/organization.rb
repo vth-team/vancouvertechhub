@@ -27,17 +27,6 @@ class Organization < ActiveRecord::Base
   mount_uploader :image3, ImageUploader
   mount_uploader :image4, ImageUploader
 
-  # Search using the pg_search gem
-  include PgSearch
-  pg_search_scope :search_in_name, against: :name, using: { tsearch: { prefix: true, suffix: true } }
-  pg_search_scope :search_in_overview, against: :overview, using: { tsearch: {any_word: true } }
-  pg_search_scope :search_by_tech_team_size, against: :tech_team_size
-  pg_search_scope :search_by_tech_stack, against: :tech_stack
-  def tech_stack
-    self.technologies
-  end
-  # Search end
-
   def self.unclaimed
     joins("left join users on users.organization_id = organizations.id").where("users.id": nil)
   end

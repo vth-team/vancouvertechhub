@@ -1,11 +1,10 @@
 class SearchController < ApplicationController
 
-  # The organization_display.jsx react component sends an ajax request with the appropriate parameters
+   # The organization_display.jsx react component sends an ajax request with the appropriate parameters
   def search
     @results = []
     if params[:term]
-      @results.concat(Organization.where('name ILIKE ?', "%#{params[:term]}%"))
-      @results.concat(Organization.search_in_overview(params[:term]))
+      @results.concat(Organization.where('name ILIKE ? OR overview ILIKE ?', "%#{params[:term]}%", "%#{params[:term]}%"))
     end
     if params[:size]
       if params[:size] == "1"
