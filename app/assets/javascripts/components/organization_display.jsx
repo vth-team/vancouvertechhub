@@ -8,19 +8,21 @@ var OrganizationsDisplay = React.createClass({
     var termSearch = this.refs.searchInput.value.toLowerCase();
     var techSizeSearch = this.refs.sizeInput.value;
     // var technologySearch = this.refs.technologyInput.value; comes in pluses
-    var url = "search/?term="+termSearch+"?size="+techSizeSearch;
+    var url = "search/?term="+termSearch+"&size="+techSizeSearch;
+    var that = this
 
     $.ajax({
       url: url,
       method: "get",
+      dataType: 'json',
       success: function(data) {
-        this.setState({organizations: data})
-        console.log(data)
+        that.setState({organizations: data})
+        // console.log(data)
       },
       error: function () {
         console.log("Error")
       }
-    }.bind(this));
+    });
 
     //this.setState({ searchTerm: termSearch });
   },
@@ -31,6 +33,7 @@ var OrganizationsDisplay = React.createClass({
   // },
 
   render: function() {
+    console.log(this.state.organizations)
     var organizations = this.state.organizations.map(function(organization, index) {
       return <Organization organization = { organization }
                            key = { index }
