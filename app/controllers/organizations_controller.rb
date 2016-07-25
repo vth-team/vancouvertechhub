@@ -81,11 +81,11 @@ class OrganizationsController < ApplicationController
 
   def find_organization
     @organization = Organization.find params[:id]
-    if current_user && user_is_admin? || (current_user && current_user.organization_id == @organization.id)
-    else
-    @organization = Organization.published.find params[:id]
+    if not (current_user && user_is_admin?) ||
+      (current_user && current_user.organization_id == @organization.id)
+      @organization = Organization.published.find params[:id]
     end
- end
+  end
 
   def organization_params
     params.require(:organization).permit([:name, :address, :overview, :employee_count, :tech_team_size, :website, :twitter, :logo, :published, :image, :image2, :image3, :image4, :user_id, {technology_ids: []} ])
