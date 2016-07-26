@@ -21,8 +21,8 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-
       </div>
+
       <div class="collapse navbar-collapse" id="responsive-menu">
         <ul class="nav navbar-nav">
           <li class="li-nav"><%= link_to "Directory", root_path, class: "directory" %></li>
@@ -30,54 +30,53 @@
           <li class="li-nav"><%= link_to "News", news_index_path, class: "directory" %></li>
           <% if user_signed_in? %>
             <% if current_user && current_user.admin? %>
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expaned="false" href="#"><i class="fa fa-user fa-1x" aria-hidden="true"></i> Admin Panel <i class="fa fa-caret-down fa-lg" aria-hidden="true"></i></a>
-              <ul class="dropdown-menu text-center">
-                <li class="li-nav"><%= link_to "Users", admin_users_path%></li>
-                <li class="li-nav"><%= link_to "Technologies", admin_technologies_path%></li>
-                <li class="user-profile"><%= link_to "Edit Profile", edit_user_path(current_user) %></li>
-                <li class="user-profile"><%= link_to "Edit Password", edit_password_change_path(current_user) %></li>
-                <li class="divider"></li>
-                <li class="user-profile"><%= link_to "Log out", sessions_path, method: :delete %></li>
-                <%end%>
-                <% else %>
-                <li class="li-nav"><%= link_to "Sign In", new_session_path %></li>
-                <li class="li-nav"> <%= link_to "Sign Up", new_user_path, id: "btn-sign-up" %></li>
-                <% end %>
-              </ul>
-            </li>
-          </ul>
-        </div>
+              <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expaned="false" href="#"><i class="fa fa-user fa-1x" aria-hidden="true"></i> Admin Panel <i class="fa fa-caret-down fa-lg" aria-hidden="true"></i></a>
+                <ul class="dropdown-menu text-center">
+                  <li class="li-nav"><%= link_to "Users", admin_users_path%></li>
+                  <li class="li-nav"><%= link_to "Technologies", admin_technologies_path%></li>
+                  <li class="user-profile"><%= link_to "Edit Profile", edit_user_path(current_user) %></li>
+                  <li class="user-profile"><%= link_to "Edit Password", edit_password_change_path(current_user) %></li>
+                  <li class="divider"></li>
+                  <li class="user-profile"><%= link_to "Log out", sessions_path, method: :delete %></li>
+                </ul>
+              </li>
+            <%end%>
+          <% end %>
+        </ul>
       </div>
-    </nav>
-    <% if flash[:notice] %>
+    </div>
+  </nav>
+  <% if flash[:notice] %>
     <div class="alert alert-success">
       <%= flash[:notice] %>
     </div>
   <% elsif flash[:alert] %>
-  <div class="alert alert-danger">
-    <%= flash[:alert] %>
-  </div>
+    <div class="alert alert-danger">
+      <%= flash[:alert] %>
+    </div>
   <% end %>
 
-<div class="container">
-<%= yield %>
-</div>
+  <div class="container">
+    <%= yield %>
+  </div>
 
-<div class="bottomMenu navbar-fixed-bottom navbar-inverse">
-  <div class="navbar-left footer pull-left text-left">
-    <ul class="nav navbar-nav">
-      <li><%= link_to "About", about_path %></li>
-      <%if user_signed_in?%>
-        <% if current_user.missing_organization? && !current_user.admin?%>
-        <li class="li-nav"><%= link_to "Create Organization", new_organization_path, class:"directory" %></li>
-        <li class="user-profile"><%= link_to "Log out", sessions_path, method: :delete %></li>
-        <% elsif !current_user.admin? %>
-        <li class="li-nav"><%= link_to "My Organization", organization_path(current_user.organization), class:"directory" %></li>
-        <li class="user-profile"><%= link_to "Log out", sessions_path, method: :delete %></li>
-        <% end %>
+  <div class="bottomMenu navbar-fixed-bottom navbar-inverse">
+    <div class="navbar-left footer pull-left text-left">
+      <ul class="nav navbar-nav">
+        <li><%= link_to "About", about_path %></li>
+        <%if user_signed_in?%>
+          <% if current_user.missing_organization? && !current_user.admin?%>
+            <li class="li-nav"><%= link_to "Create Organization", new_organization_path, class:"directory" %></li>
+            <li class="user-profile"><%= link_to "Log out", sessions_path, method: :delete %></li>
+          <% elsif !current_user.admin? %>
+            <li class="li-nav"><%= link_to "My Organization", organization_path(current_user.organization), class:"directory" %></li>
+            <li class="user-profile"><%= link_to "Log out", sessions_path, method: :delete %></li>
+          <% end %>
         <% else %>
-        <li><%= link_to "Create Organization", new_organization_path %></li>
+          <li><%= link_to "Create Organization", new_organization_path %></li>
+          <li class="li-nav"><%= link_to "Sign In", new_session_path %></li>
+          <li class="li-nav"> <%= link_to "Sign Up", new_user_path, id: "btn-sign-up" %></li>
         <% end %>
       </ul>
     </div>
