@@ -30,6 +30,7 @@ Rails.application.routes.draw do
 
   get "/about"                => "home#about"
 
+
   namespace :admin do
     # get "/organizations"  => "admin#organizations",
     #                             as: :organizations
@@ -40,15 +41,13 @@ Rails.application.routes.draw do
   get "/admin/events"         => "admin#events",
                               as: :admin_events
 
-  get "/admin/users"          => "admin#users",
-                              as: :admin_users
-
   post "/admin/users"         => "admin#users"
+  resources :users, only: [:new, :create, :edit, :update, :destroy]
 
-    get "/technologies"   => "admin#technologies",
+  get "/technologies"   => "admin#technologies",
                                 as: :technologies
 
-    resources :technologies, only: [:create, :destroy]
+  resources :technologies, only: [:create, :destroy]
 
   end
 

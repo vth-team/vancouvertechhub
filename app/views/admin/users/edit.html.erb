@@ -1,0 +1,21 @@
+<h1>Edit User</h1>
+
+<%= render "user_errors" %>
+
+<%= link_to "Delete User", user_path(@user), method: :delete,
+                                  data: {confirm: "Are you sure?"} %>
+
+<br>
+<br>
+<div class="col-lg-3 col-md-4 col-xs-8">
+  <%= simple_form_for @user, class: "form-horizontal" do |f|%>
+    <%= f.input :first_name%>
+    <%= f.input :last_name %>
+    <%= f.input :email %>
+    <%= f.association :organization, collection: @organizations, input_html: {class: "chosen-select"} %>
+    <% if (can? :manage, @user) && (@user.id != current_user.id) %>
+      <%= f.input :admin, label: "Admin",as: :boolean, checked_value: true, unchecked_value: false %>
+    <% end %>
+    <%= f.submit "Update User", class: "btn btn-primary" %>
+  <% end  %>
+</div>
