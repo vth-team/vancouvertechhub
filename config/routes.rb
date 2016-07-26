@@ -32,8 +32,8 @@ Rails.application.routes.draw do
 
 
   namespace :admin do
-    # get "/organizations"  => "admin#organizations",
-    #                             as: :organizations
+    get "/organizations"  => "admin#organizations",
+                                as: :organizations
     resources :organizations do
       resources :claim_requests
     end
