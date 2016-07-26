@@ -42,6 +42,7 @@ Rails.application.routes.draw do
                               as: :admin_events
 
     post "/users"         => "admin#users"
+    
     resources :users, only: [:new, :create, :edit, :update, :destroy]
 
     get "/technologies"   => "admin#technologies",
