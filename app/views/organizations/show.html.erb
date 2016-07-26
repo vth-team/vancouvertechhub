@@ -49,7 +49,10 @@
 
   <script type="text/javascript">
     function initialize() {
-      var orgLocation = {lat: <%= @organization.latitude %>, lng: <%= @organization.longitude %>};
+      var orgLocation = {
+        lat: <%= @organization.latitude %>,
+        lng: <%= @organization.longitude %>
+      };
       // Create a map object and specify the DOM element for display.
       var map = new google.maps.Map(document.getElementById('map-org'), {
         center: orgLocation,
@@ -67,7 +70,7 @@
       // var companyoverview = <%= @organization.overview %>;
 
       // Create an info window for the marker
-      var infowindow = new google.maps.InfoWindow({
+      var infoWindow = new google.maps.InfoWindow({
         content: '<h2>'+'<%= @organization.name %>'+'</h2><p>'+'<%= @organization.overview %>'+'</p>',
         maxWidth: 200
       });
