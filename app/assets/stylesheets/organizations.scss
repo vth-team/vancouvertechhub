@@ -58,21 +58,14 @@ img.full-width {
   float:left;
 }
 
+.comapny-info {
+  float:left;
+}
 
 div.container {
   div.single-map {
-    position: absolute;
-    right: 6%;
-    top: 75px;
-    float:right;
-    width:200px;
-    height:160px;
-    transition: 1s;
-  }
-
-  div.single-map:hover {
-    width:400px;
-    height:300px;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
 
   @media (max-width: 1020px) {
@@ -81,6 +74,7 @@ div.container {
     }
   }
 }
+
 
 .chosen-container-multi .chosen-choices {
   width: 100%;
@@ -109,4 +103,27 @@ div.container {
 #team-size {
   float: right;
   width: 20%;
+}
+
+.sidebar-news {
+  max-height: 400px;
+  padding: 0px;
+  overflow-y: scroll;
+}
+
+.sidebar-upcoming-events {
+  max-height: 400px;
+  padding: 0px;
+  overflow-y: scroll;
+}
+
+.sidebar-twitter {
+  max-height: 400px;
+  padding: 0px;
+  overflow-y: scroll;
+}
+
+#twitter-feed {
+  padding-left: 0;
+  padding-right: 0;
 }
