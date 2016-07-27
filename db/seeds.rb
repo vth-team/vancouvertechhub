@@ -118,7 +118,7 @@ sleep(0.2);
 o10 = Organization.create(name: 'Payfirma', address: '885 W Georgia St #1200, Vancouver, BC V6C 3E8, Canada', overview: '"Payfirma helps you accept credit card payments online, in your store, and on your mobile device. Our cloud platform processes your payments and puts all your transaction data in one place. With everything in one place, you can use your data to make smarter business decisions about your customers, products, and employees. Our customers tell us that we are the best payments company they\'ve worked with and we continually work hard to keep them happy."', employee_count: 60, tech_team_size: 60, website: 'https://www.payfirma.com/', logo: 'https://pbs.twimg.com/profile_images/378800000467536933/4b4f3809e065407c737ca5ed298e7877_400x400.png', twitter: 'payfirma', published: true)
 sleep(0.2);
 
-puts "adding o11 to o20"
+puts "adding o11 to o22"
 o11 = Organization.create(name: 'Food.ee', address: '120 Columbia St, Vancouver, BC V6A 3Z8, Canada', overview: 'Foodee works with the city\'s best restaurants to provide delicious, healthy, and sustainable food to the best teams. We believe every meal should be made with fresh, local ingredients and always provide exceptional taste. Eating great food with your team improves communication, productivity, and most importantly provides quality team time.', employee_count: 70, tech_team_size: 70, website: 'https://www.food.ee/', logo: 'https://pbs.twimg.com/profile_images/623564641277349888/xrmab42a_400x400.png', twitter: 'foodee', published: true)
 sleep(0.2);
 
@@ -151,6 +151,11 @@ sleep(0.2);
 o21 = Organization.create(name: 'Human API', address: '1402 - 409 Granville Street, Vancouver, BC V6C 1T1, Canada', overview: '"Human API is the easiest way to integrate health data from anywhere.
 
 We provide a single, secure connection to data from medical records, wearable sensors, testing services, and wellness devices and apps. Using our end-user authentication process, individuals can securely share their health data with any application or system, regardless of how that data was recorded, processed or stored."', employee_count: 20, tech_team_size: 20, website: 'https://www.humanapi.co/',logo: 'https://pbs.twimg.com/profile_images/378800000816901251/0dab64e7bd2cc59049520d7ca4649462_400x400.png', twitter: 'human_api', published: false)
+sleep(0.2);
+
+o22 = Organization.create(name: "SKIO Music", address: '390 Cambie St, Vancouver, BC V6B 2N3, Canada', overview: 'SKIO Music is a digital licensing and collaboration platform for the music industry.
+
+Our curated community of artists and labels have access to direct licensing deals with secure instant payments, remix contests and opportunities to be officially released on labels, as well as connection directly to the Pros.', employee_count: 25, tech_team_size: 15, website:'https://skiomusic.com/', logo:'https://pbs.twimg.com/profile_images/751473786847801344/Gk3e---g.jpg', twitter: 'SKIOMusic', published: false)
 sleep(0.2);
 
 
