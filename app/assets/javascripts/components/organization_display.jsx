@@ -43,9 +43,9 @@ var OrganizationsDisplay = React.createClass({
                 <option value="2"> 26 - 50 </option>
                 <option value="3"> more than 50 </option>
               </select>
-              <br />
-              <div class="container-fluid text-center">
-                <div class="row">
+              <div className="clearfix"></div>
+              <div className="container-fluid text-center">
+                <div className="row">
                   { organizations }
                 </div>
               </div>
