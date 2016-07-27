@@ -1,43 +1,40 @@
 var OrganizationsDisplay = React.createClass({
 
   getInitialState: function() {
-    return { organizations: this.props.organizations, searchTerm: null, techSizeSearch: null, techStacks: null };
+    return { organizations: this.props.organizations, searchTerm: null, techSizeSearch: null, technologySearch: null };
   },
-
+  getTechValue: function(array){
+      // do stuff here
+    console.log(array.join('+'));
+    this.setState({
+      technologySearch: "" + array.join('+') + ""
+    }, this.filterOrganizations);
+  },
   filterOrganizations: function() {
     var termSearch = this.refs.searchInput.value.toLowerCase();
     var techSizeSearch = this.refs.sizeInput.value;
-    var technologySearch = this.refs.technologyInput.value;
-
-    var url = "search/?term="+termSearch+"?size="+techSizeSearch;
-
+    // var technologySearch = "";
+    var url = "search/";
+    var that = this;
     console.log(url)
     $.ajax({
       url: url,
       method: "get",
+      dataType: 'json',
+      data: {
+        term: termSearch,
+        size: techSizeSearch,
+        tech: this.state.technologySearch
+      },
       success: function(data) {
-        this.setState({organizations: data.body})
+        that.setState({organizations: data})
       },
       error: function () {
         console.log("Error")
       }
-    }.bind(this));
-
-    this.setState({ searchTerm: termSearch });
-  },
-    //this.setState({ searchTerm: termSearch });
-  // filterOrganizationTechSize: function() {
-  //   var techSizeSearch = this.refs.sizeInput.value;
-  //   this.setState({ techSizeSearch: techSizeSearch });
-  // },
-
-  render: function() {
-    console.log(this.state.organizations)
-  filterOrganizationTechnology: function(){
-    //code goes here
+    });
   },
   render: function() {
-    console.log(organizations)
     var organizations = this.state.organizations.map(function(organization, index) {
       return <Organization organization = { organization }
                            key = { index }
@@ -46,7 +43,8 @@ var OrganizationsDisplay = React.createClass({
     }.bind(this));
 
     return <div>
-              <input id="organization-search" type="text" className="form-control" placeholder="Search" ref="searchInput" onChange= { this.filterOrganizations } ></input>
+      <MultiSelect getTechValue={this.getTechValue} ref="techStack" techStacks={this.props.techStacks} />
+      <input id="organization-search" type="text" className="form-control" placeholder="Search" ref="searchInput" onChange= { this.filterOrganizations } ></input>
               <select id="team-size" className="form-control" ref="sizeInput" onChange= { this.filterOrganizations } >
                 <option value="0" defaultValue> Team Size </option>
                 <option value="1"> 25 or fewer </option>

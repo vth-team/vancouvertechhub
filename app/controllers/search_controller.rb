@@ -16,14 +16,17 @@ class SearchController < ApplicationController
         size = Organization.all
       end
     end
-    # if params[:tech]
-    #   # This gets the ids of the specified techs
-    #   techs = params[:tech].split(' ').map{|x| x.to_i}
-    #   org_ids = OrganizationTechnology.where(technology_id: techs).pluck('organization_id').uniq
-    #   org_ids.each do |o|
-    #     @results.concat(Organization.where(id: o))
-    #   end
-    # end
+    if params[:tech] != ""
+      tech = []
+      # This gets the ids of the specified techs
+      techs = params[:tech].split(' ').map{|x| x.to_i}
+      org_ids = OrganizationTechnology.where(technology_id: techs).pluck('organization_id').uniq
+      org_ids.each do |o|
+        tech << (Organization.where(id: o))
+      end
+    else
+      tech = Organization.all
+    end
     @results = term & size & tech
     respond_to do |format|
       format.html { render json: @results }
