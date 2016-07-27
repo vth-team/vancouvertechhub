@@ -3,11 +3,12 @@ var OrganizationsDisplay = React.createClass({
   getInitialState: function() {
     return { organizations: this.props.organizations, searchTerm: null, techSizeSearch: null, technologySearch: null };
   },
-  getTechValue: function(array){
-      // do stuff here
-    console.log(array.join('+'));
+  getTechValue: function(string){
+    // do stuff here
+    var arr = string.split(",");
+    var outArr = arr.join("+");
     this.setState({
-      technologySearch: "" + array.join('+') + ""
+      technologySearch: outArr
     }, this.filterOrganizations);
   },
   filterOrganizations: function() {
@@ -43,7 +44,7 @@ var OrganizationsDisplay = React.createClass({
     }.bind(this));
 
     return <div>
-      <MultiSelect getTechValue={this.getTechValue} ref="techStack" techStacks={this.props.techStacks} />
+      <MultiSelectField sendValue={this.getTechValue} techStacks={this.props.techStacks} />
       <input id="organization-search" type="text" className="form-control" placeholder="Search" ref="searchInput" onChange= { this.filterOrganizations } ></input>
               <select id="team-size" className="form-control" ref="sizeInput" onChange= { this.filterOrganizations } >
                 <option value="0" defaultValue> Team Size </option>

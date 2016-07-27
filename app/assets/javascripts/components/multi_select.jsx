@@ -1,47 +1,30 @@
-var MultiSelect = React.createClass({
-  getInitialState: function(){
-    return {
-      vis: "none",
-      text: ""
-    }
-  },
-  handleChange: function(event) {
-  var options = event.target.options;
-  var value = [];
-  var text = [];
-  for (var i = 0, l = options.length; i < l; i++) {
-    if (options[i].selected) {
-      value.push(options[i].value);
-      text.push(options[i].text);
-    }
-  }
-  // this.props.someCallback(value);
-  this.setState({text: text.join(", ")})
-  this.props.getTechValue(value);
-  },
-  showMenu: function(){
-    console.log(this.refs.selectBox)
-    if (this.state.vis === "none"){
-      this.setState({vis: "block"});
-    }else{
-      this.setState({vis: "none"});
-    }
-  },
-  render: function() {
-    var options = this.props.techStacks.map(function(obj, index){
-      return <option key={index} value={obj.id}>{obj.name}</option>
+
+// react-select component
+var MultiSelectField = React.createClass({
+	displayName: 'MultiSelectField',
+	propTypes: {
+		label: React.PropTypes.string,
+	},
+	getInitialState: function() {
+	  var techStack = this.props.techStacks.map(function(obj, index){
+      return {value: obj.id.toString(), label: obj.name, data: obj.id}
     });
-    var height = "" + this.props.techStacks.length * 16 + "px" //font height variable?
-   
-    return (
-      <div>
-
-      <input id="techstack-search" type="text" className="form-control" onClick={this.showMenu} value={this.state.text} placeholder="Tech Stacks" ref="searchInput" onChange= { this.filterOrganizations } ></input>
-        <select style={{display: this.state.vis, height: height, lineHeight: height, border: '1px black solid' }} multiple={true} ref="selectBox" value={this.props.arrayOfOptionValues} onChange={this.handleChange}>
-         {options}
-        </select>
-      </div>
-    );
-  }
+	  return {
+			options: techStack,
+			value: [],
+		};
+	},
+	handleSelectChange: function(value) {
+		console.log('You\'ve selected:', value);
+    this.setState({ value });
+    this.props.sendValue(value);
+	},
+	render: function() {
+		return (
+			<div id="techstack-search" className="section">
+				<h3 className="section-heading">{this.props.label}</h3>
+				<Select multi simpleValue disabled={this.state.disabled} value={this.state.value} placeholder="Search Technologies" options={this.state.options} onChange={this.handleSelectChange} />
+			</div>
+		);
+	}
 });
-
