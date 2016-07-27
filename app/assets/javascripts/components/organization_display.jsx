@@ -3,21 +3,12 @@ var OrganizationsDisplay = React.createClass({
   getInitialState: function() {
     return { organizations: this.props.organizations, searchTerm: null, techSizeSearch: null, technologySearch: null };
   },
-  getTechValue: function(string){
-    // do stuff here
-    var arr = string.split(",");
-    var outArr = arr.join("+");
-    this.setState({
-      technologySearch: outArr
-    }, this.filterOrganizations);
-  },
   filterOrganizations: function() {
     var termSearch = this.refs.searchInput.value.toLowerCase();
     var techSizeSearch = this.refs.sizeInput.value;
     // var technologySearch = "";
     var url = "search/";
     var that = this;
-    console.log(url)
     $.ajax({
       url: url,
       method: "get",

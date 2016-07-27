@@ -7,6 +7,7 @@ class SearchController < ApplicationController
     else
       term = nil
     end
+<<<<<<< 9dbde827f906a00e9012e1697bae68d3af21f3b7
     
     if params[:size] == "0"
       size = nil
@@ -18,6 +19,16 @@ class SearchController < ApplicationController
       size = Organization.published.where('tech_team_size > ?', 50)
     else
       flash[:alert] = "Invalid search!"
+=======
+    if params[:size] || params[:size] == 0
+      size = []
+    elsif params[:size] == "1"
+      size = Organization.where(tech_team_size: 1..25)
+    elsif params[:size] == "2"
+      size = Organization.where(tech_team_size: 26..50)
+    elsif params[:size] == "3"
+      size = Organization.where('tech_team_size > ?', 50)
+>>>>>>> old copy
     end
     unless params[:tech].empty?
       techs = []
@@ -30,10 +41,16 @@ class SearchController < ApplicationController
       end
       techs.flatten!
     end
+<<<<<<< 9dbde827f906a00e9012e1697bae68d3af21f3b7
 
     # Elements are nil if no search was executed in the respective category
     # This then gets the intersection of non-nil search results
     @results = [term, size, techs].keep_if{|x| x}.reduce(:&)
+=======
+    @results = term & size & tech
+    byebug
+  
+>>>>>>> old copy
     respond_to do |format|
       format.html { render json: @results }
       format.json { render json: @results }
