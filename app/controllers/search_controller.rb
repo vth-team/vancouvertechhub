@@ -16,6 +16,7 @@ class SearchController < ApplicationController
         size = Organization.all
       end
     end
+    
     if params[:tech] != ""
       tech = []
       # This gets the ids of the specified techs
