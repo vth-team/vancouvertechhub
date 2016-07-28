@@ -39,7 +39,6 @@ class SearchController < ApplicationController
   
     # When deleting search options the search controller still receives an ajax request with no queries, hence the line below
     @results = Organization.all if @results.nil?
-    
     respond_to do |format|
       format.html { render json: @results }
       format.json { render json: @results }
