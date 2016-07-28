@@ -1,5 +1,6 @@
 class AdminController < ApplicationController
   before_action :authenticate_admin!
+  layout "admin"
 
   def organizations
     @organizations = Organization.all.order("name")
