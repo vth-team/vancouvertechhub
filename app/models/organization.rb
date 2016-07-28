@@ -49,7 +49,7 @@ class Organization < ActiveRecord::Base
   end
 
   def reasonable_tech_team_size
-    unless tech_team_size < employee_count
+    unless tech_team_size <= employee_count
       errors.add(:tech_team_size, "Team size must be less than organization size")
     end
   end
