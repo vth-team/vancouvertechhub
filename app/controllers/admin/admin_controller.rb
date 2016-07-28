@@ -1,3 +1,4 @@
+<<<<<<< 674f75c3f95751656362d15f2961eb27accd1b7e:app/controllers/admin/admin_controller.rb
 class Admin::AdminController < Admin::BaseController
 
   def organizations
@@ -30,3 +31,5 @@ class Admin::AdminController < Admin::BaseController
   end
 
 end
+=======
+>>>>>>> test:app/controllers/admin_controller.rb
