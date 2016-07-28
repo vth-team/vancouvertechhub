@@ -85,7 +85,8 @@ Technology.create(name: "YAML")
 
 
 organization_list = [
-  { name: 'CodeCore', address: '142 W Hastings St, Vancouver, BC V6B 1G8, Canada', overview: 'CodeCore is Western Canada\'s first developer school. Based in Vancouver, CodeCore Bootcamp recruits the best and brightest applicants and immerses students in an intensive, 12-week developer bootcamp. It was founded by Tammam Kbeili, the sickest teacher around.', employee_count: 16, tech_team_size: 16, website: 'https://codecore.ca/', logo: 'https://pbs.twimg.com/profile_images/378800000407550507/cc18ca42b18803f6c8c3dbf09b28a60b_400x400.jpeg', twitter: 'codecoreyvr', published: true
+  {
+    name: 'CodeCore', address: '142 W Hastings St, Vancouver, BC V6B 1G8, Canada', overview: 'CodeCore is Western Canada\'s first developer school. Based in Vancouver, CodeCore Bootcamp recruits the best and brightest applicants and immerses students in an intensive, 12-week developer bootcamp. It was founded by Tammam Kbeili, the sickest teacher around.', employee_count: 16, tech_team_size: 16, website: 'https://codecore.ca/', logo: 'https://pbs.twimg.com/profile_images/378800000407550507/cc18ca42b18803f6c8c3dbf09b28a60b_400x400.jpeg', twitter: 'codecoreyvr', published: true
   },{
     name: 'Hootsuite', address: '5 E 8th Ave, Vancouver, BC V5T 1R6, Canada', overview: 'Hootsuite is a social media management system for brand management created by Ryan Holmes in 2008. The system’s user interface takes the form of a dashboard, and supports social network integrations for Twitter, Facebook, LinkedIn, Google+, Foursquare, MySpace, WordPress, TrendSpottr and Mixi.', employee_count: 600, tech_team_size: 600, website: 'https://hootsuite.com', logo: 'https://pbs.twimg.com/profile_images/728070469790748676/CRXV9v3C_400x400.jpg', twitter: 'hootsuite', published: true
   },{
