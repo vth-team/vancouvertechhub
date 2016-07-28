@@ -167,3 +167,22 @@ clio.technologies = [javascript, html, ruby, rails]
 # Associate Hootsuite Technologies:
 hootsuite = Organization.find_by_name("Hootsuite")
 hootsuite.technologies = [javascript, html, ruby, java, clojure]
+
+techarray = Technology.all
+
+puts "making 50 companies"
+50.times do
+  employee_count = Faker::Number.between(1,100)
+  company = Organization.create(
+  name: Faker::Company.name,
+  address: Faker::Address.street_address,
+  overview: Faker::Hipster.sentence,
+  employee_count: employee_count,
+  tech_team_size: Faker::Number.between(1,employee_count),
+  logo: Faker::Company.logo,
+  website: "https://codecore.ca/",
+  published: true,
+  )
+  company.technologies = techarray.sample(3)
+end
+puts "done"
