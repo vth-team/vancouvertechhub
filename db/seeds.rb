@@ -5,88 +5,37 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-
-Organization.destroy_all
-ClaimRequest.destroy_all
-User.destroy_all
-Technology.destroy_all
-NewsFilter.destroy_all
-
-
+PASSWORD = "community"
 
 NewsFilter.create(search_term: 'Vancouver Tech')
 NewsFilter.create(search_term: 'Elon Musk')
 
-u1 = User.create(first_name: 'Frank', last_name: 'Liu',
-              email: 'frankliu81@gmail.com', password: 'bu',
-              password_confirmation: 'bu', activated: true, admin: true)
+20.times do
+  user_params = { first_name:             Faker::Name.first_name,
+                  last_name:              Faker::Name.last_name,
+                  email:                  Faker::Internet.email,
+                  password:               PASSWORD,
+                  password_confirmation:  PASSWORD,
+                  activated:              true
+                }
+  puts "Generating #{user_params[:first_name]} #{user_params[:last_name]}..."
+  User.create(user_params)
+end
+puts "20 Users have been created"
 
-u2 = User.create(first_name: 'Frank2', last_name: 'Liu',
-              email: 'frankliu82@gmail.com', password: 'bu',
-              password_confirmation: 'bu', activated: true)
+tech_names = ["C", "Cplusplus", "CSS", "Clojure", "Debug", "Delphi", "Diff", "ERB",
+              "Groovy", "HAML", "HTML", "JSON", "Java", "JavaScript",
+              "Markdown", "PHP", "Python", "Raydebug", "Ruby",
+              "Rails", "SQL", "Scanner", "Text", "XML", "YAML"]
 
-u3 = User.create(first_name: 'Denis', last_name: 'Trinh',
-              email: 'denistrinh@gmail.com', password: 'Community',
-              password_confirmation: 'Community', activated: true, admin: true)
-
-u4 = User.create(first_name: 'Denis2', last_name: 'Trinh',
-              email: 'denistrinh2@gmail.com', password: 'Community',
-              password_confirmation: 'Community', activated: true)
-
-u5 = User.create(first_name: 'Alex', last_name: 'Tang',
-              email: 'hyperdemonster@gmail.com', password: 'Community',
-              password_confirmation: 'Community', activated: true, admin: true)
-
-u6 = User.create(first_name: 'Alex2', last_name: 'Tang',
-              email: 'hyperdemonster2@gmail.com', password: 'Community',
-              password_confirmation: 'Community', activated: true)
-
-u7 = User.create(first_name: 'Todd', last_name: 'Cardoso',
-              email: 'todd1cardoso@gmail.com', password: 'Community',
-              password_confirmation: 'Community', activated: true, admin: true)
-
-u8 = User.create(first_name: 'Todd2', last_name: 'Cardoso',
-              email: 'todd1cardoso2@gmail.com', password: 'Community',
-              password_confirmation: 'Community', activated: true)
-
-u9 = User.create(first_name: 'Lucas', last_name: 'Cheung',
-              email: 'lucas20229763@hotmail.com', password: 'Community',
-              password_confirmation: 'Community', activated: true, admin: true)
-
-u10 = User.create(first_name: 'Lucas2', last_name: 'Cheung',
-              email: 'lucas202297632@hotmail.com', password: 'Community',
-              password_confirmation: 'Community', activated: true)
-
-Technology.create(name: "C")
-Technology.create(name: "Cplusplus")
-Technology.create(name: "CSS")
-Technology.create(name: "Clojure")
-Technology.create(name: "Debug")
-Technology.create(name: "Delphi")
-Technology.create(name: "Diff")
-Technology.create(name: "ERB")
-Technology.create(name: "Groovy")
-Technology.create(name: "HAML")
-Technology.create(name: "HTML")
-Technology.create(name: "JSON")
-Technology.create(name: "Java")
-Technology.create(name: "JavaScript")
-Technology.create(name: "Markdown")
-Technology.create(name: "PHP")
-Technology.create(name: "Python")
-Technology.create(name: "Raydebug")
-Technology.create(name: "Ruby")
-Technology.create(name: "Rails")
-Technology.create(name: "SQL")
-Technology.create(name: "Scanner")
-Technology.create(name: "Text")
-Technology.create(name: "XML")
-Technology.create(name: "YAML")
-
+for x in 0..tech_names.length - 1
+  Technology.create(name: tech_names[x])
+  puts "Created technololy - #{tech_names[x]}"
+end
+puts "25 Technology Terms have been created"
 
 organization_list = [
-  {
-    name: 'CodeCore', address: '142 W Hastings St, Vancouver, BC V6B 1G8, Canada', overview: 'CodeCore is Western Canada\'s first developer school. Based in Vancouver, CodeCore Bootcamp recruits the best and brightest applicants and immerses students in an intensive, 12-week developer bootcamp. It was founded by Tammam Kbeili, the sickest teacher around.', employee_count: 16, tech_team_size: 16, website: 'https://codecore.ca/', logo: 'https://pbs.twimg.com/profile_images/378800000407550507/cc18ca42b18803f6c8c3dbf09b28a60b_400x400.jpeg', twitter: 'codecoreyvr', published: true
+  { name: 'CodeCore', address: '142 W Hastings St, Vancouver, BC V6B 1G8, Canada', overview: 'CodeCore is Western Canada\'s first developer school. Based in Vancouver, CodeCore Bootcamp recruits the best and brightest applicants and immerses students in an intensive, 12-week developer bootcamp. It was founded by Tammam Kbeili, the sickest teacher around.', employee_count: 16, tech_team_size: 16, website: 'https://codecore.ca/', logo: 'https://pbs.twimg.com/profile_images/378800000407550507/cc18ca42b18803f6c8c3dbf09b28a60b_400x400.jpeg', twitter: 'codecoreyvr', published: true
   },{
     name: 'Hootsuite', address: '5 E 8th Ave, Vancouver, BC V5T 1R6, Canada', overview: 'Hootsuite is a social media management system for brand management created by Ryan Holmes in 2008. The system’s user interface takes the form of a dashboard, and supports social network integrations for Twitter, Facebook, LinkedIn, Google+, Foursquare, MySpace, WordPress, TrendSpottr and Mixi.', employee_count: 600, tech_team_size: 600, website: 'https://hootsuite.com', logo: 'https://pbs.twimg.com/profile_images/728070469790748676/CRXV9v3C_400x400.jpg', twitter: 'hootsuite', published: true
   },{
@@ -137,15 +86,15 @@ organization_list = [
     We provide a single, secure connection to data from medical records, wearable sensors, testing services, and wellness devices and apps. Using our end-user authentication process, individuals can securely share their health data with any application or system, regardless of how that data was recorded, processed or stored."', employee_count: 20, tech_team_size: 20, website: 'https://www.humanapi.co/',logo: 'https://pbs.twimg.com/profile_images/378800000816901251/0dab64e7bd2cc59049520d7ca4649462_400x400.png', twitter: 'human_api', published: false
   }
 ]
-
 organization_list.each do |org|
   Organization.create( org )
   puts "Creating #{org[:name]}"
 end
-
+puts "#{organization_list.count} Organizations have been created"
 
 ClaimRequest.create(user_id: User.first.id, organization_id: Organization.first.id)
 ClaimRequest.create(user_id: User.last.id, organization_id: Organization.last.id)
+puts "Created 2 Claims Requests"
 
 # Find Technologies by name
 javascript = Technology.find_by_name("JavaScript")
