@@ -42,6 +42,8 @@ Rails.application.routes.draw do
 
     get "/users"          => "admin#users"
 
+    get "/news_filters"   => "admin#news_filters"
+
     resources :users, only: [:new, :create, :edit, :update, :destroy]
 
     get "/technologies"   => "admin#technologies"

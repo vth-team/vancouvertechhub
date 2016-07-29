@@ -1,7 +1,3 @@
-<<<<<<< 5a9bc6efd6ddd1c199fdc1942902a8c38f21d20b
-<<<<<<< 674f75c3f95751656362d15f2961eb27accd1b7e:app/controllers/admin/admin_controller.rb
-=======
->>>>>>> eat it
 class Admin::AdminController < Admin::BaseController
 
   def organizations
@@ -29,13 +25,4 @@ class Admin::AdminController < Admin::BaseController
     @technology   = Technology.new
   end
 
-  def claims
-    @claims = ClaimRequest.all
-  end
-
 end
-<<<<<<< 5a9bc6efd6ddd1c199fdc1942902a8c38f21d20b
-=======
->>>>>>> test:app/controllers/admin_controller.rb
-=======
->>>>>>> eat it

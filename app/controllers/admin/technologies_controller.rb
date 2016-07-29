@@ -1,15 +1,5 @@
 class Admin::TechnologiesController < Admin::BaseController
 
-<<<<<<< 8b0daae31c6e9bc16422b8b247d178cdcffffc8f
-<<<<<<< a9cb6b6b25aac7983a2bb2986f40c46cf35e6223
-=======
-  # def index
-  #   @technologies = Technology.all
-  # end
-
->>>>>>> add more testings
-=======
->>>>>>> fixing routing problems
   def create
     @technology = Technology.new(technology_params)
     if @technology.save
