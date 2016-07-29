@@ -32,21 +32,19 @@ Rails.application.routes.draw do
 
 
   namespace :admin do
-    get "/organizations"  => "admin#organizations",
-                                as: :organizations
+    get "/organizations"  => "admin#organizations"
+
     resources :organizations do
       resources :claim_requests
     end
 
-    get "/events"         => "admin#events",
-                              as: :admin_events
+    get "/events"         => "admin#events"
 
-    post "/users"         => "admin#users"
-    
+    get "/users"          => "admin#users"
+
     resources :users, only: [:new, :create, :edit, :update, :destroy]
 
-    get "/technologies"   => "admin#technologies",
-                                as: :technologies
+    get "/technologies"   => "admin#technologies"
 
     resources :technologies, only: [:create, :destroy]
 
