@@ -1,4 +1,5 @@
 class TechnologiesController < ApplicationController
+  
   def create
     @technology = Technology.new(technology_params)
     if @technology.save
@@ -17,7 +18,7 @@ class TechnologiesController < ApplicationController
     end
   end
 
-private
+  private
 
   def technology_params
     params.require(:technology).permit([:name])

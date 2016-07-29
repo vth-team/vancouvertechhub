@@ -76,4 +76,13 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  Rails.application.config.middleware.use ExceptionNotification::Rack,
+    :email => {
+      :email_prefix => "[VTH ERROR] ",
+      :sender_address => %{"notifier" <error@vancouvertechhub.ca>},
+      :exception_recipients => %w{tam@codecore.ca codecorefrank@gmail.com}
+    }
+
+  ENV["BASE_URL"] = "http://vancouvertechhub.ca"
 end

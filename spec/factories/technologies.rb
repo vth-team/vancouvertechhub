@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :technology do
-    name "MyString"
+    name {Faker::Company.name}
   end
 end
