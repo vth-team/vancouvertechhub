@@ -1,55 +1,53 @@
 class OrganizationsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show, :filter]
-
   before_action :find_organization, only: [:show, :edit, :update, :destroy]
 
-  before_action :authorize_organization, only: [:edit, :update, :destroy]
-  skip_before_action :authorize_organization
+  ORGANIZATIONS_PER_PAGE = 20
 
   def new
+    if current_user.organization.present?
+      redirect_to organization_path(current_user.organization_id), alert: "You can only have one organization."
+    end
     @organization = Organization.new
   end
 
   def show
     @claimed = @organization.claim_requests.find_by_status(true)
+    @news_articles = @organization.news_articles
     hosting_event
-      respond_to do |format|
-        format.html { render } # render organizations/show.html.erb
-        format.json { render json: @organization.to_json }
-        format.xml  { render xml: @organization.to_xml }
-      end
+
+    respond_to do |format|
+      format.html { render }
+      format.json { render json: @organization.to_json }
+    end
   end
 
   def index
-    # @organizations = Organization.all  # original
-    # @organizations = Organization.paginate(:page => params[:page], :per_page => 3)
-     @organizations = Organization.page(params[:page]).per(18)
-
-    # respond_to do |format|
-      # format.html { render }
-      # format.json { render json: @organizations }
-    # end
+    @technologies = Technology.all
+    if current_user && user_is_admin?
+      @organizations = Organization.page(params[:page]).per(ORGANIZATIONS_PER_PAGE)
+    else
+      @organizations = Organization.published.page(params[:page]).per(ORGANIZATIONS_PER_PAGE)
+    end
   end
 
   def edit
     @organization = Organization.find params[:id]
+    if current_user.organization != @organization
+      redirect_to organization_path(current_user.organization_id), alert: "You cannot edit other people's organizations."
+    end
   end
 
   def filter
-    #puts ">>>>>>>>>>>>>>>>>>>>"
-    #puts params[:data_value]
     organization_ids = params[:data_value]
     @organizations = Organization.where("id in (?)", organization_ids)
-    #binding.pry
     respond_to do |format|
       format.js { render :filter_success }
     end
   end
 
   def update
-    # @organization.slug = nil
     if @organization.update organization_params
-
       redirect_to organization_path(@organization), notice: "Organization Updated!"
     else
       render :edit
@@ -61,29 +59,32 @@ class OrganizationsController < ApplicationController
     redirect_to organizations_path, notice: "organization: #{@organization.name} deleted!"
   end
 
-
   def create
-    @organization       = Organization.new(organization_params)
-    puts "#{@current_user}"
-    puts "#{current_user}"
-    @organization.user  = current_user
-    if @organization.save
-      flash[:notice] = "organization created!"
+    @organization      = Organization.new(organization_params)
+    @organization.user = current_user
 
-      redirect_to organization_path(@organization)
+    if @organization.save
+      FetchOrganizationNewsJob.perform_later(@organization.name, @organization.id)
+
+      if current_user.organization_id.present?
+        redirect_to current_user.organization, alert: "You can only have one organization."
+      else
+        redirect_to @organization, notice: "Organization Created!"
+      end
     else
       flash[:alert] = "organization didn't save!"
-
       render :new
     end
   end
 
-
-private
-
+  private
 
   def find_organization
     @organization = Organization.find params[:id]
+    if not (current_user && user_is_admin?) ||
+      (current_user && current_user.organization_id == @organization.id)
+      @organization = Organization.published.find params[:id]
+    end
   end
 
   def organization_params
@@ -99,5 +100,4 @@ private
     org_add = @organization.address.split(",")[0]
     @find = events.where("location ILIKE ?", "%#{org_add}%")
   end
-
 end

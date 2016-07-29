@@ -2,6 +2,39 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.header-container {
+  width: 100%;
+  border-left: none;
+  border-right: none;
+  position: relative;
+  padding: 20px;
+  position: inherit;
+
+  .video-container {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    height: 100%;
+    width: 101%;
+    overflow: hidden;
+    margin-left: -1%;
+  }
+
+  h2 {
+    opacity: 0.60;
+    width: 100%;
+    text-align: center;
+  }
+
+  p {
+    font-size: 2vw;
+    width: 100%;
+    color: #0E426C;
+    text-align: center;
+  }
+
+}
+
 form {
   .checkbox {
     display: inline-block;
@@ -21,21 +54,80 @@ img.full-width {
   width: 100%;
 }
 
-.company-name{
+.company-name {
   float:left;
 }
 
-div.container div.single-map{
-    position:absolute;
-    right:6%;
-    top: 75px;
-    float:right;
-    width:200px;
-    height:160px;
-    transition: 1s;
+.comapny-info {
+  float:left;
 }
 
-div.container div.single-map:hover{
-  width:400px;
-  height:300px;
+div.container {
+  div.single-map {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  @media (max-width: 1020px) {
+    .header-container{
+      min-height: 51vw;
+    }
+  }
+}
+
+
+.chosen-container-multi .chosen-choices {
+  width: 100%;
+  display: block;
+  height: 34px;
+  padding: 2px 12px;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555555;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+#organization-search {
+  float: left;
+  width: 40%;
+}
+
+#techstack-search {
+  width: 40%;
+}
+
+#team-size {
+  float: right;
+  width: 20%;
+}
+
+.sidebar-news {
+  max-height: 400px;
+  padding: 0px;
+  overflow-y: scroll;
+}
+
+.sidebar-upcoming-events {
+  max-height: 400px;
+  padding: 0px;
+  overflow-y: scroll;
+}
+
+.sidebar-twitter {
+  max-height: 400px;
+  padding: 0px;
+  overflow-y: scroll;
+}
+
+#twitter-feed {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.organization-container {
+  margin-top: 15px;
 }
