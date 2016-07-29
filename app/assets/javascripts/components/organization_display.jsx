@@ -1,7 +1,13 @@
 var OrganizationsDisplay = React.createClass({
-
   getInitialState: function() {
     return { organizations: this.props.organizations, searchTerm: null, techSizeSearch: null, technologySearch: null };
+  },
+  getTechValue: function(string){
+    var arr = string.split(",");
+    var outArr = arr.join("+");
+    this.setState({
+      technologySearch: outArr
+    }, this.filterOrganizations);
   },
   filterOrganizations: function() {
     var termSearch = this.refs.searchInput.value.toLowerCase();
