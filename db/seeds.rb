@@ -90,7 +90,7 @@ organization_list.each do |org|
   Organization.create( org )
   puts "Creating #{org[:name]}"
 end
-puts "21 Organizations have been created"
+puts "#{organization_list.count} Organizations have been created"
 
 ClaimRequest.create(user_id: User.first.id, organization_id: Organization.first.id)
 ClaimRequest.create(user_id: User.last.id, organization_id: Organization.last.id)
